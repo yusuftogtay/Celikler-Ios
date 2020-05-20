@@ -1,0 +1,6 @@
+framework module Pods_CeliklerMarket_CeliklerMarketUITests {
+  umbrella header "Pods-CeliklerMarket-CeliklerMarketUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,777 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		771CE416FD909115F275873D /* Pods_CeliklerMarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E1F12DB9D71623586C9D4CB /* Pods_CeliklerMarket.framework */; };
+		8803873B245CB6640075F70A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803873A245CB6640075F70A /* AppDelegate.swift */; };
+		8803873D245CB6640075F70A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803873C245CB6640075F70A /* SceneDelegate.swift */; };
+		8803873F245CB6640075F70A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803873E245CB6640075F70A /* ViewController.swift */; };
+		88038742245CB6640075F70A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88038740245CB6640075F70A /* Main.storyboard */; };
+		88038744245CB6660075F70A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88038743245CB6660075F70A /* Assets.xcassets */; };
+		88038747245CB6660075F70A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88038745245CB6660075F70A /* LaunchScreen.storyboard */; };
+		88038752245CB6660075F70A /* CeliklerMarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88038751245CB6660075F70A /* CeliklerMarketTests.swift */; };
+		8803875D245CB6660075F70A /* CeliklerMarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803875C245CB6660075F70A /* CeliklerMarketUITests.swift */; };
+		8872ED742474203F000F0BA1 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */; };
+		88786DB4246F27EE00D8EB9D /* subCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88786DB3246F27EE00D8EB9D /* subCategoryViewController.swift */; };
+		88786DB6246F2A4800D8EB9D /* subViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88786DB5246F2A4800D8EB9D /* subViewController.swift */; };
+		887946FC246B496B003E522B /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887946FB246B496B003E522B /* mainViewController.swift */; };
+		88984F732469D57600404EE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88984F722469D57600404EE7 /* GoogleService-Info.plist */; };
+		C53399EA658FFAE1B142A5F4 /* Pods_CeliklerMarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDA679A079CE95D2805EF98 /* Pods_CeliklerMarketTests.framework */; };
+		F079068BCE20BDC325C42255 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC760CCA6B2F430B344F955 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8803874E245CB6660075F70A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8803872F245CB6640075F70A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88038736245CB6640075F70A;
+			remoteInfo = CeliklerMarket;
+		};
+		88038759245CB6660075F70A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8803872F245CB6640075F70A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88038736245CB6640075F70A;
+			remoteInfo = CeliklerMarket;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		069CDFAE66DE01E5C219F683 /* Pods-CeliklerMarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CeliklerMarket.release.xcconfig"; path = "Target Support Files/Pods-CeliklerMarket/Pods-CeliklerMarket.release.xcconfig"; sourceTree = "<group>"; };
+		0AC760CCA6B2F430B344F955 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CeliklerMarket_CeliklerMarketUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B0E3D7269EF071126474DB4 /* Pods-CeliklerMarket-CeliklerMarketUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CeliklerMarket-CeliklerMarketUITests.release.xcconfig"; path = "Target Support Files/Pods-CeliklerMarket-CeliklerMarketUITests/Pods-CeliklerMarket-CeliklerMarketUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2E1F12DB9D71623586C9D4CB /* Pods_CeliklerMarket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CeliklerMarket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31A4549161C4927A75A933BF /* Pods-CeliklerMarket-CeliklerMarketUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CeliklerMarket-CeliklerMarketUITests.debug.xcconfig"; path = "Target Support Files/Pods-CeliklerMarket-CeliklerMarketUITests/Pods-CeliklerMarket-CeliklerMarketUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		81168BC14C4D6BE59E3C016A /* Pods-CeliklerMarketTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CeliklerMarketTests.release.xcconfig"; path = "Target Support Files/Pods-CeliklerMarketTests/Pods-CeliklerMarketTests.release.xcconfig"; sourceTree = "<group>"; };
+		87CF874AE9CB7677DF796BC3 /* Pods-CeliklerMarket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CeliklerMarket.debug.xcconfig"; path = "Target Support Files/Pods-CeliklerMarket/Pods-CeliklerMarket.debug.xcconfig"; sourceTree = "<group>"; };
+		88038737245CB6640075F70A /* CeliklerMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CeliklerMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8803873A245CB6640075F70A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8803873C245CB6640075F70A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8803873E245CB6640075F70A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		88038741245CB6640075F70A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		88038743245CB6660075F70A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		88038746245CB6660075F70A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		88038748245CB6660075F70A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8803874D245CB6660075F70A /* CeliklerMarketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CeliklerMarketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88038751245CB6660075F70A /* CeliklerMarketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeliklerMarketTests.swift; sourceTree = "<group>"; };
+		88038753245CB6660075F70A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88038758245CB6660075F70A /* CeliklerMarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CeliklerMarketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8803875C245CB6660075F70A /* CeliklerMarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeliklerMarketUITests.swift; sourceTree = "<group>"; };
+		8803875E245CB6660075F70A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		88786DB3246F27EE00D8EB9D /* subCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subCategoryViewController.swift; sourceTree = "<group>"; };
+		88786DB5246F2A4800D8EB9D /* subViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subViewController.swift; sourceTree = "<group>"; };
+		887946FA246ADF7A003E522B /* CeliklerMarket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CeliklerMarket.entitlements; sourceTree = "<group>"; };
+		887946FB246B496B003E522B /* mainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
+		88984F722469D57600404EE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8B401D16C16CDBC46812C7FB /* Pods-CeliklerMarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CeliklerMarketTests.debug.xcconfig"; path = "Target Support Files/Pods-CeliklerMarketTests/Pods-CeliklerMarketTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BCDA679A079CE95D2805EF98 /* Pods_CeliklerMarketTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CeliklerMarketTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88038734245CB6640075F70A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				771CE416FD909115F275873D /* Pods_CeliklerMarket.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8803874A245CB6660075F70A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C53399EA658FFAE1B142A5F4 /* Pods_CeliklerMarketTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88038755245CB6660075F70A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F079068BCE20BDC325C42255 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0CE1AB03B74929453E32C910 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E1F12DB9D71623586C9D4CB /* Pods_CeliklerMarket.framework */,
+				0AC760CCA6B2F430B344F955 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework */,
+				BCDA679A079CE95D2805EF98 /* Pods_CeliklerMarketTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8803872E245CB6640075F70A = {
+			isa = PBXGroup;
+			children = (
+				88038739245CB6640075F70A /* CeliklerMarket */,
+				88038750245CB6660075F70A /* CeliklerMarketTests */,
+				8803875B245CB6660075F70A /* CeliklerMarketUITests */,
+				88038738245CB6640075F70A /* Products */,
+				E962BC901372D77C7356AD9D /* Pods */,
+				0CE1AB03B74929453E32C910 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		88038738245CB6640075F70A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88038737245CB6640075F70A /* CeliklerMarket.app */,
+				8803874D245CB6660075F70A /* CeliklerMarketTests.xctest */,
+				88038758245CB6660075F70A /* CeliklerMarketUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88038739245CB6640075F70A /* CeliklerMarket */ = {
+			isa = PBXGroup;
+			children = (
+				887946FA246ADF7A003E522B /* CeliklerMarket.entitlements */,
+				8803873A245CB6640075F70A /* AppDelegate.swift */,
+				8803873C245CB6640075F70A /* SceneDelegate.swift */,
+				8803873E245CB6640075F70A /* ViewController.swift */,
+				88038740245CB6640075F70A /* Main.storyboard */,
+				88038743245CB6660075F70A /* Assets.xcassets */,
+				88038745245CB6660075F70A /* LaunchScreen.storyboard */,
+				88038748245CB6660075F70A /* Info.plist */,
+				88984F722469D57600404EE7 /* GoogleService-Info.plist */,
+				887946FB246B496B003E522B /* mainViewController.swift */,
+				88786DB3246F27EE00D8EB9D /* subCategoryViewController.swift */,
+				88786DB5246F2A4800D8EB9D /* subViewController.swift */,
+				8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */,
+			);
+			path = CeliklerMarket;
+			sourceTree = "<group>";
+		};
+		88038750245CB6660075F70A /* CeliklerMarketTests */ = {
+			isa = PBXGroup;
+			children = (
+				88038751245CB6660075F70A /* CeliklerMarketTests.swift */,
+				88038753245CB6660075F70A /* Info.plist */,
+			);
+			path = CeliklerMarketTests;
+			sourceTree = "<group>";
+		};
+		8803875B245CB6660075F70A /* CeliklerMarketUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8803875C245CB6660075F70A /* CeliklerMarketUITests.swift */,
+				8803875E245CB6660075F70A /* Info.plist */,
+			);
+			path = CeliklerMarketUITests;
+			sourceTree = "<group>";
+		};
+		E962BC901372D77C7356AD9D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				87CF874AE9CB7677DF796BC3 /* Pods-CeliklerMarket.debug.xcconfig */,
+				069CDFAE66DE01E5C219F683 /* Pods-CeliklerMarket.release.xcconfig */,
+				31A4549161C4927A75A933BF /* Pods-CeliklerMarket-CeliklerMarketUITests.debug.xcconfig */,
+				0B0E3D7269EF071126474DB4 /* Pods-CeliklerMarket-CeliklerMarketUITests.release.xcconfig */,
+				8B401D16C16CDBC46812C7FB /* Pods-CeliklerMarketTests.debug.xcconfig */,
+				81168BC14C4D6BE59E3C016A /* Pods-CeliklerMarketTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		88038736245CB6640075F70A /* CeliklerMarket */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88038761245CB6660075F70A /* Build configuration list for PBXNativeTarget "CeliklerMarket" */;
+			buildPhases = (
+				21F00D0A076CF0AF1158675A /* [CP] Check Pods Manifest.lock */,
+				88038733245CB6640075F70A /* Sources */,
+				88038734245CB6640075F70A /* Frameworks */,
+				88038735245CB6640075F70A /* Resources */,
+				5CF13D3FAB904695369197D7 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CeliklerMarket;
+			productName = CeliklerMarket;
+			productReference = 88038737245CB6640075F70A /* CeliklerMarket.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8803874C245CB6660075F70A /* CeliklerMarketTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88038764245CB6660075F70A /* Build configuration list for PBXNativeTarget "CeliklerMarketTests" */;
+			buildPhases = (
+				5102603B3E5ACFAF87363C9F /* [CP] Check Pods Manifest.lock */,
+				88038749245CB6660075F70A /* Sources */,
+				8803874A245CB6660075F70A /* Frameworks */,
+				8803874B245CB6660075F70A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8803874F245CB6660075F70A /* PBXTargetDependency */,
+			);
+			name = CeliklerMarketTests;
+			productName = CeliklerMarketTests;
+			productReference = 8803874D245CB6660075F70A /* CeliklerMarketTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		88038757245CB6660075F70A /* CeliklerMarketUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88038767245CB6660075F70A /* Build configuration list for PBXNativeTarget "CeliklerMarketUITests" */;
+			buildPhases = (
+				47797E4216171A55AD1AC76B /* [CP] Check Pods Manifest.lock */,
+				88038754245CB6660075F70A /* Sources */,
+				88038755245CB6660075F70A /* Frameworks */,
+				88038756245CB6660075F70A /* Resources */,
+				17F4A5D75667DC23577F95BB /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8803875A245CB6660075F70A /* PBXTargetDependency */,
+			);
+			name = CeliklerMarketUITests;
+			productName = CeliklerMarketUITests;
+			productReference = 88038758245CB6660075F70A /* CeliklerMarketUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8803872F245CB6640075F70A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = OzguRND;
+				TargetAttributes = {
+					88038736245CB6640075F70A = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+					8803874C245CB6660075F70A = {
+						CreatedOnToolsVersion = 11.4.1;
+						TestTargetID = 88038736245CB6640075F70A;
+					};
+					88038757245CB6660075F70A = {
+						CreatedOnToolsVersion = 11.4.1;
+						TestTargetID = 88038736245CB6640075F70A;
+					};
+				};
+			};
+			buildConfigurationList = 88038732245CB6640075F70A /* Build configuration list for PBXProject "CeliklerMarket" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8803872E245CB6640075F70A;
+			productRefGroup = 88038738245CB6640075F70A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88038736245CB6640075F70A /* CeliklerMarket */,
+				8803874C245CB6660075F70A /* CeliklerMarketTests */,
+				88038757245CB6660075F70A /* CeliklerMarketUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88038735245CB6640075F70A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88038747245CB6660075F70A /* LaunchScreen.storyboard in Resources */,
+				88984F732469D57600404EE7 /* GoogleService-Info.plist in Resources */,
+				88038744245CB6660075F70A /* Assets.xcassets in Resources */,
+				88038742245CB6640075F70A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8803874B245CB6660075F70A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88038756245CB6660075F70A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		17F4A5D75667DC23577F95BB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CeliklerMarket-CeliklerMarketUITests/Pods-CeliklerMarket-CeliklerMarketUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CeliklerMarket-CeliklerMarketUITests/Pods-CeliklerMarket-CeliklerMarketUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CeliklerMarket-CeliklerMarketUITests/Pods-CeliklerMarket-CeliklerMarketUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		21F00D0A076CF0AF1158675A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CeliklerMarket-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		47797E4216171A55AD1AC76B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CeliklerMarket-CeliklerMarketUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5102603B3E5ACFAF87363C9F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CeliklerMarketTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5CF13D3FAB904695369197D7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CeliklerMarket/Pods-CeliklerMarket-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CeliklerMarket/Pods-CeliklerMarket-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CeliklerMarket/Pods-CeliklerMarket-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88038733245CB6640075F70A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8803873F245CB6640075F70A /* ViewController.swift in Sources */,
+				88786DB6246F2A4800D8EB9D /* subViewController.swift in Sources */,
+				8872ED742474203F000F0BA1 /* ProductCollectionViewCell.swift in Sources */,
+				88786DB4246F27EE00D8EB9D /* subCategoryViewController.swift in Sources */,
+				8803873B245CB6640075F70A /* AppDelegate.swift in Sources */,
+				8803873D245CB6640075F70A /* SceneDelegate.swift in Sources */,
+				887946FC246B496B003E522B /* mainViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88038749245CB6660075F70A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88038752245CB6660075F70A /* CeliklerMarketTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88038754245CB6660075F70A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8803875D245CB6660075F70A /* CeliklerMarketUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8803874F245CB6660075F70A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88038736245CB6640075F70A /* CeliklerMarket */;
+			targetProxy = 8803874E245CB6660075F70A /* PBXContainerItemProxy */;
+		};
+		8803875A245CB6660075F70A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88038736245CB6640075F70A /* CeliklerMarket */;
+			targetProxy = 88038759245CB6660075F70A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		88038740245CB6640075F70A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88038741245CB6640075F70A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		88038745245CB6660075F70A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88038746245CB6660075F70A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8803875F245CB6660075F70A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		88038760245CB6660075F70A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88038762245CB6660075F70A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87CF874AE9CB7677DF796BC3 /* Pods-CeliklerMarket.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CeliklerMarket/CeliklerMarket.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PRL64D4YUA;
+				INFOPLIST_FILE = CeliklerMarket/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		88038763245CB6660075F70A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 069CDFAE66DE01E5C219F683 /* Pods-CeliklerMarket.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CeliklerMarket/CeliklerMarket.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PRL64D4YUA;
+				INFOPLIST_FILE = CeliklerMarket/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		88038765245CB6660075F70A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B401D16C16CDBC46812C7FB /* Pods-CeliklerMarketTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CeliklerMarketTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = OzguRND.CeliklerMarketTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CeliklerMarket.app/CeliklerMarket";
+			};
+			name = Debug;
+		};
+		88038766245CB6660075F70A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81168BC14C4D6BE59E3C016A /* Pods-CeliklerMarketTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CeliklerMarketTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = OzguRND.CeliklerMarketTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CeliklerMarket.app/CeliklerMarket";
+			};
+			name = Release;
+		};
+		88038768245CB6660075F70A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31A4549161C4927A75A933BF /* Pods-CeliklerMarket-CeliklerMarketUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CeliklerMarketUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = OzguRND.CeliklerMarketUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CeliklerMarket;
+			};
+			name = Debug;
+		};
+		88038769245CB6660075F70A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B0E3D7269EF071126474DB4 /* Pods-CeliklerMarket-CeliklerMarketUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CeliklerMarketUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = OzguRND.CeliklerMarketUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CeliklerMarket;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88038732245CB6640075F70A /* Build configuration list for PBXProject "CeliklerMarket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8803875F245CB6660075F70A /* Debug */,
+				88038760245CB6660075F70A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88038761245CB6660075F70A /* Build configuration list for PBXNativeTarget "CeliklerMarket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88038762245CB6660075F70A /* Debug */,
+				88038763245CB6660075F70A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88038764245CB6660075F70A /* Build configuration list for PBXNativeTarget "CeliklerMarketTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88038765245CB6660075F70A /* Debug */,
+				88038766245CB6660075F70A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88038767245CB6660075F70A /* Build configuration list for PBXNativeTarget "CeliklerMarketUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88038768245CB6660075F70A /* Debug */,
+				88038769245CB6660075F70A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8803872F245CB6640075F70A /* Project object */;
+}
