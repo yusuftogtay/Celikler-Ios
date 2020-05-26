@@ -7,6 +7,7 @@ target 'CeliklerMarket' do
 
 pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
+pod 'Firebase/Messaging'
 pod 'Alamofire', '~> 5.1'
 pod 'SDWebImage', '~> 5.0'
 pod 'Kingfisher', '~> 5.0'
