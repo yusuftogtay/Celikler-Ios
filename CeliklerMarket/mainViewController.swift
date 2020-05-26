@@ -30,10 +30,21 @@ class mainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionViewCell2.delegate = self
-        //let hideKayboard = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        //view.addGestureRecognizer(hideKayboard)
+        
+        //Collection View Resflesh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
+        collectionViewCell2.refreshControl = refreshControl
+        
+        //slider and categories apadtor
         sliderViewDidLoad()
         categories()
+    }
+    
+    @objc func doSomething(refreshControl: UIRefreshControl) {
+        categories()
+        sliderViewDidLoad()
+        refreshControl.endRefreshing()
     }
     
     func selectCategory()   {
@@ -46,6 +57,7 @@ class mainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func sliderViewDidLoad()    {
+        sliderImageArray.removeAll()
         if let url = URL(string: "https://amasyaceliklermarket.com/api/slider") {
            URLSession.shared.dataTask(with: url) { data, response, error in
               if let data = data {
@@ -78,6 +90,10 @@ class mainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func categories()   {
+        categoriesImage.removeAll()
+        categoriesLabel.removeAll()
+        categoriesID.removeAll()
+        collectionViewCell2.reloadData()
         if let url = URL(string: "https://amasyaceliklermarket.com/api/category_all") {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data {
