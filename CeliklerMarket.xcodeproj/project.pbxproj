@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,16 +11,15 @@
 		8803873B245CB6640075F70A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803873A245CB6640075F70A /* AppDelegate.swift */; };
 		8803873D245CB6640075F70A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803873C245CB6640075F70A /* SceneDelegate.swift */; };
 		8803873F245CB6640075F70A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803873E245CB6640075F70A /* ViewController.swift */; };
-		88038742245CB6640075F70A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88038740245CB6640075F70A /* Main.storyboard */; };
-		88038744245CB6660075F70A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88038743245CB6660075F70A /* Assets.xcassets */; };
-		88038747245CB6660075F70A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88038745245CB6660075F70A /* LaunchScreen.storyboard */; };
 		88038752245CB6660075F70A /* CeliklerMarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88038751245CB6660075F70A /* CeliklerMarketTests.swift */; };
 		8803875D245CB6660075F70A /* CeliklerMarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803875C245CB6660075F70A /* CeliklerMarketUITests.swift */; };
+		885AED36247AB95200820E86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88038740245CB6640075F70A /* Main.storyboard */; };
+		885AED37247AC06F00820E86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 885AED34247AB6F100820E86 /* GoogleService-Info.plist */; };
+		885AED38247AC08400820E86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88038743245CB6660075F70A /* Assets.xcassets */; };
 		8872ED742474203F000F0BA1 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */; };
 		88786DB4246F27EE00D8EB9D /* subCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88786DB3246F27EE00D8EB9D /* subCategoryViewController.swift */; };
 		88786DB6246F2A4800D8EB9D /* subViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88786DB5246F2A4800D8EB9D /* subViewController.swift */; };
 		887946FC246B496B003E522B /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887946FB246B496B003E522B /* mainViewController.swift */; };
-		88984F732469D57600404EE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88984F722469D57600404EE7 /* GoogleService-Info.plist */; };
 		C53399EA658FFAE1B142A5F4 /* Pods_CeliklerMarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDA679A079CE95D2805EF98 /* Pods_CeliklerMarketTests.framework */; };
 		F079068BCE20BDC325C42255 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC760CCA6B2F430B344F955 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework */; };
 /* End PBXBuildFile section */
@@ -64,12 +63,13 @@
 		88038758245CB6660075F70A /* CeliklerMarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CeliklerMarketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8803875C245CB6660075F70A /* CeliklerMarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeliklerMarketUITests.swift; sourceTree = "<group>"; };
 		8803875E245CB6660075F70A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		885AED34247AB6F100820E86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		88786DB3246F27EE00D8EB9D /* subCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subCategoryViewController.swift; sourceTree = "<group>"; };
 		88786DB5246F2A4800D8EB9D /* subViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subViewController.swift; sourceTree = "<group>"; };
 		887946FA246ADF7A003E522B /* CeliklerMarket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CeliklerMarket.entitlements; sourceTree = "<group>"; };
 		887946FB246B496B003E522B /* mainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
-		88984F722469D57600404EE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		88B2646E2479CE4500FD6303 /* CeliklerMarket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CeliklerMarket; sourceTree = "<group>"; };
 		8B401D16C16CDBC46812C7FB /* Pods-CeliklerMarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CeliklerMarketTests.debug.xcconfig"; path = "Target Support Files/Pods-CeliklerMarketTests/Pods-CeliklerMarketTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BCDA679A079CE95D2805EF98 /* Pods_CeliklerMarketTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CeliklerMarketTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -144,8 +144,9 @@
 				88038740245CB6640075F70A /* Main.storyboard */,
 				88038743245CB6660075F70A /* Assets.xcassets */,
 				88038745245CB6660075F70A /* LaunchScreen.storyboard */,
+				885AED34247AB6F100820E86 /* GoogleService-Info.plist */,
 				88038748245CB6660075F70A /* Info.plist */,
-				88984F722469D57600404EE7 /* GoogleService-Info.plist */,
+				88B2646E2479CE4500FD6303 /* CeliklerMarket */,
 				887946FB246B496B003E522B /* mainViewController.swift */,
 				88786DB3246F27EE00D8EB9D /* subCategoryViewController.swift */,
 				88786DB5246F2A4800D8EB9D /* subViewController.swift */,
@@ -253,7 +254,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = OzguRND;
 				TargetAttributes = {
 					88038736245CB6640075F70A = {
@@ -270,7 +271,7 @@
 				};
 			};
 			buildConfigurationList = 88038732245CB6640075F70A /* Build configuration list for PBXProject "CeliklerMarket" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.4";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -294,10 +295,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88038747245CB6660075F70A /* LaunchScreen.storyboard in Resources */,
-				88984F732469D57600404EE7 /* GoogleService-Info.plist in Resources */,
-				88038744245CB6660075F70A /* Assets.xcassets in Resources */,
-				88038742245CB6640075F70A /* Main.storyboard in Resources */,
+				885AED36247AB95200820E86 /* Main.storyboard in Resources */,
+				885AED38247AC08400820E86 /* Assets.xcassets in Resources */,
+				885AED37247AC06F00820E86 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,7 +608,7 @@
 				CODE_SIGN_ENTITLEMENTS = CeliklerMarket/CeliklerMarket.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PRL64D4YUA;
+				DEVELOPMENT_TEAM = 99GFS9PPPG;
 				INFOPLIST_FILE = CeliklerMarket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -632,7 +632,7 @@
 				CODE_SIGN_ENTITLEMENTS = CeliklerMarket/CeliklerMarket.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PRL64D4YUA;
+				DEVELOPMENT_TEAM = 99GFS9PPPG;
 				INFOPLIST_FILE = CeliklerMarket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
