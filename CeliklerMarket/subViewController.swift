@@ -8,7 +8,9 @@
 
 import UIKit
 
-class SubViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class SubViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,
+ProductCollectionView, UICollectionViewDelegateFlowLayout {
+     
 
     var subCategory = [String?]()
     var subCategoryIndex = 0
@@ -48,18 +50,17 @@ class SubViewController: UIViewController, UICollectionViewDelegate, UICollectio
         swipeRight.addTarget(self, action: #selector(self.swipe(sender:)))
         swipeLeft.addTarget(self, action: #selector(self.swipe(sender:)))
         getSubCategory(with: subCategoryIndex)
-        getProduct(with: subCategoryIndex)
         
-        DispatchQueue.main.async{
-            let user : String? =  UserDefaults.standard.string(forKey: "firstLog")
-            /*if user == nil  {
-                self.swipeAlert()
-            }*/
-            self.swipeAlert()
-            
+        var swipe : Bool? = UserDefaults.standard.bool(forKey: "swipeControl")
+        if swipe == nil {
+            UserDefaults.standard.set(true, forKey: "swipeControl")
+            UserDefaults.standard.synchronize()
+            swipe = UserDefaults.standard.bool(forKey: "swipeControl")
+            if swipe != false{
+                swipeAlert()
+                UserDefaults.standard.set(false, forKey: "swipeControl")
+            }
         }
-        UserDefaults.standard.set("fistLog", forKey: "firstLog")
-        UserDefaults.standard.synchronize()
         
     }
     func swipeAlert()   {
@@ -71,6 +72,10 @@ class SubViewController: UIViewController, UICollectionViewDelegate, UICollectio
         let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
         action.setValue(image, forKey: "image")
         alert.addAction(action)
+        
+        let backButton = UIBarButtonItem(title: "Custom", style: .plain, target: self, action: nil)
+        navigationItem.setLeftBarButton(backButton, animated: false)
+        
         
         self.present(alert, animated: true, completion: nil)
         UserDefaults.standard.removeObject(forKey: "firstLog")
@@ -96,10 +101,13 @@ class SubViewController: UIViewController, UICollectionViewDelegate, UICollectio
                                             self.subCategoryID.append(i.id)
                                             self.subCategoryTitle.append(i.title)
                                             self.categoryCollection.reloadData()
-                                            //self.categoryLabel.text = i.title
-                                            self.navigationTitle.title = i.title
+                                            self.navigationTitle?.title = i.title
                                         }
                                 }
+                            }
+                            DispatchQueue.main.sync {
+                                self.getProduct(with: Int(self.subCategoryID[0])!)
+                                self.categoryLabel.text! = self.subCategoryTitle[0]!
                             }
                         } catch let error {
                             print(error)
@@ -111,6 +119,14 @@ class SubViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     func getProduct(with id: Int)   {
+        self.productID.removeAll()
+        self.productName.removeAll()
+        self.productInStock.removeAll()
+        self.productPrice.removeAll()
+        self.productUnitValue.removeAll()
+        self.productUnit.removeAll()
+        self.productImage.removeAll()
+        self.categoryCollection.reloadData()
         if let url = URL(string: "https://amasyaceliklermarket.com/api/product/" + String(id)) {
             URLSession.shared.dataTask(with: url) { data, response, error in
                     if let data = data {
@@ -144,17 +160,23 @@ class SubViewController: UIViewController, UICollectionViewDelegate, UICollectio
         }
     }
     
+    func oneClickCell(index: Int, unit: String) {
+        button.titleLabel?.text = "sdbvşdfsbşdkfb"
+    }
+    
     @objc func swipe(sender: UISwipeGestureRecognizer)  {
         switch sender.direction {
         case .left:
             if subCategoryTitle.count > 0   {
                 counter = (counter + 1) % subCategoryTitle.count
-                navigationTitle.title = subCategoryTitle[counter]
+                categoryLabel.text! = subCategoryTitle[counter]!
+                getProduct(with: Int(subCategoryID[counter])!)
             }
         case .right:
             if subCategoryTitle.count > 0   {
                 counter = (counter + 1) % (subCategoryTitle.count)
-                navigationTitle.title = subCategoryTitle[((subCategoryTitle.count - counter) % subCategoryTitle.count)]
+                categoryLabel.text! = subCategoryTitle[((subCategoryTitle.count - counter) % subCategoryTitle.count)]!
+                getProduct(with: Int(subCategoryID[((subCategoryTitle.count - counter) % subCategoryTitle.count)])!)
             }
         default:
             categoryLabel.text = ""
@@ -178,12 +200,7 @@ class SubViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //cellTapped()
-        /*let selectedCell:UICollectionViewCell = categoryCollection.cellForItem(at: indexPath)!
-        selectedCell.contentView.backgroundColor = UIColor(red: 102/256, green: 255/256, blue: 255/256, alpha: 0.66)
-        if let vcButton = selectedCell.viewWithTag(128) as? UIButton    {
-            vcButton.titleLabel?.text = "dsnglsdk"
-        }*/
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -197,6 +214,9 @@ class SubViewController: UIViewController, UICollectionViewDelegate, UICollectio
         if let vcTotal = cell?.viewWithTag(125) as? UILabel      {
             vcTotal.text = "Toplam: 0.0₺"
         }
+        if let vcPrice = cell?.viewWithTag(156) as? UILabel      {
+            vcPrice.text = (productPrice[indexPath.row]! + "₺")
+        }
         cell?.cellDelegate = self
         cell?.index = indexPath
         return cell!
@@ -206,45 +226,11 @@ class SubViewController: UIViewController, UICollectionViewDelegate, UICollectio
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
-    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 300, height: 150)
-    }*/
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
-    }
-}
-
-extension SubViewController: ProductCollectionView  {
-    func oneClickCell(index: Int) {
-        print("\(index) is clicked")
-    }
-}
-
-extension UIImage {
-    func imageWithSize(_ size:CGSize) -> UIImage {
-        var scaledImageRect = CGRect.zero
-        
-        let aspectWidth:CGFloat = size.width / self.size.width
-        let aspectHeight:CGFloat = size.height / self.size.height
-        let aspectRatio:CGFloat = min(aspectWidth, aspectHeight)
-        
-        scaledImageRect.size.width = self.size.width * aspectRatio
-        scaledImageRect.size.height = self.size.height * aspectRatio
-        scaledImageRect.origin.x = (size.width - scaledImageRect.size.width) / 2.0
-        scaledImageRect.origin.y = (size.height - scaledImageRect.size.height) / 2.0
-        
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        
-        self.draw(in: scaledImageRect)
-        
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return scaledImage!
     }
 }
