@@ -20,6 +20,7 @@
 		88786DB4246F27EE00D8EB9D /* subCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88786DB3246F27EE00D8EB9D /* subCategoryViewController.swift */; };
 		88786DB6246F2A4800D8EB9D /* subViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88786DB5246F2A4800D8EB9D /* subViewController.swift */; };
 		887946FC246B496B003E522B /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887946FB246B496B003E522B /* mainViewController.swift */; };
+		88BD4425247D4A1700D7ACC5 /* ShoppingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD4424247D4A1700D7ACC5 /* ShoppingCardViewController.swift */; };
 		C53399EA658FFAE1B142A5F4 /* Pods_CeliklerMarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDA679A079CE95D2805EF98 /* Pods_CeliklerMarketTests.framework */; };
 		F079068BCE20BDC325C42255 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC760CCA6B2F430B344F955 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,7 @@
 		887946FA246ADF7A003E522B /* CeliklerMarket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CeliklerMarket.entitlements; sourceTree = "<group>"; };
 		887946FB246B496B003E522B /* mainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
 		88B2646E2479CE4500FD6303 /* CeliklerMarket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CeliklerMarket; sourceTree = "<group>"; };
+		88BD4424247D4A1700D7ACC5 /* ShoppingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCardViewController.swift; sourceTree = "<group>"; };
 		8B401D16C16CDBC46812C7FB /* Pods-CeliklerMarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CeliklerMarketTests.debug.xcconfig"; path = "Target Support Files/Pods-CeliklerMarketTests/Pods-CeliklerMarketTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BCDA679A079CE95D2805EF98 /* Pods_CeliklerMarketTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CeliklerMarketTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -151,6 +153,7 @@
 				88786DB3246F27EE00D8EB9D /* subCategoryViewController.swift */,
 				88786DB5246F2A4800D8EB9D /* subViewController.swift */,
 				8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */,
+				88BD4424247D4A1700D7ACC5 /* ShoppingCardViewController.swift */,
 			);
 			path = CeliklerMarket;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88BD4425247D4A1700D7ACC5 /* ShoppingCardViewController.swift in Sources */,
 				8803873F245CB6640075F70A /* ViewController.swift in Sources */,
 				88786DB6246F2A4800D8EB9D /* subViewController.swift in Sources */,
 				8872ED742474203F000F0BA1 /* ProductCollectionViewCell.swift in Sources */,

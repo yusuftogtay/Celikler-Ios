@@ -14,7 +14,7 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
 
     var subCategory = [String?]()
     var subCategoryIndex = 0
-    @IBOutlet weak var cell: UICollectionViewCell!
+    var refreshControl = UIRefreshControl()
     
     var subCategoryImage = [UIImage?]()
     var subCategoryID = [String]()
@@ -32,12 +32,36 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
     var productUnit = [String?]()
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categoryCollection: UICollectionView!
+    @IBOutlet weak var navBarItem: UINavigationBar!
+    @IBOutlet weak var navItem: UINavigationItem!
     
     var counter = 0
     
+    @objc func doSomething(refreshControl: UIRefreshControl) {
+        self.getProduct(with: Int(self.subCategoryID[0])!)
+        navItem.title = subCategoryTitle[0]!
+
+        // somewhere in your code you might need to call:
+        refreshControl.endRefreshing()
+    }
+    
+    @objc func backSegue()  {
+        //navigationController?.popToRootViewController(animated: true)
+        performSegue(withIdentifier: "backSegue", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
+
+        // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
+        categoryCollection.refreshControl = refreshControl
         
+        let barButton = UIBarButtonItem(title: "geri", style: .done, target: self, action: #selector(backSegue))
+        navItem.leftBarButtonItem = barButton
+        navItem.title = ""
+
         let swipeLeft = UISwipeGestureRecognizer()
         let swipeRight = UISwipeGestureRecognizer()
         
@@ -80,8 +104,6 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
         self.present(alert, animated: true, completion: nil)
         UserDefaults.standard.removeObject(forKey: "firstLog")
     }
-    @IBOutlet weak var navigation: UINavigationBar!
-    @IBOutlet weak var navigationTitle: UINavigationItem!
     
     @objc func backAction(){
         //print("Back Button Clicked")
@@ -101,13 +123,13 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
                                             self.subCategoryID.append(i.id)
                                             self.subCategoryTitle.append(i.title)
                                             self.categoryCollection.reloadData()
-                                            self.navigationTitle?.title = i.title
+                                            //self.navigationTitle?.title = i.title
                                         }
                                 }
                             }
                             DispatchQueue.main.sync {
                                 self.getProduct(with: Int(self.subCategoryID[0])!)
-                                self.categoryLabel.text! = self.subCategoryTitle[0]!
+                                self.navItem.title = self.subCategoryTitle[0]!
                             }
                         } catch let error {
                             print(error)
@@ -159,9 +181,12 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
             }.resume()
         }
     }
+    struct cards {
+        
+    }
     
     func oneClickCell(index: Int, unit: String) {
-        button.titleLabel?.text = "sdbvşdfsbşdkfb"
+        UserDefaults.standard.set(, forKey: <#T##String#>)
     }
     
     @objc func swipe(sender: UISwipeGestureRecognizer)  {
@@ -169,13 +194,16 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
         case .left:
             if subCategoryTitle.count > 0   {
                 counter = (counter + 1) % subCategoryTitle.count
-                categoryLabel.text! = subCategoryTitle[counter]!
+                //categoryLabel.text! = subCategoryTitle[counter]!
+                navItem.title = subCategoryTitle[counter]!
                 getProduct(with: Int(subCategoryID[counter])!)
+                
             }
         case .right:
             if subCategoryTitle.count > 0   {
                 counter = (counter + 1) % (subCategoryTitle.count)
-                categoryLabel.text! = subCategoryTitle[((subCategoryTitle.count - counter) % subCategoryTitle.count)]!
+                //categoryLabel.text! = subCategoryTitle[((subCategoryTitle.count - counter) % subCategoryTitle.count)]!
+                navItem.title = subCategoryTitle[((subCategoryTitle.count - counter) % subCategoryTitle.count)]!
                 getProduct(with: Int(subCategoryID[((subCategoryTitle.count - counter) % subCategoryTitle.count)])!)
             }
         default:
