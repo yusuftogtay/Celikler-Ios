@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ProductCollectionView {
-    func oneClickCell(index: Int)
+    func oneClickCell(index: Int, unit: String)
 }
 
 class ProductCollectionViewCell: UICollectionViewCell {
@@ -25,10 +25,9 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var addbutton: UIButton!
     
     @IBAction func addButton(_ sender: Any) {
-        if addbutton.titleLabel?.text == "Ekle" {
-            addbutton.titleLabel?.text = "Güncelle"
-        }
-        cellDelegate?.oneClickCell(index: (index?.row)!)
+        let unit = unitLabel.text
+        addbutton.titleLabel?.text = "Güncelle"
+        cellDelegate?.oneClickCell(index: (index?.row)!, unit: unit!)
     }
     @IBAction func minusButton(_ sender: Any) {
         if counter > 0  {
