@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>892788459670-4no59btvvu1ocnl97ptl80mqrsgm5lql.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.892788459670-4no59btvvu1ocnl97ptl80mqrsgm5lql</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB_jXmo_vKdH4UNvVIYO7J9V7yLtYeox1U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>892788459670</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.OzguRND.CeliklerMarket</string>
+	<key>PROJECT_ID</key>
+	<string>celiklermarket-20259</string>
+	<key>STORAGE_BUCKET</key>
+	<string>celiklermarket-20259.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:892788459670:ios:14724ac2f4fb26188c5ab7</string>
+	<key>DATABASE_URL</key>
+	<string>https://celiklermarket-20259.firebaseio.com</string>
+</dict>
+</plist>
