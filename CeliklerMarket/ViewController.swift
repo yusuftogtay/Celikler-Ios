@@ -117,11 +117,9 @@ class ViewController: UIViewController {
                                     }
                                     do {
                                         let responseJSON = try JSONDecoder().decode([getUserProfile].self, from: data)
-                                        for i in responseJSON {
-                                            UserDefaults.standard.set(i.id, forKey: "userid")
-                                            print(i.id)
-                                            UserDefaults.standard.synchronize()
-                                        }
+                                        let id = responseJSON[0].id
+                                        UserDefaults.standard.set(id, forKey: "userID")
+                                        UserDefaults.standard.synchronize()
                                     } catch let error   {
                                         print(error)
                                     }

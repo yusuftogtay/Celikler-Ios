@@ -285,7 +285,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ürün Sayısı:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YG-6A-ZqY">
-                                <rect key="frame" x="20" y="734.66666666666663" width="100" height="20.333333333333371"/>
+                                <rect key="frame" x="20" y="734.66666666666652" width="100" height="20.333333333333371"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="zTl-Cb-SDO"/>
                                 </constraints>
@@ -307,6 +307,63 @@
                                     <action selector="cardClear:" destination="KEq-4t-Gn3" eventType="touchUpInside" id="ehQ-tR-b47"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gak-4I-2wt">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="barTintColor" red="0.0012779122920000001" green="0.61556005479999998" blue="0.25570851560000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Teslimat Bilgileri" id="c67-dK-Nd9"/>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tR-rg-NhR">
+                                <rect key="frame" x="20" y="112" width="374" height="50"/>
+                                <color key="backgroundColor" red="0.0012779122920000001" green="0.61556005479999998" blue="0.25570851560000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6XA-YL-KGd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="Teslimat Günü">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendDay:" destination="KEq-4t-Gn3" eventType="touchUpInside" id="r51-x1-twe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZB-rd-b2T">
+                                <rect key="frame" x="20" y="170" width="374" height="50"/>
+                                <color key="backgroundColor" red="0.0012779122920000001" green="0.61556005479999998" blue="0.25570851560000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Yre-C1-Ruz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="Teslimat Saati">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendTime:" destination="KEq-4t-Gn3" eventType="touchUpInside" id="f9o-6q-GA5"/>
+                                </connections>
+                            </button>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="cRj-Zb-ZIk">
+                                <rect key="frame" x="47" y="320.66666666666669" width="320" height="216.00000000000006"/>
+                                <locale key="locale" localeIdentifier="tr"/>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqa-9J-g6d">
+                                <rect key="frame" x="20" y="544.66666666666663" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="riP-lt-y5R"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Seç"/>
+                                <connections>
+                                    <action selector="selectDay:" destination="KEq-4t-Gn3" eventType="touchUpInside" id="JS7-5Y-wcQ"/>
+                                </connections>
+                            </button>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="JjO-G7-ZfF">
+                                <rect key="frame" x="47" y="340" width="320" height="216"/>
+                                <locale key="locale" localeIdentifier="tr_TR"/>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -315,24 +372,40 @@
                             <constraint firstItem="y3R-I1-E4x" firstAttribute="leading" secondItem="8YG-6A-ZqY" secondAttribute="trailing" constant="174" id="3as-Dx-NAO"/>
                             <constraint firstItem="cUH-ja-ZMc" firstAttribute="top" secondItem="gZJ-NN-0te" secondAttribute="top" id="7Bc-0R-b19"/>
                             <constraint firstItem="5x3-kU-O69" firstAttribute="leading" secondItem="8YG-6A-ZqY" secondAttribute="leading" id="9aP-3k-u7f"/>
+                            <constraint firstItem="Gak-4I-2wt" firstAttribute="top" secondItem="gZJ-NN-0te" secondAttribute="top" id="CsB-xs-jko"/>
+                            <constraint firstItem="cqa-9J-g6d" firstAttribute="leading" secondItem="gZJ-NN-0te" secondAttribute="leading" constant="20" id="DIY-WG-SDv"/>
                             <constraint firstItem="gZJ-NN-0te" firstAttribute="trailing" secondItem="cUH-ja-ZMc" secondAttribute="trailing" id="F1O-OC-DTd"/>
+                            <constraint firstItem="IZB-rd-b2T" firstAttribute="top" secondItem="0tR-rg-NhR" secondAttribute="bottom" constant="8" id="KHg-Rt-NIM"/>
+                            <constraint firstItem="gZJ-NN-0te" firstAttribute="trailing" secondItem="IZB-rd-b2T" secondAttribute="trailing" constant="20" id="LZr-Qt-2px"/>
+                            <constraint firstItem="gZJ-NN-0te" firstAttribute="trailing" secondItem="cqa-9J-g6d" secondAttribute="trailing" constant="20" id="Ozh-l1-MwV"/>
+                            <constraint firstAttribute="trailing" secondItem="Gak-4I-2wt" secondAttribute="trailing" id="QJW-Ps-4fQ"/>
                             <constraint firstItem="5x3-kU-O69" firstAttribute="top" secondItem="cUH-ja-ZMc" secondAttribute="bottom" constant="8" id="T8V-Xs-d9z"/>
+                            <constraint firstItem="cRj-Zb-ZIk" firstAttribute="centerY" secondItem="gZJ-NN-0te" secondAttribute="centerY" id="VIS-bK-1G5"/>
+                            <constraint firstItem="0tR-rg-NhR" firstAttribute="leading" secondItem="gZJ-NN-0te" secondAttribute="leading" constant="20" id="W9j-6g-JbB"/>
+                            <constraint firstItem="0tR-rg-NhR" firstAttribute="top" secondItem="Gak-4I-2wt" secondAttribute="bottom" constant="24" id="WGK-mh-nh0"/>
                             <constraint firstItem="20B-JL-Voo" firstAttribute="trailing" secondItem="gZJ-NN-0te" secondAttribute="trailing" id="WOa-UM-TNc"/>
                             <constraint firstItem="VDV-u9-LZJ" firstAttribute="centerX" secondItem="gZJ-NN-0te" secondAttribute="centerX" id="Wnw-di-OKq"/>
                             <constraint firstItem="20B-JL-Voo" firstAttribute="top" secondItem="8YG-6A-ZqY" secondAttribute="bottom" constant="8" id="X8K-lG-1Gj"/>
                             <constraint firstItem="g8f-C7-Fyr" firstAttribute="top" secondItem="gZJ-NN-0te" secondAttribute="top" constant="80" id="XQZ-Ly-I9j"/>
+                            <constraint firstItem="Gak-4I-2wt" firstAttribute="leading" secondItem="5jk-2e-vdc" secondAttribute="leading" id="Xmt-tk-Z3W"/>
+                            <constraint firstItem="cRj-Zb-ZIk" firstAttribute="centerX" secondItem="gZJ-NN-0te" secondAttribute="centerX" id="XvE-vN-la2"/>
                             <constraint firstItem="20B-JL-Voo" firstAttribute="bottom" secondItem="gZJ-NN-0te" secondAttribute="bottom" id="ZFh-p5-HZR"/>
                             <constraint firstItem="Nhs-9T-yKH" firstAttribute="leading" secondItem="gZJ-NN-0te" secondAttribute="leading" constant="20" id="arh-h6-qBP"/>
+                            <constraint firstItem="IZB-rd-b2T" firstAttribute="leading" secondItem="gZJ-NN-0te" secondAttribute="leading" constant="20" id="bGX-0h-o1N"/>
                             <constraint firstItem="8YG-6A-ZqY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gZJ-NN-0te" secondAttribute="leading" id="d5X-Rb-rCl"/>
                             <constraint firstItem="20B-JL-Voo" firstAttribute="leading" secondItem="gZJ-NN-0te" secondAttribute="leading" id="dYb-bD-RHn"/>
                             <constraint firstItem="20B-JL-Voo" firstAttribute="top" secondItem="y3R-I1-E4x" secondAttribute="bottom" constant="8" id="eKK-hg-17P"/>
                             <constraint firstItem="5x3-kU-O69" firstAttribute="trailing" secondItem="y3R-I1-E4x" secondAttribute="trailing" id="ehG-jx-05S"/>
                             <constraint firstItem="y3R-I1-E4x" firstAttribute="top" secondItem="5x3-kU-O69" secondAttribute="bottom" constant="8" id="g9N-qP-p5m"/>
                             <constraint firstItem="cUH-ja-ZMc" firstAttribute="leading" secondItem="gZJ-NN-0te" secondAttribute="leading" id="gbN-6j-vjw"/>
+                            <constraint firstItem="cqa-9J-g6d" firstAttribute="top" secondItem="cRj-Zb-ZIk" secondAttribute="bottom" constant="8" id="hYY-jb-Va3"/>
                             <constraint firstItem="VDV-u9-LZJ" firstAttribute="top" secondItem="Nhs-9T-yKH" secondAttribute="bottom" constant="8" id="ukN-zz-OoL"/>
+                            <constraint firstItem="JjO-G7-ZfF" firstAttribute="centerX" secondItem="gZJ-NN-0te" secondAttribute="centerX" id="vJC-qH-YFX"/>
                             <constraint firstItem="gZJ-NN-0te" firstAttribute="trailing" secondItem="y3R-I1-E4x" secondAttribute="trailing" constant="20" id="vQU-bA-ybn"/>
                             <constraint firstItem="Nhs-9T-yKH" firstAttribute="top" secondItem="g8f-C7-Fyr" secondAttribute="bottom" constant="8" id="xNk-jM-ICp"/>
+                            <constraint firstItem="gZJ-NN-0te" firstAttribute="trailing" secondItem="0tR-rg-NhR" secondAttribute="trailing" constant="20" id="yJ3-S7-Kh0"/>
                             <constraint firstItem="g8f-C7-Fyr" firstAttribute="centerX" secondItem="gZJ-NN-0te" secondAttribute="centerX" id="yjP-6l-6SQ"/>
+                            <constraint firstItem="JjO-G7-ZfF" firstAttribute="centerY" secondItem="gZJ-NN-0te" secondAttribute="centerY" constant="19.5" id="zRp-kf-GHP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gZJ-NN-0te"/>
                         <variation key="default">
@@ -345,6 +418,7 @@
                                 <exclude reference="y3R-I1-E4x"/>
                                 <exclude reference="8YG-6A-ZqY"/>
                                 <exclude reference="cUH-ja-ZMc"/>
+                                <exclude reference="JjO-G7-ZfF"/>
                             </mask>
                         </variation>
                     </view>
@@ -355,8 +429,14 @@
                         <outlet property="cardClear" destination="cUH-ja-ZMc" id="Cft-e8-tHq"/>
                         <outlet property="cardEmptyInfo" destination="Nhs-9T-yKH" id="4WY-Zo-nCa"/>
                         <outlet property="cardsView" destination="5x3-kU-O69" id="zcF-UE-7dO"/>
+                        <outlet property="navbar" destination="Gak-4I-2wt" id="e2Y-lZ-gQe"/>
                         <outlet property="pay" destination="20B-JL-Voo" id="AJB-UZ-ICX"/>
                         <outlet property="productUnit" destination="8YG-6A-ZqY" id="Kyw-HI-nda"/>
+                        <outlet property="selectDay" destination="cqa-9J-g6d" id="gUr-4R-4xB"/>
+                        <outlet property="sendDay" destination="0tR-rg-NhR" id="6Df-A1-1uL"/>
+                        <outlet property="sendDayPicker" destination="cRj-Zb-ZIk" id="7Di-2b-xJB"/>
+                        <outlet property="sendTimePicker" destination="JjO-G7-ZfF" id="4Rt-gO-h24"/>
+                        <outlet property="sendtime" destination="IZB-rd-b2T" id="xdD-nT-EIl"/>
                         <outlet property="total" destination="y3R-I1-E4x" id="59B-5U-tfY"/>
                     </connections>
                 </viewController>
@@ -874,7 +954,7 @@
                         <outlet property="categoryLabel" destination="lTi-Ks-YDg" id="Mrh-xL-HzC"/>
                         <outlet property="navBarItem" destination="aK2-ex-RbI" id="4av-4G-P9r"/>
                         <outlet property="navItem" destination="OkR-aC-gXU" id="AJa-xC-B3B"/>
-                        <segue destination="9ct-fa-8Xf" kind="presentation" identifier="backSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="rcv-2x-Yg1"/>
+                        <segue destination="dXN-9y-VhB" kind="presentation" identifier="backSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="A2P-Rl-X7F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ySw-PQ-3z0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -890,7 +970,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="s8P-9A-cEt">
-                                <rect key="frame" x="20" y="294" width="374" height="37"/>
+                                <rect key="frame" x="20" y="245" width="374" height="37"/>
                             </pageControl>
                             <searchBar contentMode="redraw" barStyle="black" placeholder="Ürün Ara" translatesAutoresizingMaskIntoConstraints="NO" id="N97-Yi-N3j">
                                 <rect key="frame" x="0.0" y="44" width="414" height="60"/>
@@ -949,7 +1029,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ebC-JK-CAI">
-                                <rect key="frame" x="20" y="346" width="374" height="516"/>
+                                <rect key="frame" x="20" y="346" width="374" height="467"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nKD-s5-TYL">
                                     <size key="itemSize" width="108" height="115"/>
@@ -1453,7 +1533,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rcv-2x-Yg1"/>
+        <segue reference="A2P-Rl-X7F"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="V1" width="6598" height="4970"/>

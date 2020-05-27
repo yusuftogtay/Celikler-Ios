@@ -52,6 +52,7 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(UserDefaults.standard.string(forKey: "token")!)
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
 
@@ -148,6 +149,7 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
         self.productUnitValue.removeAll()
         self.productUnit.removeAll()
         self.productImage.removeAll()
+        self.productCategoryID.removeAll()
         self.categoryCollection.reloadData()
         if let url = URL(string: "https://amasyaceliklermarket.com/api/product/" + String(id)) {
             URLSession.shared.dataTask(with: url) { data, response, error in
@@ -167,6 +169,7 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
                                             self.productName.append(i.product_name)
                                             self.productInStock.append(i.in_stock)
                                             self.productPrice.append(i.price)
+                                            self.productCategoryID.append(i.category_id)
                                             self.productUnitValue.append(i.unit_value)
                                             self.productUnit.append(i.unit)
                                             self.productImage.append(UIImage(data: data!)!)
@@ -181,12 +184,28 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
             }.resume()
         }
     }
-    struct cards {
-        
+    struct shopingCards: Codable {
+        let user_id: String
+        let product_id, product_name: String
+        let category_id, price, unit_value: String
+        let unit: String
     }
     
     func oneClickCell(index: Int, unit: String) {
-        UserDefaults.standard.set(, forKey: <#T##String#>)
+        var cards = [shopingCards?]()
+        let id = UserDefaults.standard.value(forKey: "userID") as? String
+        let card = shopingCards(
+            user_id: id!,
+            product_id: productID[index]!,
+            product_name: productName[index]!,
+            category_id: productCategoryID[index]!,
+            price: productPrice[index]!,
+            unit_value: productUnitValue[index]!,
+            unit: productUnit[index]!) 
+        cards.append(card)
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(cards), forKey: "cards")
+        UserDefaults.standard.synchronize()
+        
     }
     
     @objc func swipe(sender: UISwipeGestureRecognizer)  {
