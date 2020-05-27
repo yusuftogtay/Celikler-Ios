@@ -20,6 +20,7 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
     var subCategoryID = [String]()
     var subCategoryTitle = [String?]()
     var subCategoryStatus = [String?]()
+    var cards = [shopingCards?]()
     
     var productID = [String?]()
     var productName = [String?]()
@@ -185,23 +186,52 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
         }
     }
     struct shopingCards: Codable {
-        let user_id: String
-        let product_id, product_name: String
-        let category_id, price, unit_value: String
-        let unit: String
+        private(set) public var user_id: String
+        private(set) public var image: Data?
+        private(set) public var product_id, product_name: String
+        private(set) public var category_id, price, unit_value: String
+        private(set) public var unit: String
+        
+        init(withImage image: UIImage,
+             withUserId user: String,
+             withProductID productId: String,
+             withProductName productName: String,
+             withCategoryId categoryID: String,
+             withPrice price: String,
+             withUnitValue unitValue: String,
+             withUnit unit: String) {
+            self.image = image.pngData()
+            self.user_id = user
+            self.product_id = productId
+            self.product_name = productName
+            self.category_id = categoryID
+            self.price = price
+            self.unit_value = unitValue
+            self.unit = unit
+        }
+
+        func getImage() -> UIImage? {
+            guard let imageData = self.image else {
+                return nil
+            }
+            let image = UIImage(data: imageData)
+            
+            return image
+        }
+        
     }
     
     func oneClickCell(index: Int, unit: String) {
-        var cards = [shopingCards?]()
         let id = UserDefaults.standard.value(forKey: "userID") as? String
         let card = shopingCards(
-            user_id: id!,
-            product_id: productID[index]!,
-            product_name: productName[index]!,
-            category_id: productCategoryID[index]!,
-            price: productPrice[index]!,
-            unit_value: productUnitValue[index]!,
-            unit: productUnit[index]!) 
+            withImage: productImage[index]!,
+            withUserId:  id!,
+            withProductID: productID[index]!,
+            withProductName: productName[index]!,
+            withCategoryId: productCategoryID[index]!,
+            withPrice: productPrice[index]!,
+            withUnitValue: productUnit[index]!,
+            withUnit: productUnit[index]!) 
         cards.append(card)
         UserDefaults.standard.set(try? PropertyListEncoder().encode(cards), forKey: "cards")
         UserDefaults.standard.synchronize()
