@@ -19,6 +19,12 @@ class ShoppingCardViewController: UIViewController,  UICollectionViewDelegate, U
     var cardPrice = [String?]()
     var cardUnitValue = [String?]()
     var cardUnit = [String?]()
+    
+    var addressReceiverName = [String?]()
+    var addresssocity = [String?]()
+    var addressReceiverPhone = [String?]()
+    var deliveryCharge = [String?]()
+    
     var date: Date?
     var time: Date?
     
@@ -36,8 +42,31 @@ class ShoppingCardViewController: UIViewController,  UICollectionViewDelegate, U
     @IBOutlet weak var sendDayPicker: UIDatePicker!
     @IBOutlet weak var sendTimePicker: UIDatePicker!
     @IBOutlet weak var selectDay: UIButton!
+    @IBOutlet weak var addAdress: UIButton!
+    @IBOutlet weak var addressCollection: UICollectionView!
+    @IBOutlet weak var pay2: UIButton!
+    @IBOutlet weak var tutar2: UILabel!
+    @IBOutlet weak var adet2: UILabel!
+    @IBOutlet weak var selectTime: UIButton!
+    @IBOutlet weak var addressStack: UIStackView!
+    
+    
+    @IBAction func selectTime(_ sender: Any) {
+        self.sendTimePicker.isHidden = true
+        self.selectTime.isHidden = true
+        sendDay.isHidden = false
+        sendtime.isHidden = false
+        self.addressStack.isHidden = false
+    }
     
     override func viewDidLoad() {
+        addAdress.isHidden = true
+        addressCollection.isHidden = true
+        pay2.isHidden = true
+        tutar2.isHidden = true
+        adet2.isHidden = true
+        MainPageSegueButton.isHidden = true
+        bagImage.isHidden = true
         super.viewDidLoad()
         //Date
         sendDayPicker.minimumDate = Date()
@@ -52,26 +81,36 @@ class ShoppingCardViewController: UIViewController,  UICollectionViewDelegate, U
         cardsView.refreshControl = refreshControl
         
         //UIHidden
+        addressStack.isHidden = true
         sendTimePicker.isHidden = true
         sendDayPicker.isHidden = true
         selectDay.isHidden = true
+        selectTime.isHidden = true
+        sendDay.isHidden = true
+        sendtime.isHidden = true
         cardCell()
     }
     
+    @IBAction func addAddress(_ sender: Any) {
+        let userId = UserDefaults.standard.value(forKey: "userID")
+        let url = URL(string: "https://amasyaceliklermarket.com/api/ekle_adres")
+        ApiService.callPost(url: url!, params: ["user_id": userId], finish: finishPostAdress)
+    }
+    
     @objc func doSomething(refreshControl: UIRefreshControl) {
-        
         cardCell()
-
-        // somewhere in your code you might need to call:
         refreshControl.endRefreshing()
     }
     
     @IBAction func sendDay(_ sender: Any) {
+        self.addressStack.isHidden = true
         deliveryInformationHide()
         sendDayPicker.isHidden = false
         selectDay.isHidden = false
     }
+    
     @IBAction func selectDay(_ sender: Any) {
+        self.addressStack.isHidden = false
         date = sendDayPicker.date
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY-MM-dd"
@@ -79,12 +118,16 @@ class ShoppingCardViewController: UIViewController,  UICollectionViewDelegate, U
         postTimeSlot(date: dayString)
         sendDayPicker.isHidden = true
         selectDay.isHidden = true
-        self.sendTimePicker.isHidden = false
-        
+        sendDay.isHidden = false
+        sendtime.isHidden = false
     }
     
     @IBAction func sendTime(_ sender: Any) {
-        
+        self.addressStack.isHidden = true
+        sendDay.isHidden = true
+        sendtime.isHidden = true
+        self.sendTimePicker.isHidden = false
+        self.selectTime.isHidden = false
     }
     
     func isEmptyCard() {
@@ -128,6 +171,8 @@ class ShoppingCardViewController: UIViewController,  UICollectionViewDelegate, U
         isEmptyCard()
         sendDay.isHidden = false
         sendtime.isHidden = false
+        addressStack.isHidden = false
+        addressCollection.isHidden = false
     }
     
     func cardCell() {
@@ -161,6 +206,16 @@ class ShoppingCardViewController: UIViewController,  UICollectionViewDelegate, U
                 }
             }
         }
+    }
+    struct address: Codable {
+        let response: Bool
+        let data: addressData
+    }
+    
+    struct addressData: Codable {
+        let location_id, user_id, T_adres, socity_id: String
+        let adress, receiver_name, receiver_mobile, socity_name: String
+        let delivery_charge: String
     }
     
     @IBAction func mainPageSegueButton(_ sender: Any) {
@@ -202,6 +257,23 @@ class ShoppingCardViewController: UIViewController,  UICollectionViewDelegate, U
         }
     }
     
+    func finishPostAdress (message:String, data:Data?) -> Void
+    {
+        do
+        {
+            if let jsonData = data
+            {
+                let parsedData = try JSONDecoder().decode(address.self, from: jsonData)
+                let addressData = parsedData.data
+                
+            }
+        }
+        catch
+        {
+            print("Parse Error: \(error)")
+        }
+    }
+    
     func postTimeSlot(date: String) {
         let url = URL(string: "https://amasyaceliklermarket.com/api/get_time_slot/")
         ApiService.callPost(url: url!, params: ["date": date], finish: finishPost)
@@ -216,10 +288,17 @@ class ShoppingCardViewController: UIViewController,  UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == addressCollection  {
+            return 3
+        }
         return cardName.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == addressCollection   {
+            let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "adressCell", for: indexPath)
+            return cell2
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellSepet", for: indexPath)
         if let vcImage = cell.viewWithTag(700) as? UIImageView {
             vcImage.image = cardImage[indexPath.row]
