@@ -117,7 +117,7 @@ class ViewController: UIViewController {
                                     }
                                     do {
                                         let responseJSON = try JSONDecoder().decode([getUserProfile].self, from: data)
-                                        let id = responseJSON[0].id
+                                        let id = responseJSON[0].user_id
                                         UserDefaults.standard.set(id, forKey: "userID")
                                         UserDefaults.standard.synchronize()
                                     } catch let error   {
@@ -159,8 +159,8 @@ struct userProfile : Codable {
 }
 
 struct getUserProfile : Codable {
-    let id: String
-    let phone: String
-    let token: String
+    let user_id: String
+    let user_phone: String
+    let user_token: String
 }
 

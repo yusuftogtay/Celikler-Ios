@@ -39,6 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Error fetching remote instance ID: \(error)")
           } else if let result = result {
             print("Remote instance ID token: \(result.token)")
+            UserDefaults.standard.set(result.token, forKey: "token")
+            UserDefaults.standard.synchronize()
             //self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
           }
         }
