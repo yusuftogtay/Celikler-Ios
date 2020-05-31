@@ -19,6 +19,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     var counter = 0
     
+    
+    
     @IBOutlet weak var unitLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
@@ -26,13 +28,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     @IBAction func addButton(_ sender: Any) {
         let unit = unitLabel.text
-        addbutton.titleLabel?.text = "Güncelle"
+        addbutton.titleLabel!.text = "Güncelle"
         cellDelegate?.oneClickCell(index: (index?.row)!, unit: unit!)
     }
     @IBAction func minusButton(_ sender: Any) {
         if counter > 0  {
             counter -= 1
             unitLabel.text = String(counter)
+            addbutton.titleLabel?.text = "Güncelle"
         }
     }
     @IBAction func plusButton(_ sender: Any) {

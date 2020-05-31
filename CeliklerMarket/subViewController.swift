@@ -21,7 +21,7 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
     var subCategoryTitle = [String?]()
     var subCategoryStatus = [String?]()
     var cards = [shopingCards?]()
-    
+    let id = UserDefaults.standard.value(forKey: "userID") as? String
     var productID = [String?]()
     var productName = [String?]()
     var productDescription = [String?]()
@@ -41,18 +41,34 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
     @objc func doSomething(refreshControl: UIRefreshControl) {
         self.getProduct(with: Int(self.subCategoryID[0])!)
         navItem.title = subCategoryTitle[0]!
-
-        // somewhere in your code you might need to call:
         refreshControl.endRefreshing()
     }
     
     @objc func backSegue()  {
-        //navigationController?.popToRootViewController(animated: true)
         performSegue(withIdentifier: "backSegue", sender: self)
     }
     
+    func viewWillDisappear()  {
+        super.viewWillDisappear(true)
+        productID.removeAll()
+        productName.removeAll()
+        productDescription.removeAll()
+        productImage.removeAll()
+        productCategoryID.removeAll()
+        productInStock.removeAll()
+        productPrice.removeAll()
+        productUnitValue.removeAll()
+        productUnit.removeAll()
+    }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         print(UserDefaults.standard.string(forKey: "token")!)
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
@@ -63,6 +79,9 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
         let barButton = UIBarButtonItem(title: "geri", style: .done, target: self, action: #selector(backSegue))
         navItem.leftBarButtonItem = barButton
         navItem.title = ""
+        
+    
+        
 
         let swipeLeft = UISwipeGestureRecognizer()
         let swipeRight = UISwipeGestureRecognizer()
@@ -125,7 +144,6 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
                                             self.subCategoryID.append(i.id)
                                             self.subCategoryTitle.append(i.title)
                                             self.categoryCollection.reloadData()
-                                            //self.navigationTitle?.title = i.title
                                         }
                                 }
                             }
@@ -188,7 +206,7 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
     struct shopingCards: Codable {
         private(set) public var user_id: String
         private(set) public var image: Data?
-        private(set) public var product_id, product_name: String
+        private(set) public var product_id, product_unit, product_name: String
         private(set) public var category_id, price, unit_value: String
         private(set) public var unit: String
         
@@ -199,6 +217,7 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
              withCategoryId categoryID: String,
              withPrice price: String,
              withUnitValue unitValue: String,
+             withPeoductUnit producunit: String,
              withUnit unit: String) {
             self.image = image.pngData()
             self.user_id = user
@@ -208,6 +227,7 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
             self.price = price
             self.unit_value = unitValue
             self.unit = unit
+            self.product_unit = producunit
         }
 
         func getImage() -> UIImage? {
@@ -222,20 +242,20 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
     }
     
     func oneClickCell(index: Int, unit: String) {
-        let id = UserDefaults.standard.value(forKey: "userID") as? String
+        print("deneme\(id ?? "0")")
         let card = shopingCards(
             withImage: productImage[index]!,
-            withUserId:  id!,
+            withUserId:  self.id!,
             withProductID: productID[index]!,
             withProductName: productName[index]!,
             withCategoryId: productCategoryID[index]!,
             withPrice: productPrice[index]!,
-            withUnitValue: productUnit[index]!,
-            withUnit: productUnit[index]!) 
+            withUnitValue: productUnitValue[index]!,
+            withPeoductUnit: productUnit[index]!,
+            withUnit: unit) 
         cards.append(card)
         UserDefaults.standard.set(try? PropertyListEncoder().encode(cards), forKey: "cards")
         UserDefaults.standard.synchronize()
-        
     }
     
     @objc func swipe(sender: UISwipeGestureRecognizer)  {
@@ -294,6 +314,7 @@ ProductCollectionView, UICollectionViewDelegateFlowLayout {
         if let vcPrice = cell?.viewWithTag(156) as? UILabel      {
             vcPrice.text = (productPrice[indexPath.row]! + "₺")
         }
+        
         cell?.cellDelegate = self
         cell?.index = indexPath
         return cell!

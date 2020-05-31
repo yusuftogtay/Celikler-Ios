@@ -28,22 +28,29 @@ class mainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         super.viewDidLoad()
         self.collectionViewCell2.delegate = self
         
         //Collection View Resflesh
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
-        collectionViewCell2.refreshControl = refreshControl
+        //let refreshControl = UIRefreshControl()
+        /*refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
+        collectionViewCell2.refreshControl = refreshControl*/
         
         //slider and categories apadtor
         sliderViewDidLoad()
         categories()
     }
+    @IBAction func specialOrderButton(_ sender: Any) {
+        performSegue(withIdentifier: "goSpecialOrder", sender: nil)
+    }
     
     @objc func doSomething(refreshControl: UIRefreshControl) {
         categories()
-        sliderViewDidLoad()
         refreshControl.endRefreshing()
     }
     
@@ -237,76 +244,3 @@ class mainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
 }
-
-/*
-extension mainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == collectionViewCell2    {
-            return categoriesLabel.count
-        }
-        return sliderImageArray.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == collectionViewCell2    {
-            print("deneme1")
-            cellTapped(deneme: indexPath.row)
-        }
-        print(indexPath.row)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == collectionViewCell2    {
-            let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath)
-            if let vcImage = cell2.viewWithTag(453) as? UIImageView {
-                vcImage.image = categoriesImage[indexPath.row]
-            }
-            if let vcLabel = cell2.viewWithTag(456) as? UILabel {
-                vcLabel.text = categoriesLabel[indexPath.row]
-            }
-            return cell2
-        }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        if let vc = cell.viewWithTag(111) as? UIImageView {
-            vc.image = sliderImageArray[indexPath.row]
-        }
-        return cell
-    }
-}
-
-extension mainViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if collectionViewCell2 == collectionView    {
-            return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        }
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionViewCell2 == collectionView    {
-            let screenWidth = UIScreen.main.bounds.width
-            let size = (screenWidth-40)/3
-            return CGSize.init(width: size, height: size)
-        }
-        let size = collectionView.frame.size
-        return CGSize(width: size.width, height: size.height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionViewCell2 == collectionView    {
-            return 0.0
-        }
-        return 0.0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionViewCell2 == collectionView    {
-            return 0.0
-        }
-        return 0.0
-    }
-    
-}
-*/
