@@ -13,11 +13,14 @@
 		8803873F245CB6640075F70A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803873E245CB6640075F70A /* ViewController.swift */; };
 		88038752245CB6660075F70A /* CeliklerMarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88038751245CB6660075F70A /* CeliklerMarketTests.swift */; };
 		8803875D245CB6660075F70A /* CeliklerMarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803875C245CB6660075F70A /* CeliklerMarketUITests.swift */; };
+		8859CAAC24833F2C002EDB5A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8859CAAB24833F2C002EDB5A /* NotificationService.swift */; };
+		8859CAB024833F2C002EDB5A /* Ozgurnd.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8859CAA924833F2C002EDB5A /* Ozgurnd.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		885AED36247AB95200820E86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88038740245CB6640075F70A /* Main.storyboard */; };
 		885AED37247AC06F00820E86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 885AED34247AB6F100820E86 /* GoogleService-Info.plist */; };
 		885AED38247AC08400820E86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88038743245CB6660075F70A /* Assets.xcassets */; };
+		885D6EB324811B4800806DD0 /* deliveryAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D6EB224811B4800806DD0 /* deliveryAddressViewController.swift */; };
+		885D6EB5248187C600806DD0 /* specialOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D6EB4248187C600806DD0 /* specialOrderViewController.swift */; };
 		8872ED742474203F000F0BA1 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */; };
-		88786DB4246F27EE00D8EB9D /* subCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88786DB3246F27EE00D8EB9D /* subCategoryViewController.swift */; };
 		88786DB6246F2A4800D8EB9D /* subViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88786DB5246F2A4800D8EB9D /* subViewController.swift */; };
 		887946FC246B496B003E522B /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887946FB246B496B003E522B /* mainViewController.swift */; };
 		88BD4425247D4A1700D7ACC5 /* ShoppingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD4424247D4A1700D7ACC5 /* ShoppingCardViewController.swift */; };
@@ -40,7 +43,28 @@
 			remoteGlobalIDString = 88038736245CB6640075F70A;
 			remoteInfo = CeliklerMarket;
 		};
+		8859CAAE24833F2C002EDB5A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8803872F245CB6640075F70A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8859CAA824833F2C002EDB5A;
+			remoteInfo = Ozgurnd;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8859CAB124833F2C002EDB5A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8859CAB024833F2C002EDB5A /* Ozgurnd.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		069CDFAE66DE01E5C219F683 /* Pods-CeliklerMarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CeliklerMarket.release.xcconfig"; path = "Target Support Files/Pods-CeliklerMarket/Pods-CeliklerMarket.release.xcconfig"; sourceTree = "<group>"; };
@@ -64,9 +88,13 @@
 		88038758245CB6660075F70A /* CeliklerMarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CeliklerMarketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8803875C245CB6660075F70A /* CeliklerMarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeliklerMarketUITests.swift; sourceTree = "<group>"; };
 		8803875E245CB6660075F70A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8859CAA924833F2C002EDB5A /* Ozgurnd.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Ozgurnd.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8859CAAB24833F2C002EDB5A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		8859CAAD24833F2C002EDB5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		885AED34247AB6F100820E86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		885D6EB224811B4800806DD0 /* deliveryAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deliveryAddressViewController.swift; sourceTree = "<group>"; };
+		885D6EB4248187C600806DD0 /* specialOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = specialOrderViewController.swift; sourceTree = "<group>"; };
 		8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
-		88786DB3246F27EE00D8EB9D /* subCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subCategoryViewController.swift; sourceTree = "<group>"; };
 		88786DB5246F2A4800D8EB9D /* subViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subViewController.swift; sourceTree = "<group>"; };
 		887946FA246ADF7A003E522B /* CeliklerMarket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CeliklerMarket.entitlements; sourceTree = "<group>"; };
 		887946FB246B496B003E522B /* mainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +129,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8859CAA624833F2C002EDB5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -120,6 +155,7 @@
 				88038739245CB6640075F70A /* CeliklerMarket */,
 				88038750245CB6660075F70A /* CeliklerMarketTests */,
 				8803875B245CB6660075F70A /* CeliklerMarketUITests */,
+				8859CAAA24833F2C002EDB5A /* Ozgurnd */,
 				88038738245CB6640075F70A /* Products */,
 				E962BC901372D77C7356AD9D /* Pods */,
 				0CE1AB03B74929453E32C910 /* Frameworks */,
@@ -132,6 +168,7 @@
 				88038737245CB6640075F70A /* CeliklerMarket.app */,
 				8803874D245CB6660075F70A /* CeliklerMarketTests.xctest */,
 				88038758245CB6660075F70A /* CeliklerMarketUITests.xctest */,
+				8859CAA924833F2C002EDB5A /* Ozgurnd.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,10 +187,11 @@
 				88038748245CB6660075F70A /* Info.plist */,
 				88B2646E2479CE4500FD6303 /* CeliklerMarket */,
 				887946FB246B496B003E522B /* mainViewController.swift */,
-				88786DB3246F27EE00D8EB9D /* subCategoryViewController.swift */,
 				88786DB5246F2A4800D8EB9D /* subViewController.swift */,
 				8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */,
 				88BD4424247D4A1700D7ACC5 /* ShoppingCardViewController.swift */,
+				885D6EB224811B4800806DD0 /* deliveryAddressViewController.swift */,
+				885D6EB4248187C600806DD0 /* specialOrderViewController.swift */,
 			);
 			path = CeliklerMarket;
 			sourceTree = "<group>";
@@ -174,6 +212,15 @@
 				8803875E245CB6660075F70A /* Info.plist */,
 			);
 			path = CeliklerMarketUITests;
+			sourceTree = "<group>";
+		};
+		8859CAAA24833F2C002EDB5A /* Ozgurnd */ = {
+			isa = PBXGroup;
+			children = (
+				8859CAAB24833F2C002EDB5A /* NotificationService.swift */,
+				8859CAAD24833F2C002EDB5A /* Info.plist */,
+			);
+			path = Ozgurnd;
 			sourceTree = "<group>";
 		};
 		E962BC901372D77C7356AD9D /* Pods */ = {
@@ -201,10 +248,12 @@
 				88038734245CB6640075F70A /* Frameworks */,
 				88038735245CB6640075F70A /* Resources */,
 				5CF13D3FAB904695369197D7 /* [CP] Embed Pods Frameworks */,
+				8859CAB124833F2C002EDB5A /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8859CAAF24833F2C002EDB5A /* PBXTargetDependency */,
 			);
 			name = CeliklerMarket;
 			productName = CeliklerMarket;
@@ -250,13 +299,31 @@
 			productReference = 88038758245CB6660075F70A /* CeliklerMarketUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		8859CAA824833F2C002EDB5A /* Ozgurnd */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8859CAB424833F2C002EDB5A /* Build configuration list for PBXNativeTarget "Ozgurnd" */;
+			buildPhases = (
+				8859CAA524833F2C002EDB5A /* Sources */,
+				8859CAA624833F2C002EDB5A /* Frameworks */,
+				8859CAA724833F2C002EDB5A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ozgurnd;
+			productName = Ozgurnd;
+			productReference = 8859CAA924833F2C002EDB5A /* Ozgurnd.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		8803872F245CB6640075F70A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				DefaultBuildSystemTypeForWorkspace = Original;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = OzguRND;
 				TargetAttributes = {
@@ -270,6 +337,9 @@
 					88038757245CB6660075F70A = {
 						CreatedOnToolsVersion = 11.4.1;
 						TestTargetID = 88038736245CB6640075F70A;
+					};
+					8859CAA824833F2C002EDB5A = {
+						CreatedOnToolsVersion = 11.5;
 					};
 				};
 			};
@@ -289,6 +359,7 @@
 				88038736245CB6640075F70A /* CeliklerMarket */,
 				8803874C245CB6660075F70A /* CeliklerMarketTests */,
 				88038757245CB6660075F70A /* CeliklerMarketUITests */,
+				8859CAA824833F2C002EDB5A /* Ozgurnd */,
 			);
 		};
 /* End PBXProject section */
@@ -312,6 +383,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		88038756245CB6660075F70A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8859CAA724833F2C002EDB5A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -432,10 +510,11 @@
 				8803873F245CB6640075F70A /* ViewController.swift in Sources */,
 				88786DB6246F2A4800D8EB9D /* subViewController.swift in Sources */,
 				8872ED742474203F000F0BA1 /* ProductCollectionViewCell.swift in Sources */,
-				88786DB4246F27EE00D8EB9D /* subCategoryViewController.swift in Sources */,
 				8803873B245CB6640075F70A /* AppDelegate.swift in Sources */,
 				8803873D245CB6640075F70A /* SceneDelegate.swift in Sources */,
 				887946FC246B496B003E522B /* mainViewController.swift in Sources */,
+				885D6EB324811B4800806DD0 /* deliveryAddressViewController.swift in Sources */,
+				885D6EB5248187C600806DD0 /* specialOrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +534,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8859CAA524833F2C002EDB5A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8859CAAC24833F2C002EDB5A /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -467,6 +554,11 @@
 			isa = PBXTargetDependency;
 			target = 88038736245CB6640075F70A /* CeliklerMarket */;
 			targetProxy = 88038759245CB6660075F70A /* PBXContainerItemProxy */;
+		};
+		8859CAAF24833F2C002EDB5A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8859CAA824833F2C002EDB5A /* Ozgurnd */;
+			targetProxy = 8859CAAE24833F2C002EDB5A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -608,18 +700,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 87CF874AE9CB7677DF796BC3 /* Pods-CeliklerMarket.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CeliklerMarket/CeliklerMarket.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99GFS9PPPG;
+				DEVELOPMENT_TEAM = PRL64D4YUA;
 				INFOPLIST_FILE = CeliklerMarket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -632,18 +725,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 069CDFAE66DE01E5C219F683 /* Pods-CeliklerMarket.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CeliklerMarket/CeliklerMarket.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99GFS9PPPG;
+				DEVELOPMENT_TEAM = PRL64D4YUA;
 				INFOPLIST_FILE = CeliklerMarket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -736,6 +830,48 @@
 			};
 			name = Release;
 		};
+		8859CAB224833F2C002EDB5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PRL64D4YUA;
+				INFOPLIST_FILE = Ozgurnd/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket.Ozgurnd;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8859CAB324833F2C002EDB5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PRL64D4YUA;
+				INFOPLIST_FILE = Ozgurnd/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket.Ozgurnd;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -771,6 +907,15 @@
 			buildConfigurations = (
 				88038768245CB6660075F70A /* Debug */,
 				88038769245CB6660075F70A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8859CAB424833F2C002EDB5A /* Build configuration list for PBXNativeTarget "Ozgurnd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8859CAB224833F2C002EDB5A /* Debug */,
+				8859CAB324833F2C002EDB5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
