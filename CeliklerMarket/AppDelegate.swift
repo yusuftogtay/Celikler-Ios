@@ -12,14 +12,14 @@ import FirebaseMessaging
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //FirebaseApp.configure()
-        
+        FirebaseApp.configure()
         if #available(iOS 10.0, *) {
           UNUserNotificationCenter.current().delegate = self
           let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
@@ -41,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Remote instance ID token: \(result.token)")
             UserDefaults.standard.set(result.token, forKey: "token")
             UserDefaults.standard.synchronize()
-            //self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
           }
         }
         
@@ -52,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           print("Subscribed to weather topic")
         }
         
-        FirebaseApp.configure()
+        
         Messaging.messaging().delegate = self
 
         UNUserNotificationCenter.current().delegate = self
@@ -89,12 +88,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       completionHandler(UIBackgroundFetchResult.newData)
     }
     
-    /*func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         UserDefaults.standard.set(fcmToken, forKey: "token")
         UserDefaults.standard.synchronize()
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-    }*/
+    }
     
     private func application(application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -121,13 +120,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
-extension AppDelegate: MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
-        let dataDict:[String: String] = ["token": fcmToken]
-        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-    }
-}
 
 
 
