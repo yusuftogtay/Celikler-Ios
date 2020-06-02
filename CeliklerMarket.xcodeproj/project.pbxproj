@@ -13,16 +13,18 @@
 		8803873F245CB6640075F70A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803873E245CB6640075F70A /* ViewController.swift */; };
 		88038752245CB6660075F70A /* CeliklerMarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88038751245CB6660075F70A /* CeliklerMarketTests.swift */; };
 		8803875D245CB6660075F70A /* CeliklerMarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803875C245CB6660075F70A /* CeliklerMarketUITests.swift */; };
+		884E03622486A10500D88F42 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884E03612486A10500D88F42 /* NotificationsViewController.swift */; };
 		8859CAAC24833F2C002EDB5A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8859CAAB24833F2C002EDB5A /* NotificationService.swift */; };
 		8859CAB024833F2C002EDB5A /* Ozgurnd.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8859CAA924833F2C002EDB5A /* Ozgurnd.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		885AED36247AB95200820E86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88038740245CB6640075F70A /* Main.storyboard */; };
 		885AED37247AC06F00820E86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 885AED34247AB6F100820E86 /* GoogleService-Info.plist */; };
 		885AED38247AC08400820E86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88038743245CB6660075F70A /* Assets.xcassets */; };
-		885D6EB324811B4800806DD0 /* deliveryAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D6EB224811B4800806DD0 /* deliveryAddressViewController.swift */; };
-		885D6EB5248187C600806DD0 /* specialOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D6EB4248187C600806DD0 /* specialOrderViewController.swift */; };
+		885D6EB324811B4800806DD0 /* DeliveryAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D6EB224811B4800806DD0 /* DeliveryAddressViewController.swift */; };
+		885D6EB5248187C600806DD0 /* SpecialOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D6EB4248187C600806DD0 /* SpecialOrderViewController.swift */; };
 		8872ED742474203F000F0BA1 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */; };
-		88786DB6246F2A4800D8EB9D /* subViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88786DB5246F2A4800D8EB9D /* subViewController.swift */; };
-		887946FC246B496B003E522B /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887946FB246B496B003E522B /* mainViewController.swift */; };
+		88786DB6246F2A4800D8EB9D /* SubCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88786DB5246F2A4800D8EB9D /* SubCategoryViewController.swift */; };
+		887946FC246B496B003E522B /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887946FB246B496B003E522B /* CategoriesViewController.swift */; };
+		88A29E8C24844587006BF665 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A29E8B24844587006BF665 /* OrdersViewController.swift */; };
 		88BD4425247D4A1700D7ACC5 /* ShoppingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD4424247D4A1700D7ACC5 /* ShoppingCardViewController.swift */; };
 		C53399EA658FFAE1B142A5F4 /* Pods_CeliklerMarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDA679A079CE95D2805EF98 /* Pods_CeliklerMarketTests.framework */; };
 		F079068BCE20BDC325C42255 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC760CCA6B2F430B344F955 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework */; };
@@ -88,16 +90,18 @@
 		88038758245CB6660075F70A /* CeliklerMarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CeliklerMarketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8803875C245CB6660075F70A /* CeliklerMarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeliklerMarketUITests.swift; sourceTree = "<group>"; };
 		8803875E245CB6660075F70A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		884E03612486A10500D88F42 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		8859CAA924833F2C002EDB5A /* Ozgurnd.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Ozgurnd.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8859CAAB24833F2C002EDB5A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8859CAAD24833F2C002EDB5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		885AED34247AB6F100820E86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		885D6EB224811B4800806DD0 /* deliveryAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deliveryAddressViewController.swift; sourceTree = "<group>"; };
-		885D6EB4248187C600806DD0 /* specialOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = specialOrderViewController.swift; sourceTree = "<group>"; };
+		885D6EB224811B4800806DD0 /* DeliveryAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryAddressViewController.swift; sourceTree = "<group>"; };
+		885D6EB4248187C600806DD0 /* SpecialOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialOrderViewController.swift; sourceTree = "<group>"; };
 		8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
-		88786DB5246F2A4800D8EB9D /* subViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subViewController.swift; sourceTree = "<group>"; };
+		88786DB5246F2A4800D8EB9D /* SubCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryViewController.swift; sourceTree = "<group>"; };
 		887946FA246ADF7A003E522B /* CeliklerMarket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CeliklerMarket.entitlements; sourceTree = "<group>"; };
-		887946FB246B496B003E522B /* mainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
+		887946FB246B496B003E522B /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		88A29E8B24844587006BF665 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		88B2646E2479CE4500FD6303 /* CeliklerMarket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CeliklerMarket; sourceTree = "<group>"; };
 		88BD4424247D4A1700D7ACC5 /* ShoppingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCardViewController.swift; sourceTree = "<group>"; };
 		8B401D16C16CDBC46812C7FB /* Pods-CeliklerMarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CeliklerMarketTests.debug.xcconfig"; path = "Target Support Files/Pods-CeliklerMarketTests/Pods-CeliklerMarketTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -179,19 +183,14 @@
 				887946FA246ADF7A003E522B /* CeliklerMarket.entitlements */,
 				8803873A245CB6640075F70A /* AppDelegate.swift */,
 				8803873C245CB6640075F70A /* SceneDelegate.swift */,
-				8803873E245CB6640075F70A /* ViewController.swift */,
-				88038740245CB6640075F70A /* Main.storyboard */,
+				884E03632486A31C00D88F42 /* Controller */,
+				884E03652486A34400D88F42 /* Storyboard */,
 				88038743245CB6660075F70A /* Assets.xcassets */,
 				88038745245CB6660075F70A /* LaunchScreen.storyboard */,
 				885AED34247AB6F100820E86 /* GoogleService-Info.plist */,
 				88038748245CB6660075F70A /* Info.plist */,
 				88B2646E2479CE4500FD6303 /* CeliklerMarket */,
-				887946FB246B496B003E522B /* mainViewController.swift */,
-				88786DB5246F2A4800D8EB9D /* subViewController.swift */,
 				8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */,
-				88BD4424247D4A1700D7ACC5 /* ShoppingCardViewController.swift */,
-				885D6EB224811B4800806DD0 /* deliveryAddressViewController.swift */,
-				885D6EB4248187C600806DD0 /* specialOrderViewController.swift */,
 			);
 			path = CeliklerMarket;
 			sourceTree = "<group>";
@@ -212,6 +211,29 @@
 				8803875E245CB6660075F70A /* Info.plist */,
 			);
 			path = CeliklerMarketUITests;
+			sourceTree = "<group>";
+		};
+		884E03632486A31C00D88F42 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8803873E245CB6640075F70A /* ViewController.swift */,
+				887946FB246B496B003E522B /* CategoriesViewController.swift */,
+				88786DB5246F2A4800D8EB9D /* SubCategoryViewController.swift */,
+				88BD4424247D4A1700D7ACC5 /* ShoppingCardViewController.swift */,
+				885D6EB224811B4800806DD0 /* DeliveryAddressViewController.swift */,
+				885D6EB4248187C600806DD0 /* SpecialOrderViewController.swift */,
+				88A29E8B24844587006BF665 /* OrdersViewController.swift */,
+				884E03612486A10500D88F42 /* NotificationsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		884E03652486A34400D88F42 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				88038740245CB6640075F70A /* Main.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		8859CAAA24833F2C002EDB5A /* Ozgurnd */ = {
@@ -508,13 +530,15 @@
 			files = (
 				88BD4425247D4A1700D7ACC5 /* ShoppingCardViewController.swift in Sources */,
 				8803873F245CB6640075F70A /* ViewController.swift in Sources */,
-				88786DB6246F2A4800D8EB9D /* subViewController.swift in Sources */,
+				88786DB6246F2A4800D8EB9D /* SubCategoryViewController.swift in Sources */,
 				8872ED742474203F000F0BA1 /* ProductCollectionViewCell.swift in Sources */,
 				8803873B245CB6640075F70A /* AppDelegate.swift in Sources */,
+				88A29E8C24844587006BF665 /* OrdersViewController.swift in Sources */,
 				8803873D245CB6640075F70A /* SceneDelegate.swift in Sources */,
-				887946FC246B496B003E522B /* mainViewController.swift in Sources */,
-				885D6EB324811B4800806DD0 /* deliveryAddressViewController.swift in Sources */,
-				885D6EB5248187C600806DD0 /* specialOrderViewController.swift in Sources */,
+				887946FC246B496B003E522B /* CategoriesViewController.swift in Sources */,
+				884E03622486A10500D88F42 /* NotificationsViewController.swift in Sources */,
+				885D6EB324811B4800806DD0 /* DeliveryAddressViewController.swift in Sources */,
+				885D6EB5248187C600806DD0 /* SpecialOrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
