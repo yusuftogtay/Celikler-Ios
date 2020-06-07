@@ -13,19 +13,33 @@
 		8803873F245CB6640075F70A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803873E245CB6640075F70A /* ViewController.swift */; };
 		88038752245CB6660075F70A /* CeliklerMarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88038751245CB6660075F70A /* CeliklerMarketTests.swift */; };
 		8803875D245CB6660075F70A /* CeliklerMarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803875C245CB6660075F70A /* CeliklerMarketUITests.swift */; };
+		882BA10D248821D2001843E6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882BA10C248821D2001843E6 /* Models.swift */; };
+		882BA10F248821F0001843E6 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882BA10E248821F0001843E6 /* ApiService.swift */; };
 		884E03622486A10500D88F42 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884E03612486A10500D88F42 /* NotificationsViewController.swift */; };
+		88555810248BFB4600B3A7D3 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8855580F248BFB4600B3A7D3 /* OrderDetailViewController.swift */; };
+		88555812248C2F7000B3A7D3 /* addressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88555811248C2F6F00B3A7D3 /* addressViewController.swift */; };
+		88555814248C742F00B3A7D3 /* accountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88555813248C742C00B3A7D3 /* accountViewController.swift */; };
 		8859CAAC24833F2C002EDB5A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8859CAAB24833F2C002EDB5A /* NotificationService.swift */; };
 		8859CAB024833F2C002EDB5A /* Ozgurnd.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8859CAA924833F2C002EDB5A /* Ozgurnd.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		885AC6A2248B051700C72869 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88038745245CB6660075F70A /* LaunchScreen.storyboard */; };
 		885AED36247AB95200820E86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88038740245CB6640075F70A /* Main.storyboard */; };
 		885AED37247AC06F00820E86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 885AED34247AB6F100820E86 /* GoogleService-Info.plist */; };
 		885AED38247AC08400820E86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88038743245CB6660075F70A /* Assets.xcassets */; };
+		885CE9F3248AC44000ABACA3 /* dateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CE9F2248AC44000ABACA3 /* dateViewController.swift */; };
 		885D6EB324811B4800806DD0 /* DeliveryAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D6EB224811B4800806DD0 /* DeliveryAddressViewController.swift */; };
 		885D6EB5248187C600806DD0 /* SpecialOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D6EB4248187C600806DD0 /* SpecialOrderViewController.swift */; };
 		8872ED742474203F000F0BA1 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */; };
 		88786DB6246F2A4800D8EB9D /* SubCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88786DB5246F2A4800D8EB9D /* SubCategoryViewController.swift */; };
 		887946FC246B496B003E522B /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887946FB246B496B003E522B /* CategoriesViewController.swift */; };
+		889C7F82248AA114004AF244 /* paymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C7F81248AA114004AF244 /* paymentViewController.swift */; };
+		889C7F84248AAE82004AF244 /* timeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C7F83248AAE82004AF244 /* timeViewController.swift */; };
+		889C7F86248AAE8E004AF244 /* dayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C7F85248AAE8E004AF244 /* dayViewController.swift */; };
 		88A29E8C24844587006BF665 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A29E8B24844587006BF665 /* OrdersViewController.swift */; };
+		88A34F99248A6FC5006D2CF0 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A34F98248A6FC5006D2CF0 /* CardsViewController.swift */; };
+		88A86AAE248957A500D09355 /* productsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A86AAD248957A500D09355 /* productsTableViewCell.swift */; };
+		88A86AB12489635100D09355 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 88A86AAF2489635100D09355 /* Model.xcdatamodeld */; };
 		88BD4425247D4A1700D7ACC5 /* ShoppingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD4424247D4A1700D7ACC5 /* ShoppingCardViewController.swift */; };
+		88DA356D248834480070CDF3 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DA356C248834480070CDF3 /* CategoryViewController.swift */; };
 		C53399EA658FFAE1B142A5F4 /* Pods_CeliklerMarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDA679A079CE95D2805EF98 /* Pods_CeliklerMarketTests.framework */; };
 		F079068BCE20BDC325C42255 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC760CCA6B2F430B344F955 /* Pods_CeliklerMarket_CeliklerMarketUITests.framework */; };
 /* End PBXBuildFile section */
@@ -90,20 +104,33 @@
 		88038758245CB6660075F70A /* CeliklerMarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CeliklerMarketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8803875C245CB6660075F70A /* CeliklerMarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeliklerMarketUITests.swift; sourceTree = "<group>"; };
 		8803875E245CB6660075F70A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		882BA10C248821D2001843E6 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		882BA10E248821F0001843E6 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		884E03612486A10500D88F42 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		8855580F248BFB4600B3A7D3 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		88555811248C2F6F00B3A7D3 /* addressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addressViewController.swift; sourceTree = "<group>"; };
+		88555813248C742C00B3A7D3 /* accountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = accountViewController.swift; sourceTree = "<group>"; };
 		8859CAA924833F2C002EDB5A /* Ozgurnd.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Ozgurnd.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8859CAAB24833F2C002EDB5A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8859CAAD24833F2C002EDB5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		885AED34247AB6F100820E86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		885CE9F2248AC44000ABACA3 /* dateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateViewController.swift; sourceTree = "<group>"; };
 		885D6EB224811B4800806DD0 /* DeliveryAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryAddressViewController.swift; sourceTree = "<group>"; };
 		885D6EB4248187C600806DD0 /* SpecialOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialOrderViewController.swift; sourceTree = "<group>"; };
 		8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		88786DB5246F2A4800D8EB9D /* SubCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryViewController.swift; sourceTree = "<group>"; };
 		887946FA246ADF7A003E522B /* CeliklerMarket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CeliklerMarket.entitlements; sourceTree = "<group>"; };
 		887946FB246B496B003E522B /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		889C7F81248AA114004AF244 /* paymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paymentViewController.swift; sourceTree = "<group>"; };
+		889C7F83248AAE82004AF244 /* timeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timeViewController.swift; sourceTree = "<group>"; };
+		889C7F85248AAE8E004AF244 /* dayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dayViewController.swift; sourceTree = "<group>"; };
 		88A29E8B24844587006BF665 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		88A34F98248A6FC5006D2CF0 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		88A86AAD248957A500D09355 /* productsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = productsTableViewCell.swift; sourceTree = "<group>"; };
+		88A86AB02489635100D09355 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		88B2646E2479CE4500FD6303 /* CeliklerMarket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CeliklerMarket; sourceTree = "<group>"; };
 		88BD4424247D4A1700D7ACC5 /* ShoppingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCardViewController.swift; sourceTree = "<group>"; };
+		88DA356C248834480070CDF3 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		8B401D16C16CDBC46812C7FB /* Pods-CeliklerMarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CeliklerMarketTests.debug.xcconfig"; path = "Target Support Files/Pods-CeliklerMarketTests/Pods-CeliklerMarketTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BCDA679A079CE95D2805EF98 /* Pods_CeliklerMarketTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CeliklerMarketTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -183,6 +210,8 @@
 				887946FA246ADF7A003E522B /* CeliklerMarket.entitlements */,
 				8803873A245CB6640075F70A /* AppDelegate.swift */,
 				8803873C245CB6640075F70A /* SceneDelegate.swift */,
+				882BA10B248820EF001843E6 /* Models */,
+				882BA10A248820D4001843E6 /* Adaptors */,
 				884E03632486A31C00D88F42 /* Controller */,
 				884E03652486A34400D88F42 /* Storyboard */,
 				88038743245CB6660075F70A /* Assets.xcassets */,
@@ -191,6 +220,7 @@
 				88038748245CB6660075F70A /* Info.plist */,
 				88B2646E2479CE4500FD6303 /* CeliklerMarket */,
 				8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */,
+				88A86AAF2489635100D09355 /* Model.xcdatamodeld */,
 			);
 			path = CeliklerMarket;
 			sourceTree = "<group>";
@@ -213,6 +243,22 @@
 			path = CeliklerMarketUITests;
 			sourceTree = "<group>";
 		};
+		882BA10A248820D4001843E6 /* Adaptors */ = {
+			isa = PBXGroup;
+			children = (
+				882BA10E248821F0001843E6 /* ApiService.swift */,
+			);
+			path = Adaptors;
+			sourceTree = "<group>";
+		};
+		882BA10B248820EF001843E6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				882BA10C248821D2001843E6 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		884E03632486A31C00D88F42 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +270,16 @@
 				885D6EB4248187C600806DD0 /* SpecialOrderViewController.swift */,
 				88A29E8B24844587006BF665 /* OrdersViewController.swift */,
 				884E03612486A10500D88F42 /* NotificationsViewController.swift */,
+				88DA356C248834480070CDF3 /* CategoryViewController.swift */,
+				88A86AAD248957A500D09355 /* productsTableViewCell.swift */,
+				88A34F98248A6FC5006D2CF0 /* CardsViewController.swift */,
+				889C7F81248AA114004AF244 /* paymentViewController.swift */,
+				889C7F83248AAE82004AF244 /* timeViewController.swift */,
+				889C7F85248AAE8E004AF244 /* dayViewController.swift */,
+				885CE9F2248AC44000ABACA3 /* dateViewController.swift */,
+				8855580F248BFB4600B3A7D3 /* OrderDetailViewController.swift */,
+				88555811248C2F6F00B3A7D3 /* addressViewController.swift */,
+				88555813248C742C00B3A7D3 /* accountViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -392,6 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				885AED36247AB95200820E86 /* Main.storyboard in Resources */,
+				885AC6A2248B051700C72869 /* LaunchScreen.storyboard in Resources */,
 				885AED38247AC08400820E86 /* Assets.xcassets in Resources */,
 				885AED37247AC06F00820E86 /* GoogleService-Info.plist in Resources */,
 			);
@@ -530,15 +587,28 @@
 			files = (
 				88BD4425247D4A1700D7ACC5 /* ShoppingCardViewController.swift in Sources */,
 				8803873F245CB6640075F70A /* ViewController.swift in Sources */,
+				88555814248C742F00B3A7D3 /* accountViewController.swift in Sources */,
+				88A86AAE248957A500D09355 /* productsTableViewCell.swift in Sources */,
+				889C7F82248AA114004AF244 /* paymentViewController.swift in Sources */,
+				88555810248BFB4600B3A7D3 /* OrderDetailViewController.swift in Sources */,
+				88DA356D248834480070CDF3 /* CategoryViewController.swift in Sources */,
 				88786DB6246F2A4800D8EB9D /* SubCategoryViewController.swift in Sources */,
+				889C7F84248AAE82004AF244 /* timeViewController.swift in Sources */,
+				882BA10D248821D2001843E6 /* Models.swift in Sources */,
+				88555812248C2F7000B3A7D3 /* addressViewController.swift in Sources */,
 				8872ED742474203F000F0BA1 /* ProductCollectionViewCell.swift in Sources */,
+				88A34F99248A6FC5006D2CF0 /* CardsViewController.swift in Sources */,
 				8803873B245CB6640075F70A /* AppDelegate.swift in Sources */,
 				88A29E8C24844587006BF665 /* OrdersViewController.swift in Sources */,
 				8803873D245CB6640075F70A /* SceneDelegate.swift in Sources */,
+				882BA10F248821F0001843E6 /* ApiService.swift in Sources */,
+				88A86AB12489635100D09355 /* Model.xcdatamodeld in Sources */,
 				887946FC246B496B003E522B /* CategoriesViewController.swift in Sources */,
 				884E03622486A10500D88F42 /* NotificationsViewController.swift in Sources */,
 				885D6EB324811B4800806DD0 /* DeliveryAddressViewController.swift in Sources */,
+				885CE9F3248AC44000ABACA3 /* dateViewController.swift in Sources */,
 				885D6EB5248187C600806DD0 /* SpecialOrderViewController.swift in Sources */,
+				889C7F86248AAE8E004AF244 /* dayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,7 +806,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.3;
+				MARKETING_VERSION = 1.4.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -761,7 +831,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.3;
+				MARKETING_VERSION = 1.4.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -867,8 +937,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.4.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket.Ozgurnd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -888,8 +960,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.4.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket.Ozgurnd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -945,6 +1019,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		88A86AAF2489635100D09355 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				88A86AB02489635100D09355 /* Model.xcdatamodel */,
+			);
+			currentVersion = 88A86AB02489635100D09355 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8803872F245CB6640075F70A /* Project object */;
 }
