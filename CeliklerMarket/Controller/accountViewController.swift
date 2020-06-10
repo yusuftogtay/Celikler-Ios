@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class accountViewController: UIViewController {
 
@@ -14,22 +15,35 @@ class accountViewController: UIViewController {
         super.viewDidLoad()
         address.layer.cornerRadius = 6.0
         info.layer.cornerRadius = 6.0
+        logout.layer.cornerRadius = 6.0
         // Do any additional setup after loading the view.
     }
     @IBOutlet weak var address: UIButton!
+    @IBOutlet weak var logout: UIButton!
     @IBAction func informations(_ sender: Any) {
+    }
+    @IBAction func logout(_ sender: Any) {
+        let auth = Auth.auth()
+         let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        do {
+            try auth.signOut()
+            UserDefaults.standard.removeObject(forKey:"username")
+            UserDefaults.standard.synchronize()
+            delegate.romoveUser()
+        } catch {
+            print("Error")
+        }
+        
     }
     
     @IBOutlet weak var info: UIButton!
-    
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+extension UIViewController {
+  func alert(message: String, title: String = "") {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    alertController.addAction(OKAction)
+    self.present(alertController, animated: true, completion: nil)
+  }
 }
