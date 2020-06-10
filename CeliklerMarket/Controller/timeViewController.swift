@@ -19,6 +19,13 @@ class timeViewController: UIViewController {
         super.viewDidLoad()
         let url = URL(string: "https://amasyaceliklermarket.com/api/get_time_slot/")
         ApiService.callPost(url: url!, params: ["date": day], finish: finishPostTime)
+        timee = timePicker.date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        let timeString = formatter.string(from: timee)
+        time = timeString
+        timeButton.layer.cornerRadius = 6.0
+        timePicker.date = Date()
     }
     
     @IBAction func timepicker(_ sender: Any) {
@@ -31,16 +38,23 @@ class timeViewController: UIViewController {
         formatter.dateFormat = "HH:mm"
         let timeString = formatter.string(from: timee)
         time = timeString
-        print(time)
-        performSegue(withIdentifier: "goBackTime", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goBackTime" {
-            let destination = segue.destination as! paymentViewController
-            destination.timeString = time
-            destination.dayString = day
-        }
+        let destVC = segue.destination as! paymentViewController
+        destVC.timeString = time
+        destVC.dayString = day
+    }
+    
+    @IBOutlet weak var timeButton: UIButton!
+    
+    
+    @IBAction func timePicker(_ sender: Any) {
+        timee = timePicker.date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        let timeString = formatter.string(from: timee)
+        time = timeString
     }
     
     func finishPostTime (message:String, data:Data?) -> Void
