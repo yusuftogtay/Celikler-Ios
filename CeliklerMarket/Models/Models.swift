@@ -26,6 +26,11 @@ struct myOrderDetails: Codable {
     let category_id, in_stock, tax: String
 }
 
+struct cancelOrders: Codable {
+    let response: Bool
+    let message: String
+}
+
 struct subCategoryStruct: Codable {
     let id, title, slug, parent: String
     let level, description, image, image2: String
@@ -56,6 +61,15 @@ struct addressData: Codable {
 struct getAddress: Codable {
     let response: Bool
     let data: addressData
+}
+
+struct editAddress: Codable {
+    let response: Bool
+    let data: String
+}
+
+struct limit: Codable {
+    let id, title, value: String
 }
 
 struct dateResponse: Codable {
