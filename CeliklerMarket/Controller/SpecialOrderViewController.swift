@@ -25,8 +25,8 @@ class specialOrderViewController: UIViewController, UITextViewDelegate {
         specialOrderTextField.addDoneButton(title: "Bitti", target: self, selector: #selector(tapDone(sender:)))
         specialDone.layer.cornerRadius = 6.0
     }
-    @IBOutlet weak var specialDone: UIButton!
     
+    @IBOutlet weak var specialDone: UIButton!
     @objc func tapDone(sender: Any) {
         self.view.endEditing(true)
     }
@@ -61,9 +61,6 @@ class specialOrderViewController: UIViewController, UITextViewDelegate {
             let destination = segue.destination as! paymentViewController
             destination.note = note
         }
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        //UserDefaults.standard.set("", forKey: "note")
     }
 }
 
