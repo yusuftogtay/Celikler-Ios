@@ -11,54 +11,114 @@ import CoreData
 import SDWebImage
 
 class categoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, productCell{
-    
-    func onClickCell(index: Int, unit: String) {
+    func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
-        if "\(unit)" != "0" {
-            let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Cards")
-            fetchRequest.predicate = NSPredicate(format: "id = %@", searchProductData[index].product_id)
-            do {
-                let test = try context.fetch(fetchRequest)
-                if test.count != 0 {
-                    let objectUpdate = test[0] as! NSManagedObject
-                    objectUpdate.setValue(searchProductData[index].product_id, forKeyPath: "id")
-                    objectUpdate.setValue(searchProductData[index].price, forKeyPath: "price")
-                    objectUpdate.setValue(unit, forKeyPath: "qty")
-                    objectUpdate.setValue(searchProductData[index].unit, forKeyPath: "unit")
-                    objectUpdate.setValue(searchProductData[index].unit_value, forKeyPath: "unit_value")
-                    objectUpdate.setValue(searchProductData[index].product_image, forKeyPath: "image")
-                    objectUpdate.setValue(searchProductData[index].product_name, forKeyPath: "name")
-                    do {
-                        try context.save()
-                        print("Güncelledi")
-                        
-                    } catch {
-                        print(error)
-                    }
-                } else {
-                    let newCard = NSEntityDescription.insertNewObject(forEntityName: "Cards", into: context)
-                    newCard.setValue((searchProductData[index].product_id), forKeyPath: "id")
-                    newCard.setValue(searchProductData[index].price, forKeyPath: "price")
-                    newCard.setValue(unit, forKeyPath: "qty")
-                    newCard.setValue(searchProductData[index].unit, forKeyPath: "unit")
-                    newCard.setValue(searchProductData[index].unit_value, forKeyPath: "unit_value")
-                    newCard.setValue(searchProductData[index].product_image, forKeyPath: "image")
-                    newCard.setValue(searchProductData[index].product_name, forKeyPath: "name")
-                    do {
-                        try context.save()
-                        print("burada")
-                    } catch {
-                        print(error)
-                    }
+        var id = ""
+        var price = ""
+        var unitt = ""
+        var unit_value = ""
+        var image = ""
+        var name = ""
+        if searching {
+            let searchData = searchBarText[index]
+            for i in searchProductData {
+                if i.product_name == searchData {
+                    id = i.product_id
+                    price = i.price
+                    unitt = i.unit
+                    unit_value = i.unit_value
+                    image = i.product_image
+                    name = i.product_name
                 }
-            } catch  {
-                print(error)
+            }
+            if "\(unit)" != "0" {
+                let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Cards")
+                fetchRequest.predicate = NSPredicate(format: "id = %@", searchProductData[index].product_id)
+                do {
+                    let test = try context.fetch(fetchRequest)
+                    if test.count != 0 {
+                        let objectUpdate = test[0] as! NSManagedObject
+                        objectUpdate.setValue(id, forKeyPath: "id")
+                        objectUpdate.setValue(price, forKeyPath: "price")
+                        objectUpdate.setValue(unit, forKeyPath: "qty")
+                        objectUpdate.setValue(unitt, forKeyPath: "unit")
+                        objectUpdate.setValue(unit_value, forKeyPath: "unit_value")
+                        objectUpdate.setValue(image, forKeyPath: "image")
+                        objectUpdate.setValue(name, forKeyPath: "name")
+                        do {
+                            try context.save()
+                            print("Güncelledi")
+                            
+                        } catch {
+                            print(error)
+                        }
+                    } else {
+                        let newCard = NSEntityDescription.insertNewObject(forEntityName: "Cards", into: context)
+                        newCard.setValue(id, forKeyPath: "id")
+                        newCard.setValue(price, forKeyPath: "price")
+                        newCard.setValue(unit, forKeyPath: "qty")
+                        newCard.setValue(unitt, forKeyPath: "unit")
+                        newCard.setValue(unit_value, forKeyPath: "unit_value")
+                        newCard.setValue(image, forKeyPath: "image")
+                        newCard.setValue(name, forKeyPath: "name")
+                        do {
+                            try context.save()
+                            print("burada")
+                        } catch {
+                            print(error)
+                        }
+                    }
+                } catch  {
+                    print(error)
+                }
+            }
+        } else {
+            if "\(unit)" != "0" {
+                let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Cards")
+                fetchRequest.predicate = NSPredicate(format: "id = %@", searchProductData[index].product_id)
+                do {
+                    let test = try context.fetch(fetchRequest)
+                    if test.count != 0 {
+                        let objectUpdate = test[0] as! NSManagedObject
+                        objectUpdate.setValue((searchProductData[index].product_id), forKeyPath: "id")
+                        objectUpdate.setValue(searchProductData[index].price, forKeyPath: "price")
+                        objectUpdate.setValue(unit, forKeyPath: "qty")
+                        objectUpdate.setValue(searchProductData[index].unit, forKeyPath: "unit")
+                        objectUpdate.setValue(searchProductData[index].unit_value, forKeyPath: "unit_value")
+                        objectUpdate.setValue(searchProductData[index].product_image, forKeyPath: "image")
+                        objectUpdate.setValue(searchProductData[index].product_name, forKeyPath: "name")
+                        do {
+                            try context.save()
+                            print("Güncelledi")
+                            
+                        } catch {
+                            print(error)
+                        }
+                    } else {
+                        let newCard = NSEntityDescription.insertNewObject(forEntityName: "Cards", into: context)
+                        newCard.setValue((searchProductData[index].product_id), forKeyPath: "id")
+                        newCard.setValue(searchProductData[index].price, forKeyPath: "price")
+                        newCard.setValue(unit, forKeyPath: "qty")
+                        newCard.setValue(searchProductData[index].unit, forKeyPath: "unit")
+                        newCard.setValue(searchProductData[index].unit_value, forKeyPath: "unit_value")
+                        newCard.setValue(searchProductData[index].product_image, forKeyPath: "image")
+                        newCard.setValue(searchProductData[index].product_name, forKeyPath: "name")
+                        do {
+                            try context.save()
+                            print("burada")
+                        } catch {
+                            print(error)
+                        }
+                    }
+                } catch  {
+                    print(error)
+                }
             }
         }
+        
     }
-    
-    
+  
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewCell2: UICollectionView!
@@ -94,7 +154,12 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         sliderViewDidLoad()
         categories()
         search()
+        if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.setTitle("İptal Et", for: .normal)
+        }
     }
+    
+    
     @IBAction func specialOrderButton(_ sender: Any) {
         performSegue(withIdentifier: "goSpecialOrder", sender: nil)
     }
@@ -112,7 +177,6 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @objc func hideKeyboard()   {
         view.endEditing(true)
     }
-    
     
     @IBOutlet weak var seprcialButton: UIButton!
     
@@ -327,16 +391,35 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         tableCell?.cellDelegate = self
         tableCell?.index = indexPath
         if searching {
-
+            let searchData = searchBarText[indexPath.row]
             if let productName = tableCell?.viewWithTag(600) as? UILabel {
                 productName.text = searchBarText[indexPath.row]
             }
+            
             if let productName = tableCell?.viewWithTag(502) as? UILabel {
-                productName.text = String(searchProductData[indexPath.row].price) + "₺"
+                for i in searchProductData {
+                    if i.product_name == searchData {
+                        productName.text = String(i.price) + "₺"
+                    }
+                }
             }
-            let imageUrl = URL(string: "https://amasyaceliklermarket.com" + String(searchProductData[indexPath.row].product_image))
-            if let productImage = tableCell?.viewWithTag(501) as? UIImageView {
-                productImage.sd_setImage(with: imageUrl, placeholderImage: placeHolderImage, options: SDWebImageOptions.highPriority, context: nil)
+            if let productName = tableCell?.viewWithTag(508) as? UILabel {
+                for i in searchProductData {
+                    if i.product_name == searchData {
+                        if i.unit == "kg" {
+                            productName.text = "0.0"
+                        }
+                    }
+                }
+            }
+            
+            for i in searchProductData {
+                if i.product_name == searchData {
+                    let imageUrl = URL(string: "https://amasyaceliklermarket.com" + String(i.product_image))
+                    if let productImage = tableCell?.viewWithTag(501) as? UIImageView {
+                        productImage.sd_setImage(with: imageUrl, placeholderImage: placeHolderImage, options: SDWebImageOptions.highPriority, context: nil)
+                    }
+                }
             }
             if let productName = tableCell?.viewWithTag(505) as? UIButton {
                 productName.layer.cornerRadius = 6.0
@@ -353,6 +436,13 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             }
             if let productName = tableCell?.viewWithTag(502) as? UILabel {
                 productName.text = String(searchProductData[indexPath.row].price) + "₺"
+            }
+            if let productName = tableCell?.viewWithTag(508) as? UILabel {
+                if searchProductData[indexPath.row].unit == "kg" {
+                    productName.text = "0.0"
+                } else {
+                    productName.text = "0"
+                }
             }
             let imageUrl = URL(string: "https://amasyaceliklermarket.com" + String(searchProductData[indexPath.row].product_image))
             if let productImage = tableCell?.viewWithTag(501) as? UIImageView {
@@ -371,9 +461,6 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         return tableCell!
     }
     
-    /*func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
-        searchTable.isHidden = false
-    }*/
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchTable.isHidden = false
         seprcialButton.isHidden = true
