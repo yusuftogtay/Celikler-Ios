@@ -11,6 +11,10 @@ import UIKit
 class addressViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var parsedAddressData: [addressData] = []
+    var location_id: String = ""
+    var receiver_name: String = ""
+    var receiver_mobile: String = ""
+    var addressName: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +28,16 @@ class addressViewController: UIViewController, UITableViewDataSource, UITableVie
         let url = URL(string: "https://amasyaceliklermarket.com/api/get_address")
         let user = UserDefaults.standard.value(forKey: "userID")
         ApiService.callPost(url: url!, params: ["user_id": user!], finish: finishPostAddress)
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goEditAddress" {
+            let destination = segue.destination as! deliveryAddressViewController
+            destination.location_id = location_id
+            destination.addressName = addressName
+            destination.receiver_mobile = receiver_mobile
+            destination.receiver_name = receiver_name
+        }
     }
     
     @IBOutlet weak var addressTable: UITableView!
@@ -101,7 +114,11 @@ class addressViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //soCityId = parsedAddressData[indexPath.row].socity_id
+        location_id = parsedAddressData[indexPath.row].location_id
+        receiver_name = parsedAddressData[indexPath.row].receiver_name
+        receiver_mobile = parsedAddressData[indexPath.row].receiver_mobile
+        addressName = parsedAddressData[indexPath.row].adress
+        performSegue(withIdentifier: "goEditAddress", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
