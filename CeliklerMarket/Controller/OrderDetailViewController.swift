@@ -29,6 +29,7 @@ class OrderDetailViewController: UIViewController, UITableViewDataSource, UITabl
         dateLabel.text = "Tarih: " + date
         timeLabel.text = "Saat: " + time
         deliveryChargeLabel.text = "Gönderim Ücreti: " + deliveryCharge
+        cancelOrder.layer.cornerRadius = 6.0
         if status == "0" {
             cancelOrder.isEnabled = true
         } else {
@@ -37,6 +38,53 @@ class OrderDetailViewController: UIViewController, UITableViewDataSource, UITabl
         let url = URL(string: "https://amasyaceliklermarket.com/api/order_details")
         ApiService.callPost(url: url!, params: ["sale_id" : sale_id], finish: myOrdersDetailResponse)
         
+    }
+    @IBAction func cancelOrder(_ sender: Any) {
+        let alert = UIAlertController(title: "Onay", message: "Siparişinizi iptal etmek istiyor musunuz", preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "Evet", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            let url = URL(string: "https://amasyaceliklermarket.com/api/cancel_order")
+            let user = UserDefaults.standard.value(forKey: "userID")
+            ApiService.callPost(url: url!, params: ["sale_id" : self.sale_id, "user_id" : user!], finish: self.myOrdersCancelResponse)
+        }
+        let cancelAction = UIAlertAction(title: "Hayır", style: UIAlertAction.Style.cancel) {
+            UIAlertAction in
+            
+        }
+        alert.addAction(okAction)
+           alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func myOrdersCancelResponse(message:String, data:Data?) -> Void
+    {
+        do
+        {
+            if let jsonData = data
+            {
+                let response = try JSONDecoder().decode(cancelOrders.self, from: jsonData)
+                if response.response == true    {
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "", message: response.message, preferredStyle: .alert)
+
+                        let okAction = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default) {
+                            UIAlertAction in
+                            if let firstViewController = self.navigationController?.viewControllers.first {
+                                self.navigationController?.popToViewController(firstViewController, animated: true)
+                            }
+                        }
+                        alert.addAction(okAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+        catch
+        {
+            print("Parse Error: \(error)")
+        }
     }
     
     func myOrdersDetailResponse(message:String, data:Data?) -> Void
