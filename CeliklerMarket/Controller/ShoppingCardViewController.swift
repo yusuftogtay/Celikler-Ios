@@ -111,18 +111,7 @@ class ShoppingCardViewController: UIViewController,  UICollectionViewDelegate, U
         }
         
         odeme = "Teslimatta Nakit"
-        
-        /*let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
-
-        // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
-        cardsView.refreshControl = refreshControl
-        */
-        
-        //ApiService.callPost(url: url!, params: ["user_id": user!], finish: finishPostAddress)
-        //self.hideKeyboardWhenTappedAround()
-
-        
+    
     }
     
     //Hiding Methods
