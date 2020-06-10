@@ -148,7 +148,6 @@ class ViewController: UIViewController {
                                             print(error)
                                         }
                                     }
-                                    /*---*/
                                     task.resume()
                                 } catch { print(error) }
                                 delegate.rememberUser()
