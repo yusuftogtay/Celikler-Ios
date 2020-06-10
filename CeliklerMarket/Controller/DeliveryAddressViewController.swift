@@ -15,7 +15,12 @@ class deliveryAddressViewController: UIViewController, UITableViewDelegate, UITa
     var socityId = [String?]()
     var soCityIdset = "0"
     var data = [String: Any]()
+    var location_id: String = ""
+    var receiver_name: String = ""
+    var receiver_mobile: String = ""
+    var addressName: String = ""
     
+    @IBOutlet weak var addAddress: UIButton!
     
     override func viewDidLoad() {
         if #available(iOS 13.0, *) {
@@ -24,11 +29,22 @@ class deliveryAddressViewController: UIViewController, UITableViewDelegate, UITa
             // Fallback on earlier versions
         }
         super.viewDidLoad()
-        
+        addAddress.layer.cornerRadius = 6.0
         socityCollection.delegate = self
         socityCollection.dataSource = self
         addressModel()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        nameLabel.text = receiver_name
+        phoneLabel.text = receiver_mobile
+        addressLabel.text = addressName
+        if location_id != ""    {
+            addAddress.titleLabel?.text = "Adres Güncelle"
+        }
+    }
+    
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var phoneLabel: UITextField!
     @IBOutlet weak var socityCollection: UITableView!
@@ -72,18 +88,34 @@ class deliveryAddressViewController: UIViewController, UITableViewDelegate, UITa
             
             self.present(alert, animated: true, completion: nil)
         }   else    {
-            let user = UserDefaults.standard.value(forKey: "userID")
-            let params: [String: Any] = [
-                "user_id": user!,
-                "t_adress": "Nugbfgll",
-                "socity_id": soCityIdset as Any,
-                "adress": addressLabel.text!,
-                "receiver_name": nameLabel.text!,
-                "receiver_mobile": nameLabel.text!,
-            ]
-            print(params as [String: Any])
-            let url = URL(string: "https://amasyaceliklermarket.com/api/ekle_adres")
-            ApiService.callPost(url: url!, params: params, finish: addressResponse)
+            if location_id != ""    {
+                let user = UserDefaults.standard.value(forKey: "userID")
+                let params: [String: Any] = [
+                    "user_id": user!,
+                    "location_id": location_id,
+                    "t_adress": "Nugbfgll",
+                    "socity_id": soCityIdset as Any,
+                    "adress": addressLabel.text!,
+                    "receiver_name": nameLabel.text!,
+                    "receiver_mobile": phoneLabel.text!,
+                ]
+                print(params as [String: Any])
+                let url = URL(string: "https://amasyaceliklermarket.com/api/edit_address")
+                ApiService.callPost(url: url!, params: params, finish: addressEditResponse)
+            } else {
+                let user = UserDefaults.standard.value(forKey: "userID")
+                let params: [String: Any] = [
+                    "user_id": user!,
+                    "t_adress": "Nugbfgll",
+                    "socity_id": soCityIdset as Any,
+                    "adress": addressLabel.text!,
+                    "receiver_name": nameLabel.text!,
+                    "receiver_mobile": phoneLabel.text!,
+                ]
+                print(params as [String: Any])
+                let url = URL(string: "https://amasyaceliklermarket.com/api/ekle_adres")
+                ApiService.callPost(url: url!, params: params, finish: addressResponse)
+            }
         }
     }
     
@@ -91,15 +123,50 @@ class deliveryAddressViewController: UIViewController, UITableViewDelegate, UITa
     {
         do
         {
+            if let JSONString = String(data: data!, encoding: String.Encoding.utf8) {
+               print(JSONString)
+            }
             if let jsonData = data
             {
                 let parsedData = try JSONDecoder().decode(getAddress.self, from: jsonData)
                 if parsedData.response == true{
-                    let alert = UIAlertController(title: "", message: "Adress Başarıyla Eklenmiştir", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "", message: "Adresiniz Başarıyla Eklenmiştir", preferredStyle: .alert)
 
                     let action = UIAlertAction(title: "Tamam", style: .default, handler: { (action: UIAlertAction!) in
-                        //self.performSegue(withIdentifier: "goBackDelivery", sender: nil)
-                        //self.navigationController?.popToRootViewController(animated: true)
+                        if let firstViewController = self.navigationController?.viewControllers.first {
+                            self.navigationController?.popToViewController(firstViewController, animated: true)
+                        }
+                    })
+                    alert.addAction(action)
+                    DispatchQueue.main.async {
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+        catch
+        {
+            print("Parse Error: \(error)")
+        }
+    }
+    
+    func addressEditResponse(message:String, data:Data?) -> Void
+    {
+        do
+        {
+            if let JSONString = String(data: data!, encoding: String.Encoding.utf8) {
+               print(JSONString)
+            }
+            if let jsonData = data
+            {
+                let parsedData = try JSONDecoder().decode(editAddress.self, from: jsonData)
+                if parsedData.response == true{
+                    let alert = UIAlertController(title: "", message: "Adresiniz Başarıyla Güncellenmiştir", preferredStyle: .alert)
+
+                    let action = UIAlertAction(title: "Tamam", style: .default, handler: { (action: UIAlertAction!) in
+                        if let firstViewController = self.navigationController?.viewControllers.first {
+                            self.navigationController?.popToViewController(firstViewController, animated: true)
+                        }
                     })
                     alert.addAction(action)
                     DispatchQueue.main.async {
