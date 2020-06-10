@@ -8,15 +8,25 @@
 
 import UIKit
 
+protocol dateViewControllerDelegate
+{
+    func dateViewControllerResponse(day: String)
+}
+
 class dateViewController: UIViewController {
     
     var datee = Date()
     var timee = Date()
     var time: String = ""
     var dateString: String = ""
+    var delegate: dateViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        dayButton.layer.cornerRadius = 6.0
     }
+    
+    @IBOutlet weak var dayButton: UIButton!
     @IBOutlet weak var dateTimePicker: UIDatePicker!
     
     @IBAction func dayButton(_ sender: Any) {
@@ -25,13 +35,16 @@ class dateViewController: UIViewController {
         formatter.dateFormat = "YYYY-MM-dd"
         let timeString = formatter.string(from: timee)
         time = timeString
-        print("bu gün \(timeString)")
-        performSegue(withIdentifier: "goBackDay", sender: nil)
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goBackDay" {
-            let destination = segue.destination as! paymentViewController
-            destination.dayString = time
-        }
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! paymentViewController
+        destVC.dayString = time
+    }
+    @IBAction func dayPicker(_ sender: Any) {
+        timee = dateTimePicker.date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY-MM-dd"
+        let timeString = formatter.string(from: timee)
+        time = timeString
     }
 }
