@@ -85,6 +85,7 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var kart: UISwitch!
     
     @IBAction func onayla(_ sender: Any) {
+        addButton.isEnabled = false
         let selectedIndexPath = addressTable.indexPathForSelectedRow
         if timeString != "" {
             if selectedIndexPath != nil {
@@ -101,7 +102,7 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 let lastttime = "\(time[0]):\(lastTime)"
                 let postTime = "\(timeString) - \(lastttime)"
-                if noteee == ""   {
+                if note == ""   {
                     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
                     let managedContext = appDelegate.persistentContainer.viewContext
                     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
@@ -141,9 +142,11 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
                         print(error)
                     }
                 } else {
-                    let s = sendSpecial(product_id: "125", qty: "1", unit_value: "1", unit: "adet", price: "1", note: " ")
+                    print("burada" + note)
+                    var data: [sendSpecial] = []
+                    data.append(sendSpecial(product_id: "125", qty: "1", unit_value: "1", unit: "ml", price: "1", note: note))
                     do {
-                        let data = try JSONEncoder().encode(s)
+                        let data = try JSONEncoder().encode(data)
                         let user = UserDefaults.standard.value(forKey: "userID")
                         if let JSONString = String(data: data, encoding: String.Encoding.utf8) {
                             print(JSONString)
@@ -156,13 +159,12 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
                                "payment_method": odeme!,
                            ]
                             let url = URL(string: "https://amasyaceliklermarket.com/api/send_order_ios")
+                            print(params)
                             ApiService.callPost(url: url!, params: params, finish: sendOrderResponse)
                         }
                     } catch  {
                         print("error")
                     }
-                    
-                    
                 }
             } else {
                 let alert = UIAlertController(title: "Bilgilendirme", message: " Teslimat Adresini Seçmediniz", preferredStyle: .alert)
@@ -179,7 +181,10 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     var noteee = String()
 
+    @IBAction func unWindToBack(_ sender: UIStoryboardSegue) {}
+    
     @IBOutlet weak var done: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addButton.layer.cornerRadius = 6.0
@@ -191,9 +196,11 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         let user = UserDefaults.standard.value(forKey: "userID")
         ApiService.callPost(url: url!, params: ["user_id": user!], finish: finishPostAddress)
     }
+    
     @IBAction func addAdress(_ sender: Any) {
         performSegue(withIdentifier: "goAddress", sender: nil)
     }
+    
     @IBAction func daySend(_ sender: Any) {
         performSegue(withIdentifier: "goDay", sender: nil)
         day.titleLabel?.text = "Teslimat Zamanı:" + "\(dayString)"
@@ -212,6 +219,10 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        print(dayString)
+        print(timeString)
+        day.titleLabel!.text = "Gönderim Günü: \(dayString)"
+        time.titleLabel!.text = "Gönderim Saati: \(timeString)"
         let url = URL(string: "https://amasyaceliklermarket.com/api/get_address")
         let user = UserDefaults.standard.value(forKey: "userID")
         ApiService.callPost(url: url!, params: ["user_id": user!], finish: finishPostAddress)
@@ -236,12 +247,29 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 let parsedData = try JSONDecoder().decode(sendOrder.self, from: jsonData)
                 if parsedData.response == true{
-                   
+                    addButton.isEnabled = true
                     let alert = UIAlertController(title: "Siparişniz Başarıyla Alınmıştır", message: parsedData.data, preferredStyle: .alert)
                     
+                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                    let managedContext = appDelegate.persistentContainer.viewContext
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+                    if let result = try? managedContext.fetch(fetchRequest) {
+                        for object in result {
+                            managedContext.delete(object as! NSManagedObject)
+                        }
+                        do{
+                            try managedContext.save()
+                        }
+                        catch
+                        {
+                            print(error)
+                        }
+                    }
                     
                     let action = UIAlertAction(title: "Tamam", style: .default, handler: { (action: UIAlertAction!) in
-                        
+                        if let firstViewController = self.navigationController?.viewControllers.first {
+                            self.navigationController?.popToViewController(firstViewController, animated: true)
+                        }
                     })
                     alert.addAction(action)
                     DispatchQueue.main.async {
