@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ordersViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
+class ordersViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var ordersCollectionView: UICollectionView!
     
@@ -53,6 +53,12 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
             destination.deliveryCharge = deliveryCharge
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        let user = UserDefaults.standard.value(forKey: "userID")
+        let url = URL(string: "https://amasyaceliklermarket.com/api/my_orders")
+        ApiService.callPost(url: url!, params: ["user_id" : user!], finish: myOrdersResponse)
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         cellTapped(deneme: indexPath.row)
@@ -75,7 +81,7 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
         let user = UserDefaults.standard.value(forKey: "userID")
         let url = URL(string: "https://amasyaceliklermarket.com/api/my_orders")
         ApiService.callPost(url: url!, params: ["user_id" : user!], finish: myOrdersResponse)
-        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return parsedData.count
@@ -85,9 +91,7 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
     {
         do
         {
-            if let JSONString = String(data: data!, encoding: String.Encoding.utf8) {
-               print(JSONString)
-            }
+            parsedData.removeAll()
             if let jsonData = data
             {
                 parsedData = try JSONDecoder().decode([myOrders].self, from: jsonData)
@@ -301,9 +305,9 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let screenWidth = UIScreen.main.bounds.width
-           let height = ordersCollectionView.frame.height / 4
-           return CGSize(width: screenWidth, height: height)
+        let screenWidth = ordersCollectionView.frame.width
+        let height = ordersCollectionView.frame.height / 4
+        return CGSize(width: screenWidth, height: height)
     }
 }
 
