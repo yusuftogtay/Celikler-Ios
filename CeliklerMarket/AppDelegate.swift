@@ -52,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
           print("Subscribed to weather topic")
         }
         
-        
         Messaging.messaging().delegate = self
 
         UNUserNotificationCenter.current().delegate = self
@@ -79,26 +78,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-      /*if let messageID = userInfo[gcmMessageIDKey] {
-        print("Message ID: \(messageID)")
-      }*/
-       
-      // Print full message.
       print(userInfo)
     }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // Print message ID.
+        print("Message ID: \(userInfo["gcm.message_id"]!)")
 
+        let aps = userInfo["aps"] as! NSDictionary
+        let body_notifica = aps["alert"]! as! NSDictionary
+        let titolo_notifica = body_notifica["title"]! as! String
+        let testo_notifica = body_notifica["body"]! as! String
+        
+        /*if application.applicationState == UIApplication.State.inactive || application.applicationState == UIApplication.State.background{
+            let viewController = self.window!.rootViewController!.storyboard!.instantiateViewController(withIdentifier: "annuncio_view_controler")
+            viewController.performSegue(withIdentifier: "a", sender: <#T##Any?#>)
+        }*/
+        print(userInfo)
 
-      /*let deneme = (userInfo["body"]!)
-        print(deneme)
-        let deneme2 = (userInfo["title"]!)
-        print(deneme2)
-      // Print full message.
-      print("buraya girdi \(userInfo)")*/
-
-      completionHandler(UIBackgroundFetchResult.newData)
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -130,34 +128,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         }
     }
     
+    func romoveUser() {
+        let user : String? =  UserDefaults.standard.string(forKey: "username")
+        print(user)
+        if user == nil  {
+            let board  : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabbar =  board.instantiateViewController(withIdentifier: "signInController") as! UIViewController
+            window?.rootViewController = tabbar
+        }
+    }
+    
+    
     lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-        */
         let container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
         return container
     }()
-
-    // MARK: - Core Data Saving support
 
     func saveContext () {
         let context = persistentContainer.viewContext
@@ -165,8 +155,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             do {
                 try context.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
