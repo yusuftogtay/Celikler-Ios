@@ -41,18 +41,34 @@ class specialOrderViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func SendMarket(_ sender: Any) {
-        if specialOrderTextField.text == "Bir Şeyler Yazın" || specialOrderTextField.text == "" {
-            let alert = UIAlertController(title: "Hata!", message: "Sipariş Alanı boş geçilmez", preferredStyle: .alert)
+        let user : String? =  UserDefaults.standard.string(forKey: "username")
+        if user != nil  {
+            if specialOrderTextField.text == "Bir Şeyler Yazın" || specialOrderTextField.text == "" {
+                let alert = UIAlertController(title: "Hata!", message: "Sipariş Alanı boş geçilmez", preferredStyle: .alert)
 
-            let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+                let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+                alert.addAction(action)
+                
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                note = specialOrderTextField.text
+                print(note)
+                UserDefaults.standard.set(note, forKey: "not")
+                performSegue(withIdentifier: "goSpecialPay", sender: nil)
+            }
+        } else {
+            let alert = UIAlertController(title: "Oturum Aç", message: "Sipariş verbilmeniz için oturum açmanız gerekmektedir.", preferredStyle: .alert)
+
+            let action = UIAlertAction(title: "Tamam", style: .default, handler: { (action: UIAlertAction!) in
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "gologin", sender: nil)
+                }
+            })
+            let cancel = UIAlertAction(title: "İptal Et", style: .cancel, handler: nil)
             alert.addAction(action)
+            alert.addAction(cancel)
             
             self.present(alert, animated: true, completion: nil)
-        } else {
-            note = specialOrderTextField.text
-            print(note)
-            UserDefaults.standard.set(note, forKey: "not")
-            performSegue(withIdentifier: "goSpecialPay", sender: nil)
         }
     }
     

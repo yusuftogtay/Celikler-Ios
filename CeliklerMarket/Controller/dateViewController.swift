@@ -22,8 +22,14 @@ class dateViewController: UIViewController {
     var delegate: dateViewControllerDelegate?
     
     override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         super.viewDidLoad()
         dayButton.layer.cornerRadius = 6.0
+        dateTimePicker.minimumDate = Date()
     }
     
     @IBOutlet weak var dayButton: UIButton!

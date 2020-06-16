@@ -23,8 +23,14 @@ class OrderDetailViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var deliveryChargeLabel: UILabel!
     @IBOutlet weak var cancelOrder: UIButton!
+    @IBOutlet weak var totalLabel: UILabel!
     
     override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         super.viewDidLoad()
         dateLabel.text = "Tarih: " + date
         timeLabel.text = "Saat: " + time
@@ -68,7 +74,7 @@ class OrderDetailViewController: UIViewController, UITableViewDataSource, UITabl
                 if response.response == true    {
                     DispatchQueue.main.async {
                         let alert = UIAlertController(title: "", message: response.message, preferredStyle: .alert)
-
+                        
                         let okAction = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default) {
                             UIAlertAction in
                             if let firstViewController = self.navigationController?.viewControllers.first {
@@ -97,6 +103,7 @@ class OrderDetailViewController: UIViewController, UITableViewDataSource, UITabl
             if let jsonData = data
             {
                 parsedData = try JSONDecoder().decode([myOrderDetails].self, from: jsonData)
+                total()
                 DispatchQueue.main.async {
                     self.orderDetailTable.reloadData()
                 }
@@ -105,6 +112,19 @@ class OrderDetailViewController: UIViewController, UITableViewDataSource, UITabl
         catch
         {
             print("Parse Error: \(error)")
+        }
+    }
+    
+    func total() {
+        var total: Double = 0
+        for i in parsedData {
+            let price = Double(i.price)!
+            let qty = Double(i.qty)!
+            let charge = Double(deliveryCharge)!
+            total += Double(round(100*(Double((price * qty) + charge))/100))
+        }
+        DispatchQueue.main.async {
+            self.totalLabel.text = "Toplam: \(total)"
         }
     }
     

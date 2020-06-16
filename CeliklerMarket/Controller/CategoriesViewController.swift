@@ -11,6 +11,10 @@ import CoreData
 import SDWebImage
 
 class categoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, productCell{
+    func onClickImage(indexPath: IndexPath) {
+        print("indexpath")
+    }
+    
     func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
@@ -48,7 +52,6 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         objectUpdate.setValue(name, forKeyPath: "name")
                         do {
                             try context.save()
-                            print("Güncelledi")
                             
                         } catch {
                             print(error)
@@ -64,7 +67,6 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         newCard.setValue(name, forKeyPath: "name")
                         do {
                             try context.save()
-                            print("burada")
                         } catch {
                             print(error)
                         }
@@ -90,7 +92,6 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         objectUpdate.setValue(searchProductData[index].product_name, forKeyPath: "name")
                         do {
                             try context.save()
-                            print("Güncelledi")
                             
                         } catch {
                             print(error)
@@ -106,7 +107,6 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         newCard.setValue(searchProductData[index].product_name, forKeyPath: "name")
                         do {
                             try context.save()
-                            print("burada")
                         } catch {
                             print(error)
                         }
@@ -169,10 +169,9 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         refreshControl.endRefreshing()
     }
     
-    func selectCategory()   {
+    /*func selectCategory()   {
         let selectItem = collectionViewCell2.indexPathsForSelectedItems?.last ?? IndexPath(item: 0, section: 0)
-        print(selectItem)
-    }
+    }*/
     
     @objc func hideKeyboard()   {
         view.endEditing(true)
@@ -251,15 +250,11 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data {
                    do {
-                    if let JSONString = String(data: data, encoding: String.Encoding.utf8) {
-                       print(JSONString)
-                    }
                     self.searchProductData.removeAll()
                     self.searchProductData = try JSONDecoder().decode([searchProduct].self, from: data)
                     for i in self.searchProductData  {
                         self.productName.append(i.product_name)
                     }
-                    print(self.searchProductData[0])
                     DispatchQueue.main.async {
                         self.searchTable.reloadData()
                     }
@@ -305,7 +300,27 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             destination.subCategoryID = categoriesID
             destination.subCategoryIndex = subCategoryID
         }
+        if segue.identifier == "geSearchDetail" {
+            let destination = segue.destination as! productDetailsViewController
+            destination.image = image
+            destination.details = details
+            destination.productid = productid
+            destination.name = name
+            destination.product_unit = product_unit
+            destination.unit_value = unit_value
+            destination.price = price
+            destination.qtyy = qty
+        }
     }
+    
+    var image = ""
+    var details = ""
+    var name = ""
+    var productid = ""
+    var product_unit = ""
+    var unit_value = ""
+    var price = ""
+    var qty = ""
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == collectionViewCell2    {
@@ -382,6 +397,96 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searching {
+            let searchData = searchBarText[indexPath.row]
+            for i in searchProductData {
+                if i.product_name == searchData {
+                    image = i.product_image
+                    name = i.product_name
+                    productid = i.product_id
+                    details = i.product_description
+                    product_unit = i.unit
+                    unit_value = i.unit_value
+                    price = i.price
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    let managedContext = appDelegate!.persistentContainer.viewContext
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+                    do {
+                        let result = try managedContext.fetch(fetchRequest)
+                        if result.count != 0 {
+                            for data in result as! [NSManagedObject] {
+                                if data.value(forKey: "id") as! String == productid {
+                                    qty = (data.value(forKey: "qty") as! String)
+                                } else {
+                                    if i.unit == "kg" {
+                                        qty = "0.0"
+                                    } else {
+                                        qty = "0"
+                                    }
+                                }
+                            }
+                        } else {
+                            if i.unit == "kg" {
+                                qty = "0.0"
+                            } else {
+                                qty = "0"
+                            }
+                        }
+                    } catch {
+                        print("Failed")
+                    }
+                    performSegue(withIdentifier: "geSearchDetail", sender: nil)
+                } else {
+                    print("deneme")
+                }
+            }
+        } else {
+            image = searchProductData[indexPath.row].product_image
+            name = searchProductData[indexPath.row].product_name
+            productid = searchProductData[indexPath.row].product_id
+            details = searchProductData[indexPath.row].product_description
+            product_unit = searchProductData[indexPath.row].unit
+            unit_value = searchProductData[indexPath.row].unit_value
+            price = searchProductData[indexPath.row].price
+            if searchProductData[indexPath.row].unit == "kg" {
+                qty = "0.0"
+            } else {
+                qty = "0"
+            }
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            let managedContext = appDelegate!.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+            do {
+                let result = try managedContext.fetch(fetchRequest)
+                if result.count != 0 {
+                    for data in result as! [NSManagedObject] {
+                        if data.value(forKey: "id") as! String == productid {
+                            qty = (data.value(forKey: "qty") as! String)
+                        } else {
+                            if searchProductData[indexPath.row].unit == "kg" {
+                                qty = "0.0"
+                            } else {
+                                qty = "0"
+                            }
+                        }
+                    }
+                } else {
+                    print(searchProductData[indexPath.row].unit)
+                    if searchProductData[indexPath.row].unit == "kg" {
+                        qty = "0.0"
+                    } else {
+                        qty = "0"
+                    }
+                }
+            } catch {
+                print("Failed")
+            }
+            performSegue(withIdentifier: "geSearchDetail", sender: nil)
+        }
+    }
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell = searchTable.dequeueReusableCell(withIdentifier: "searchTable", for: indexPath) as? productsTableViewCell
         tableCell?.layer.cornerRadius = 6.0
@@ -392,6 +497,14 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         tableCell?.index = indexPath
         if searching {
             let searchData = searchBarText[indexPath.row]
+            if let productImage = tableCell?.viewWithTag(501) as? UIImageView {
+                for i in searchProductData {
+                    if i.product_name == searchData {
+                        let uri = URL(string: "https://amasyaceliklermarket.com" + String(i.product_image))
+                        productImage.sd_setImage(with: uri, placeholderImage: placeHolderImage, options: SDWebImageOptions.highPriority, context: nil)
+                    }
+                }
+            }
             if let productName = tableCell?.viewWithTag(600) as? UILabel {
                 productName.text = searchBarText[indexPath.row]
             }
@@ -408,27 +521,11 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                     if i.product_name == searchData {
                         if i.unit == "kg" {
                             productName.text = "0.0"
+                        } else {
+                            productName.text = "0"
                         }
                     }
                 }
-            }
-            
-            for i in searchProductData {
-                if i.product_name == searchData {
-                    let imageUrl = URL(string: "https://amasyaceliklermarket.com" + String(i.product_image))
-                    if let productImage = tableCell?.viewWithTag(501) as? UIImageView {
-                        productImage.sd_setImage(with: imageUrl, placeholderImage: placeHolderImage, options: SDWebImageOptions.highPriority, context: nil)
-                    }
-                }
-            }
-            if let productName = tableCell?.viewWithTag(505) as? UIButton {
-                productName.layer.cornerRadius = 6.0
-            }
-            if let productName = tableCell?.viewWithTag(506) as? UIButton {
-                productName.layer.cornerRadius = 6.0
-            }
-            if let productName = tableCell?.viewWithTag(507) as? UIButton {
-                productName.layer.cornerRadius = 6.0
             }
         } else {
             if let productName = tableCell?.viewWithTag(600) as? UILabel {
@@ -447,16 +544,17 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             let imageUrl = URL(string: "https://amasyaceliklermarket.com" + String(searchProductData[indexPath.row].product_image))
             if let productImage = tableCell?.viewWithTag(501) as? UIImageView {
                 productImage.sd_setImage(with: imageUrl, placeholderImage: placeHolderImage, options: SDWebImageOptions.highPriority, context: nil)
+                productImage.isUserInteractionEnabled = true
             }
-            if let productName = tableCell?.viewWithTag(505) as? UIButton {
-                productName.layer.cornerRadius = 6.0
-            }
-            if let productName = tableCell?.viewWithTag(506) as? UIButton {
-                productName.layer.cornerRadius = 6.0
-            }
-            if let productName = tableCell?.viewWithTag(507) as? UIButton {
-                productName.layer.cornerRadius = 6.0
-            }
+        }
+        if let productName = tableCell?.viewWithTag(505) as? UIButton {
+            productName.layer.cornerRadius = 6.0
+        }
+        if let productName = tableCell?.viewWithTag(506) as? UIButton {
+            productName.layer.cornerRadius = 6.0
+        }
+        if let productName = tableCell?.viewWithTag(507) as? UIButton {
+            productName.layer.cornerRadius = 6.0
         }
         return tableCell!
     }
@@ -470,26 +568,17 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         searchBar.resignFirstResponder()
         return true
     }
-    
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-         let searchTextLower = searchText.lowercased()
+        let searchTextLower = searchText.lowercased()
         searchBarText = productName.filter({$0.lowercased().prefix(searchText.count) == searchTextLower})
         searching = true
         searchTable.reloadData()
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        print(searchProductData[indexPath.row])
-    }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchTable.isHidden = true
         seprcialButton.isHidden = false
         self.searchBar.endEditing(true)
     }
-    
     struct searchProduct: Codable {
         let product_id, product_name, product_description, product_image: String
         let category_id, in_stock, price, unit_value: String

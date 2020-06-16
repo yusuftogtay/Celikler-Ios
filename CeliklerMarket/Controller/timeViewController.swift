@@ -16,6 +16,11 @@ class timeViewController: UIViewController {
     var time: String = ""
     var timee = Date()
     override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         super.viewDidLoad()
         let url = URL(string: "https://amasyaceliklermarket.com/api/get_time_slot/")
         ApiService.callPost(url: url!, params: ["date": day], finish: finishPostTime)
@@ -25,7 +30,7 @@ class timeViewController: UIViewController {
         let timeString = formatter.string(from: timee)
         time = timeString
         timeButton.layer.cornerRadius = 6.0
-        timePicker.date = Date()
+        timePicker.setDate(Date(), animated: true)
     }
     
     @IBAction func timepicker(_ sender: Any) {
@@ -82,6 +87,7 @@ class timeViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.timePicker.minimumDate = firstTimePicker
                     self.timePicker.maximumDate = lastTimePicker
+                    self.timePicker.setDate(firstTimePicker, animated: true)
                 }
             }
         }

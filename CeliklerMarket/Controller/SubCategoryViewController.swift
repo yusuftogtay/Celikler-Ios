@@ -11,6 +11,11 @@ import SDWebImage
 import CoreData
 
 class subCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, productCell {
+    
+    func onClickImage(indexPath: IndexPath) {
+        print("image \(indexPath.row)")
+    }
+    
     func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
@@ -56,7 +61,6 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
-    
     
     var subCategory: [subCategoryStruct] = []
     var productList: [product] = []
@@ -105,18 +109,14 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        image = productList[indexPath.row].product_image
-        details = productList[indexPath.row].product_description
-        name = productList[indexPath.row].product_name
-        productid = productList[indexPath.row].product_id
-        performSegue(withIdentifier: "goDetail", sender: nil)
-    }
-    
     var image = ""
     var details = ""
     var name = ""
     var productid = ""
+    var product_unit = ""
+    var unit_value = ""
+    var price = ""
+    var qty = ""
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goDetail" {
@@ -125,27 +125,26 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
             destination.details = details
             destination.productid = productid
             destination.name = name
+            destination.unit_value = unit_value
+            destination.product_unit = product_unit
+            destination.price = price
+            destination.qtyy = qty
         }
     }
     
-    
     func getProduct(message:String, data:Data?) -> Void
     {
-        do
-        {
-            productList.removeAll()
+        do {
                 if let jsonData = data
                 {
+                    productList.removeAll()
                     productList = try JSONDecoder().decode([product].self, from: jsonData)
                     DispatchQueue.main.async {
                         self.subCategoryTable.isHidden = false
-                        print(self.productList[0].category_id)
                         self.subCategoryTable.reloadData()
                     }
                 }
-        }
-        catch
-        {
+        } catch {
             DispatchQueue.main.async {
                 self.subCategoryTable.isHidden = true
             }
@@ -153,22 +152,70 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func segmentControl(_ sender: Any) {
-        let productUrl = URL(string: "https://amasyaceliklermarket.com/api/product/" + subCategory[segmentCOntol.selectedSegmentIndex].id)
-        ApiService.callGet(url: productUrl!, finish: getProduct)
+        if let productUrl = URL(string: "https://amasyaceliklermarket.com/api/product/" + subCategory[segmentCOntol.selectedSegmentIndex].id) {
+            ApiService.callGet(url: productUrl, finish: getProduct)
+        }
     }
     
     override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         super.viewDidLoad()
         segmentCOntol.selectedSegmentIndex = 0
         segmentCOntol.updateTitle(array: ["Yükleniyor"])
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
-        } else {
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return productList.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        image = productList[indexPath.row].product_image
+        name = productList[indexPath.row].product_name
+        productid = productList[indexPath.row].product_id
+        details = productList[indexPath.row].product_description
+        product_unit = productList[indexPath.row].unit
+        unit_value = productList[indexPath.row].unit_value
+        price = productList[indexPath.row].price
+        if productList[indexPath.row].unit == "kg" {
+            qty = "0.0"
+        } else {
+            qty = "0"
+        }
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate!.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            if result.count != 0 {
+                for data in result as! [NSManagedObject] {
+                    if data.value(forKey: "id") as! String == productid {
+                        qty = (data.value(forKey: "qty") as! String)
+                    } else {
+                        if productList[indexPath.row].unit == "kg" {
+                            qty = "0.0"
+                        } else {
+                            qty = "0"
+                        }
+                    }
+                }
+            } else {
+                if productList[indexPath.row].unit == "kg" {
+                    qty = "0.0"
+                } else {
+                    qty = "0"
+                }
+            }
+        } catch {
+            print("Failed")
+        }
+        performSegue(withIdentifier: "goDetail", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -179,20 +226,64 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         tableCell?.layer.borderWidth = 0.5
         let myColor = UIColor.lightGray.cgColor
         tableCell!.layer.borderColor = myColor
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate!.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            if result.count != 0 {
+                for data in result as! [NSManagedObject] {
+                    if data.value(forKey: "id") as! String == productList[indexPath.row].product_id {
+                        if let productName = tableCell?.viewWithTag(502) as? UILabel {
+                            productName.text = "\(data.value(forKey: "price") as! String)₺"
+                        }
+                        if let productName = tableCell?.viewWithTag(508) as? UILabel {
+                            productName.text = "\(data.value(forKey: "qty") as! String)"
+                        }
+                        if let productName = tableCell?.viewWithTag(503) as? UILabel {
+                            let price = Double((data.value(forKey: "price") as! String))
+                            let qty = Double((data.value(forKey: "qty") as! String))
+                            productName.text = "Toplam: \(Double(round(100*(price! * qty!))/100))₺"
+                        }
+                    } else {
+                        if let productName = tableCell?.viewWithTag(502) as? UILabel {
+                            productName.text = String(productList[indexPath.row].price) + "₺"
+                        }
+                        if let productName = tableCell?.viewWithTag(508) as? UILabel {
+                            if productList[indexPath.row].unit == "kg" {
+                                productName.text = "0.0"
+                            } else {
+                                productName.text = "0"
+                            }
+                        }
+                        if let productName = tableCell?.viewWithTag(503) as? UILabel {
+                            productName.text = "Toplam:"
+                        }
+                    }
+                }
+            } else {
+                if let productName = tableCell?.viewWithTag(502) as? UILabel {
+                    productName.text = String(productList[indexPath.row].price) + "₺"
+                }
+                if let productName = tableCell?.viewWithTag(508) as? UILabel {
+                    if productList[indexPath.row].unit == "kg" {
+                        productName.text = "0.0"
+                    } else {
+                        productName.text = "0"
+                    }
+                }
+            }
+        } catch {
+            print("Failed")
+        }
         if let productName = tableCell?.viewWithTag(500) as? UILabel {
             productName.text = productList[indexPath.row].product_name
         }
-        if let productName = tableCell?.viewWithTag(502) as? UILabel {
-            productName.text = String(productList[indexPath.row].price) + "₺"
-        }
-        if let productName = tableCell?.viewWithTag(508) as? UILabel {
-            if productList[indexPath.row].unit == "kg" {
-                productName.text = "0.0"
-            }
-        }
         let imageUrl = URL(string: "https://amasyaceliklermarket.com" + String(productList[indexPath.row].product_image))
         if let productImage = tableCell?.viewWithTag(501) as? UIImageView {
-            productImage.sd_setImage(with: imageUrl, placeholderImage: placeHolderImage, options: SDWebImageOptions.highPriority, context: nil)
+            productImage.isUserInteractionEnabled = true
+            productImage.indexPath(index: indexPath.row)
+            productImage.sd_setImage(with: imageUrl, placeholderImage: placeHolderImage, options: SDWebImageOptions.progressiveLoad, context: nil)
         }
         if let productName = tableCell?.viewWithTag(503) as? UILabel {
             productName.layer.cornerRadius = 15.0
@@ -216,6 +307,14 @@ extension UISegmentedControl {
         for t in titles {
             insertSegment(withTitle: t, at: numberOfSegments, animated: true)
         }
-
      }
+}
+struct denem {
+    static var id: Int = 0
+}
+
+extension UIImageView {
+    func indexPath(index: Int)  {
+        denem.id = index
+    }
 }

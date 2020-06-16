@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        //FirebaseApp.configure()
         FirebaseApp.configure()
         if #available(iOS 10.0, *) {
           UNUserNotificationCenter.current().delegate = self
@@ -83,18 +82,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // Print message ID.
-        print("Message ID: \(userInfo["gcm.message_id"]!)")
-
-        let aps = userInfo["aps"] as! NSDictionary
-        let body_notifica = aps["alert"]! as! NSDictionary
-        let titolo_notifica = body_notifica["title"]! as! String
-        let testo_notifica = body_notifica["body"]! as! String
+        if let aps = userInfo["aps"] as? NSDictionary {
+            let body_notifica = aps["alert"]! as! NSDictionary
+            let title = body_notifica["title"]! as! String
+            let body = body_notifica["message"]! as! String
+            let image = userInfo["image"] as! String
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let context = appDelegate.persistentContainer.viewContext
+            let newCard = NSEntityDescription.insertNewObject(forEntityName: "Notifications", into: context)
+            newCard.setValue(title, forKeyPath: "title")
+            newCard.setValue(body, forKey: "body")
+            newCard.setValue(image, forKey: "image")
+        }
         
-        /*if application.applicationState == UIApplication.State.inactive || application.applicationState == UIApplication.State.background{
-            let viewController = self.window!.rootViewController!.storyboard!.instantiateViewController(withIdentifier: "annuncio_view_controler")
-            viewController.performSegue(withIdentifier: "a", sender: <#T##Any?#>)
-        }*/
+        if application.applicationState == UIApplication.State.inactive || application.applicationState == UIApplication.State.background{
+            let board  : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabbar =  board.instantiateViewController(withIdentifier: "tabBarViewController") as! UITabBarController
+            window?.rootViewController = tabbar
+        }
         print(userInfo)
 
     }
@@ -130,7 +135,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     
     func romoveUser() {
         let user : String? =  UserDefaults.standard.string(forKey: "username")
-        print(user)
         if user == nil  {
             let board  : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let tabbar =  board.instantiateViewController(withIdentifier: "signInController") as! UIViewController
@@ -166,7 +170,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("\(#function)")
         completionHandler(.alert)
-        
     }
 }
 

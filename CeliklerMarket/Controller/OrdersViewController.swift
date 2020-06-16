@@ -55,9 +55,19 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        let user = UserDefaults.standard.value(forKey: "userID")
-        let url = URL(string: "https://amasyaceliklermarket.com/api/my_orders")
-        ApiService.callPost(url: url!, params: ["user_id" : user!], finish: myOrdersResponse)
+        let user : String? =  UserDefaults.standard.string(forKey: "username")
+        if user != nil  {
+            swgment.isHidden = false
+            ordersCollectionView.isHidden = false
+            let user = UserDefaults.standard.value(forKey: "userID")
+            let url = URL(string: "https://amasyaceliklermarket.com/api/my_orders")
+            ApiService.callPost(url: url!, params: ["user_id" : user!], finish: myOrdersResponse)
+        } else {
+            swgment.isHidden = true
+            ordersCollectionView.isHidden = true
+            ordersCollectionView.isHidden = true
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -77,10 +87,10 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.ordersCollectionView.register(nib, forCellWithReuseIdentifier: "CollectionViewCell")
         ordersCollectionView.delegate = self
         ordersCollectionView.dataSource = self
-        
+        /*
         let user = UserDefaults.standard.value(forKey: "userID")
         let url = URL(string: "https://amasyaceliklermarket.com/api/my_orders")
-        ApiService.callPost(url: url!, params: ["user_id" : user!], finish: myOrdersResponse)
+        ApiService.callPost(url: url!, params: ["user_id" : user!], finish: myOrdersResponse)*/
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -140,8 +150,8 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
             if parsedData[indexPath.row].status == "2"  {
                 status.text = "Aktif"
             }
-            if parsedData[indexPath.row].status == "4"  {
-                status.text = "Aktif"
+            if parsedData[indexPath.row].status == "3"  {
+                status.text = "İptal Edildi"
             }
             if parsedData[indexPath.row].status == "4"  {
                status.text = "Aktif"

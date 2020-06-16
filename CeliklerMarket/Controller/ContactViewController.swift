@@ -12,6 +12,11 @@ class ContactViewController: UIViewController {
     fileprivate let application = UIApplication.shared
 
     override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         super.viewDidLoad()
     }
     

@@ -38,6 +38,11 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         super.viewDidLoad()
         
         otpTextField.isHidden = true
@@ -126,14 +131,12 @@ class ViewController: UIViewController {
                                 let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
                                 self.fcmToken = UserDefaults.standard.string(forKey: "token")!
                                 let userInfo = userProfile(phone: self.phoneNumber, token: self.fcmToken!)
-                                print(userInfo)
                                 do {
                                     let jsonData = try JSONEncoder().encode(userInfo)
                                     let url = URL(string: "https://amasyaceliklermarket.com/api/phonequery")!
                                     var request = URLRequest(url: url)
                                     request.httpMethod = "POST"
                                     request.httpBody = jsonData
-                                    print(jsonData)
                                     let task = URLSession.shared.dataTask(with: request) { data, response, error in
                                         guard let data = data, error == nil else {
                                             print(error?.localizedDescription ?? "No data")

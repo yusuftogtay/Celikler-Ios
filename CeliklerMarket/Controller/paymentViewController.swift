@@ -186,6 +186,11 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var done: UIButton!
     
     override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         super.viewDidLoad()
         addButton.layer.cornerRadius = 6.0
         day.layer.cornerRadius = 6.0
@@ -247,7 +252,9 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 let parsedData = try JSONDecoder().decode(sendOrder.self, from: jsonData)
                 if parsedData.response == true{
-                    addButton.isEnabled = true
+                    DispatchQueue.main.async {
+                        self.addButton.isEnabled = true
+                    }
                     let alert = UIAlertController(title: "Siparişniz Başarıyla Alınmıştır", message: parsedData.data, preferredStyle: .alert)
                     
                     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }

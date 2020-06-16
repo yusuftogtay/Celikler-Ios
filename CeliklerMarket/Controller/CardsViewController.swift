@@ -11,6 +11,9 @@ import CoreData
 import SDWebImage
 
 class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, productCell {
+    func onClickImage(indexPath: IndexPath) {
+        print(indexPath.row)
+    }
     
     func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -92,22 +95,39 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
 
     @IBAction func payDone(_ sender: Any) {
-        if totalInt < Double(minLimit)! {
-            let alert = UIAlertController(title: "Minimum Sipariş Limiti", message: "Minimum Sipariş Tutarı \(minLimit)₺ dir.", preferredStyle: .alert)
+        let user : String? =  UserDefaults.standard.string(forKey: "username")
+        if user != nil  {
+            if totalInt < Double(minLimit)! {
+                let alert = UIAlertController(title: "Minimum Sipariş Limiti", message: "Minimum Sipariş Tutarı \(minLimit)₺ dir.", preferredStyle: .alert)
 
-            let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
-            alert.addAction(action)
-            
-            self.present(alert, animated: true, completion: nil)
-        } else if totalInt > Double(maxLimit)! {
-            let alert = UIAlertController(title: "Maximum Sipariş Limiti", message: "Maximum Sipariş Tutarı \(maxLimit)₺ dir.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+                alert.addAction(action)
+                
+                self.present(alert, animated: true, completion: nil)
+            } else if totalInt > Double(maxLimit)! {
+                let alert = UIAlertController(title: "Maximum Sipariş Limiti", message: "Maximum Sipariş Tutarı \(maxLimit)₺ dir.", preferredStyle: .alert)
 
-            let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
-            alert.addAction(action)
-            
-            self.present(alert, animated: true, completion: nil)
+                let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+                alert.addAction(action)
+                
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                performSegue(withIdentifier: "goPay", sender: nil)
+            }
         } else {
-            performSegue(withIdentifier: "goPay", sender: nil)
+            let alert = UIAlertController(title: "Oturum Aç", message: "Sipariş verbilmeniz için oturum açmanız gerekmektedir.", preferredStyle: .alert)
+
+            let action = UIAlertAction(title: "Tamam", style: .default, handler: { (action: UIAlertAction!) in
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "gologin", sender: nil)
+                }
+            })
+            
+            let cancel = UIAlertAction(title: "İptal Et", style: .cancel, handler: nil)
+            alert.addAction(action)
+            alert.addAction(cancel)
+            
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

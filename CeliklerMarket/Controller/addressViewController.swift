@@ -17,6 +17,11 @@ class addressViewController: UIViewController, UITableViewDataSource, UITableVie
     var addressName: String = ""
 
     override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         super.viewDidLoad()
         let url = URL(string: "https://amasyaceliklermarket.com/api/get_address")
         let user = UserDefaults.standard.value(forKey: "userID")

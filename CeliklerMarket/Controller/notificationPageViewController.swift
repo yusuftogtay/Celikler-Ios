@@ -28,7 +28,7 @@ class notificationPageViewController: UIViewController, UITableViewDelegate, UIT
         if let productName = tableCell.viewWithTag(600) as? UILabel {
             productName.text = not[indexPath.row].body
         }
-        let imageUrl = URL(string: "https://amasyaceliklermarket.com" + String())
+        let imageUrl = URL(string: not[indexPath.row].image!)
         if let productImage = tableCell.viewWithTag(501) as? UIImageView {
             productImage.sd_setImage(with: imageUrl, placeholderImage: placeHolderImage, options: SDWebImageOptions.highPriority, context: nil)
         }
@@ -37,6 +37,11 @@ class notificationPageViewController: UIViewController, UITableViewDelegate, UIT
     
 
     override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         super.viewDidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {
