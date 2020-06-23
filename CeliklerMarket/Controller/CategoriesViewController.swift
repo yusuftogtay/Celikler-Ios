@@ -11,9 +11,14 @@ import CoreData
 import SDWebImage
 
 class categoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, productCell{
-    func onClickImage(indexPath: IndexPath) {
-        print("indexpath")
-    }
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var sliderCollection: UICollectionView!
+    @IBOutlet weak var specialOrderLabel: UILabel!
+    @IBOutlet weak var specialOrderButton: UIButton!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var categoriesCollection: UICollectionView!
+    @IBOutlet weak var searchTable: UITableView!
     
     func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -36,7 +41,8 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                     name = i.product_name
                 }
             }
-            if "\(unit)" != "0" {
+            let sayi = Double(unit)
+            if sayi! > 0 {
                 let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Cards")
                 fetchRequest.predicate = NSPredicate(format: "id = %@", searchProductData[index].product_id)
                 do {
@@ -70,13 +76,23 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         } catch {
                             print(error)
                         }
+                        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+                        if let result = try? context.fetch(fetchRequest) {
+                            if let tabItems = tabBarController?.tabBar.items {
+                                // In this case we want to modify the badge number of the third tab:
+                                let tabItem = tabItems[1]
+                                let badege = String(result.count)
+                                tabItem.badgeValue = badege
+                            }
+                        }
                     }
                 } catch  {
                     print(error)
                 }
             }
         } else {
-            if "\(unit)" != "0" {
+            let sayi = Double(unit)
+            if sayi! > 0 {
                 let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Cards")
                 fetchRequest.predicate = NSPredicate(format: "id = %@", searchProductData[index].product_id)
                 do {
@@ -111,6 +127,15 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                             print(error)
                         }
                     }
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+                    if let result = try? context.fetch(fetchRequest) {
+                        if let tabItems = tabBarController?.tabBar.items {
+                            // In this case we want to modify the badge number of the third tab:
+                            let tabItem = tabItems[1]
+                            let badege = String(result.count)
+                            tabItem.badgeValue = badege
+                        }
+                    }
                 } catch  {
                     print(error)
                 }
@@ -118,11 +143,6 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
     }
-  
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var collectionViewCell2: UICollectionView!
-    @IBOutlet weak var searchTable: UITableView!
     
     let placeHolderImage = UIImage(named: "V1")
     var sliderImageArray = [UIImage?]()
@@ -148,14 +168,23 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             // Fallback on earlier versions
         }
         super.viewDidLoad()
-        self.collectionViewCell2.delegate = self
-        seprcialButton.layer.cornerRadius = 6.0
+        self.categoriesCollection.delegate = self
+        specialOrderButton.layer.cornerRadius = 6.0
         searchTable.isHidden = true
         sliderViewDidLoad()
-        categories()
-        search()
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.setTitle("İptal Et", for: .normal)
+            cancelButton.setTitle("Vazgeç", for: .normal)
+        }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+        if let result = try? context.fetch(fetchRequest) {
+            if let tabItems = tabBarController?.tabBar.items {
+                // In this case we want to modify the badge number of the third tab:
+                let tabItem = tabItems[1]
+                let badege = String(result.count)
+                tabItem.badgeValue = badege
+            }
         }
     }
     
@@ -164,20 +193,9 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         performSegue(withIdentifier: "goSpecialOrder", sender: nil)
     }
     
-    @objc func doSomething(refreshControl: UIRefreshControl) {
-        categories()
-        refreshControl.endRefreshing()
-    }
-    
-    /*func selectCategory()   {
-        let selectItem = collectionViewCell2.indexPathsForSelectedItems?.last ?? IndexPath(item: 0, section: 0)
-    }*/
-    
     @objc func hideKeyboard()   {
         view.endEditing(true)
     }
-    
-    @IBOutlet weak var seprcialButton: UIButton!
     
     func sliderViewDidLoad()    {
         sliderImageArray.removeAll()
@@ -195,7 +213,7 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                             }
                             DispatchQueue.main.async{
                                 self.sliderImageArray.append(UIImage(data: data!)!)
-                                self.collectionView.reloadData()
+                                self.sliderCollection.reloadData()
                             }
                         }.resume()
                     }
@@ -209,12 +227,20 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        searchBarText.removeAll()
+        searchTable.reloadData()
+        searchTable.isHidden = true
+        categories()
+        search()
+    }
     
     func categories()   {
         categoriesImage.removeAll()
         categoriesLabel.removeAll()
         categoriesID.removeAll()
-        collectionViewCell2.reloadData()
+        categoriesCollection.reloadData()
         if let url = URL(string: "https://amasyaceliklermarket.com/api/category_all") {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data {
@@ -232,7 +258,7 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                                     self.categoriesImage.append(UIImage(data: data!)!)
                                     self.categoriesLabel.append(r.title)
                                     self.categoriesID.append(r.id)
-                                    self.collectionViewCell2.reloadData()
+                                    self.categoriesCollection.reloadData()
                                 }
                             }.resume()
                         }
@@ -251,6 +277,8 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 if let data = data {
                    do {
                     self.searchProductData.removeAll()
+                    self.searchBarText.removeAll()
+                    self.productName.removeAll()
                     self.searchProductData = try JSONDecoder().decode([searchProduct].self, from: data)
                     for i in self.searchProductData  {
                         self.productName.append(i.product_name)
@@ -269,12 +297,12 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @objc func changeImage() {
         if counter < sliderImageArray.count {
             let index = IndexPath.init(item: counter, section: 0)
-            self.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            self.sliderCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
             counter += 1
         } else {
             counter = 0
             let index = IndexPath.init(item: counter, section: 0)
-            self.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
+            self.sliderCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
             counter = 1
         }
     }
@@ -294,6 +322,7 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         subCategoryID = Int(categoriesID[deneme]!)!
         performSegue(withIdentifier: "go", sender: nil)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "go" {
             let destination = segue.destination as! subCategoryViewController
@@ -323,20 +352,20 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     var qty = ""
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == collectionViewCell2    {
+        if collectionView == categoriesCollection    {
             cellTapped(deneme: indexPath.row)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-           if collectionView == collectionViewCell2    {
+           if collectionView == categoriesCollection    {
                return categoriesLabel.count
            }
            return sliderImageArray.count
     }
        
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == collectionViewCell2    {
+        if collectionView == categoriesCollection    {
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath)
             if let vcImage = cell2.viewWithTag(453) as? UIImageView {
                 vcImage.image = categoriesImage[indexPath.row]
@@ -351,42 +380,11 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             
             return cell2
         }
-           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-           if let vc = cell.viewWithTag(111) as? UIImageView {
-               vc.image = sliderImageArray[indexPath.row]
-           }
-           return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if collectionViewCell2 == collectionView    {
-            return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        if let vc = cell.viewWithTag(111) as? UIImageView {
+            vc.image = sliderImageArray[indexPath.row]
         }
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionViewCell2 == collectionView    {
-            let screenWidth = UIScreen.main.bounds.width
-            let size = (screenWidth-40)/3
-            return CGSize.init(width: size, height: size)
-        }
-        let size = collectionView.frame.size
-        return CGSize(width: size.width, height: size.height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionViewCell2 == collectionView    {
-            return 0.0
-        }
-        return 0.0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionViewCell2 == collectionView    {
-            return 0.0
-        }
-        return 0.0
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -496,10 +494,10 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         tableCell?.cellDelegate = self
         tableCell?.index = indexPath
         if searching {
-            let searchData = searchBarText[indexPath.row]
+            //let searchData = searchBarText[indexPath.row]
             if let productImage = tableCell?.viewWithTag(501) as? UIImageView {
                 for i in searchProductData {
-                    if i.product_name == searchData {
+                    if i.product_name == searchBarText[indexPath.row] {
                         let uri = URL(string: "https://amasyaceliklermarket.com" + String(i.product_image))
                         productImage.sd_setImage(with: uri, placeholderImage: placeHolderImage, options: SDWebImageOptions.highPriority, context: nil)
                     }
@@ -511,14 +509,14 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             
             if let productName = tableCell?.viewWithTag(502) as? UILabel {
                 for i in searchProductData {
-                    if i.product_name == searchData {
+                    if i.product_name == searchBarText[indexPath.row] {
                         productName.text = String(i.price) + "₺"
                     }
                 }
             }
             if let productName = tableCell?.viewWithTag(508) as? UILabel {
                 for i in searchProductData {
-                    if i.product_name == searchData {
+                    if i.product_name == searchBarText[indexPath.row] {
                         if i.unit == "kg" {
                             productName.text = "0.0"
                         } else {
@@ -547,6 +545,7 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 productImage.isUserInteractionEnabled = true
             }
         }
+        
         if let productName = tableCell?.viewWithTag(505) as? UIButton {
             productName.layer.cornerRadius = 6.0
         }
@@ -561,22 +560,32 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchTable.isHidden = false
-        seprcialButton.isHidden = true
+        searchBarText.removeAll()
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.resignFirstResponder()
+        searchBarText.removeAll()
+        searching = false
         return true
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let searchTextLower = searchText.lowercased()
-        searchBarText = productName.filter({$0.lowercased().prefix(searchText.count) == searchTextLower})
-        searching = true
-        searchTable.reloadData()
+        if searchText.count > 0 {
+            let searchTextLower = searchText.uppercased(with: Locale(identifier: "tr_TR"))
+            searchBarText = productName.filter { term in
+                return term.uppercased(with: Locale(identifier: "tr_TR")).contains(searchTextLower)
+            }
+            searching = true
+            searchTable.reloadData()
+        } else {
+            searching = false
+            searchTable.reloadData()
+        }
+        
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchTable.isHidden = true
-        seprcialButton.isHidden = false
+        searching = false
         self.searchBar.endEditing(true)
     }
     struct searchProduct: Codable {
@@ -585,3 +594,43 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         let unit, rewards, tax: String
     }
 }
+
+extension categoriesViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if categoriesCollection == collectionView    {
+            return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        }
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if categoriesCollection == collectionView    {
+            let screenWidth = UIScreen.main.bounds.width
+            let screenHeight = sliderCollection.frame.size.height / 2
+            let size = (screenWidth-40)/3
+            return CGSize.init(width: size, height: size)
+        } else if sliderCollection == collectionView {
+            let size = sliderCollection.frame.size
+            return CGSize(width: size.width, height: size.height)
+        }
+        let size = sliderCollection.frame.size
+        return CGSize(width: size.width, height: size.height)
+    }
+    
+    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if categoriesCollection == collectionView    {
+            return 0.0
+        }
+        return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        if categoriesCollection == collectionView    {
+            return 0.0
+        }
+        return 0.0
+    }*/
+}
+
+
