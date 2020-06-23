@@ -66,28 +66,50 @@ class timeViewController: UIViewController {
     {
         do
         {
+            if let JSONString = String(data: data!, encoding: String.Encoding.utf8)
+            {
+                print(JSONString)
+            }
             if let jsonData = data
             {
                 let parsedData = try JSONDecoder().decode(dateResponse.self, from: jsonData)
-                let firstData = parsedData.times.first
-                let lastData = parsedData.times.last
-                let lastSplit = lastData!.components(separatedBy: " -")
-                let last = lastSplit[0]
-                let lastDateData = last.components(separatedBy: ":")
-                let lastTime = (lastDateData[0] + ":" + lastDateData[1])
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "HH:mm"
-                let lastTimePicker = dateFormatter.date(from:lastTime)!
-                let firstSplit = firstData!.components(separatedBy: " -")
-                let first = firstSplit[0]
-                let firstDateData = first.components(separatedBy: ":")
-                let firstTime = (firstDateData[0] + ":" + firstDateData[1])
-                dateFormatter.dateFormat = "HH:mm"
-                let firstTimePicker = dateFormatter.date(from:firstTime)!
-                DispatchQueue.main.async {
-                    self.timePicker.minimumDate = firstTimePicker
-                    self.timePicker.maximumDate = lastTimePicker
-                    self.timePicker.setDate(firstTimePicker, animated: true)
+                if parsedData.times.count > 0 {
+                    print(parsedData)
+                    let firstData = parsedData.times.first
+                    let lastData = parsedData.times.last
+                    let lastSplit = lastData!.components(separatedBy: " -")
+                        let last = lastSplit[0]
+                        let lastDateData = last.components(separatedBy: ":")
+                        let lastTime = (lastDateData[0] + ":" + lastDateData[1])
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "HH:mm"
+                        let lastTimePicker = dateFormatter.date(from:lastTime)!
+                        let firstSplit = firstData!.components(separatedBy: " -")
+                        let first = firstSplit[0]
+                        let firstDateData = first.components(separatedBy: ":")
+                        let firstTime = (firstDateData[0] + ":" + firstDateData[1])
+                        dateFormatter.dateFormat = "HH:mm"
+                        let firstTimePicker = dateFormatter.date(from:firstTime)!
+                        DispatchQueue.main.async {
+                            self.timePicker.minimumDate = firstTimePicker
+                            self.timePicker.maximumDate = lastTimePicker
+                            self.timePicker.setDate(firstTimePicker, animated: true)
+                        }
+                } else {
+                    DispatchQueue.main.async {
+                        self.timePicker.isHidden = true
+                    }
+                    let alert = UIAlertController(title: "Bilgilendirme!", message: "Bugüne ait gönderim süresi dolmuştur.", preferredStyle: .alert)
+
+                    let action = UIAlertAction(title: "Tamam", style: .default, handler: {(action: UIAlertAction!) in
+                        if let firstViewController = self.navigationController?.viewControllers.first {
+                            self.navigationController?.popToViewController(firstViewController, animated: true)
+                        }
+                    })
+                    alert.addAction(action)
+                    
+                    self.present(alert, animated: true, completion: nil)
+                    
                 }
             }
         }
