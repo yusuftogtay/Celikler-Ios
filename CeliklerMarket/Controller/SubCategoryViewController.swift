@@ -10,7 +10,57 @@ import UIKit
 import SDWebImage
 import CoreData
 
-class subCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, productCell {
+class subCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, productCell, UICollectionViewDataSource, UICollectionViewDelegate, catCell{
+    
+    var item = 0
+    
+    func catClick(index: IndexPath) {
+        let url = URL(string: "https://amasyaceliklermarket.com/api/product/" + String(subCategory[index.row].id))
+        ApiService.callGet(url: url!, finish: getProduct)
+        item = index.row
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        items.count
+    }
+    var _selectedIndexPath : IndexPath? = nil
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        let url = URL(string: "https://amasyaceliklermarket.com/api/product/" + String(subCategory[indexPath.row].id))
+        ApiService.callGet(url: url!, finish: getProduct)
+        subCategoryIndex = indexPath.row
+        item = indexPath.row
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "cat", for: indexPath)
+        if let productName = cell2.viewWithTag(88) as? UILabel {
+            productName.text = items[indexPath.row]
+        }
+        if (indexPath.row == item){
+            cat.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionView.ScrollPosition.centeredHorizontally)
+            cell2.backgroundColor = UIColor.white
+        }
+        cell2.layer.cornerRadius = 6.0
+        return cell2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = cat.frame.size
+        return CGSize(width: (size.width / 4), height: (size.height / 1.9))
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0.5, bottom: 0, right: 0.5)
+    }
     
     func onClickImage(indexPath: IndexPath) {
         print("image \(indexPath.row)")
@@ -19,7 +69,7 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
-        if "\(unit)" != "0" {
+        if unit != "0.0" || unit != "0"  {
             let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Cards")
             fetchRequest.predicate = NSPredicate(format: "id = %@", productList[index].product_id)
             do {
@@ -56,11 +106,24 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
                         print(error)
                     }
                 }
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+                if let result = try? context.fetch(fetchRequest) {
+                    if let tabItems = tabBarController?.tabBar.items {
+                        // In this case we want to modify the badge number of the third tab:
+                        let tabItem = tabItems[1]
+                        let badege = String(result.count)
+                        tabItem.badgeValue = badege
+                    }
+                }
             } catch  {
                 print(error)
             }
         }
     }
+    
+    @IBOutlet weak var cat: UICollectionView!
+    
+    
     
     var subCategory: [subCategoryStruct] = []
     var productList: [product] = []
@@ -68,23 +131,23 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     var subCategoryID = [String?]()
     let id = UserDefaults.standard.value(forKey: "userID") as? String
     var items: [String] = []
-    
     let placeHolderImage = UIImage(named: "V1")
     
-    @IBOutlet weak var segmentCOntol: UISegmentedControl!
     @IBOutlet weak var subCategoryTable: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        print(subCategoryIndex)
+        let indexPathForFirstRow = IndexPath(row: 0, section: 0)
+        self.cat.selectItem(at: indexPathForFirstRow, animated: true, scrollPosition: .top)
         let url = URL(string: "https://amasyaceliklermarket.com/api/category_alt/" + String(subCategoryIndex))
         ApiService.callGet(url: url!, finish: subCategoryFunc)
+        let indexPath = IndexPath(item: item, section: 0)
+        self.cat.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionView.ScrollPosition.centeredHorizontally)
     }
     
     func subCategoryFunc(message:String, data:Data?) -> Void
     {
-        DispatchQueue.main.async {
-            self.segmentCOntol.updateTitle(array: ["Yükleniyor"])
-        }
         do
         {
             if let jsonData = data
@@ -97,7 +160,7 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                 }
                 DispatchQueue.main.async {
-                    self.segmentCOntol.updateTitle(array: self.items)
+                    self.cat.reloadData()
                 }
                 let url = URL(string: "https://amasyaceliklermarket.com/api/product/" + String(subCategory[0].id))
                 ApiService.callGet(url: url!, finish: getProduct)
@@ -151,11 +214,6 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    @IBAction func segmentControl(_ sender: Any) {
-        if let productUrl = URL(string: "https://amasyaceliklermarket.com/api/product/" + subCategory[segmentCOntol.selectedSegmentIndex].id) {
-            ApiService.callGet(url: productUrl, finish: getProduct)
-        }
-    }
     
     override func viewDidLoad() {
         if #available(iOS 13.0, *) {
@@ -163,9 +221,8 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         } else {
             // Fallback on earlier versions
         }
+        self.cat.layer.cornerRadius = 6.0
         super.viewDidLoad()
-        segmentCOntol.selectedSegmentIndex = 0
-        segmentCOntol.updateTitle(array: ["Yükleniyor"])
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         }
@@ -276,7 +333,7 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         } catch {
             print("Failed")
         }
-        if let productName = tableCell?.viewWithTag(500) as? UILabel {
+        if let productName = tableCell?.viewWithTag(600) as? UILabel {
             productName.text = productList[indexPath.row].product_name
         }
         let imageUrl = URL(string: "https://amasyaceliklermarket.com" + String(productList[indexPath.row].product_image))
@@ -301,14 +358,6 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     }
 }
 
-extension UISegmentedControl {
-    func updateTitle(array titles: [String]) {
-     removeAllSegments()
-        for t in titles {
-            insertSegment(withTitle: t, at: numberOfSegments, animated: true)
-        }
-     }
-}
 struct denem {
     static var id: Int = 0
 }
