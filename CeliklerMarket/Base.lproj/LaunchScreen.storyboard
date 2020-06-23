@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,26 +17,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="V1" translatesAutoresizingMaskIntoConstraints="NO" id="eeo-wV-N0P">
-                                <rect key="frame" x="13" y="44" width="389" height="398"/>
-                            </imageView>
-                            <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Yze-Yr-5U7">
-                                <rect key="frame" x="156" y="588" width="102" height="102"/>
+                                <rect key="frame" x="57" y="303" width="300" height="300"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="102" id="CDU-XI-ti9"/>
-                                    <constraint firstAttribute="height" constant="102" id="ISS-sD-1sx"/>
+                                    <constraint firstAttribute="height" constant="300" id="3RQ-WU-CZz"/>
+                                    <constraint firstAttribute="width" constant="300" id="Id2-pL-Aqk"/>
                                 </constraints>
-                            </activityIndicatorView>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Yze-Yr-5U7" firstAttribute="top" secondItem="eeo-wV-N0P" secondAttribute="bottom" constant="146" id="2oK-x8-dWn"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Yze-Yr-5U7" secondAttribute="bottom" constant="172" id="EBL-xG-bQy"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eeo-wV-N0P" secondAttribute="trailing" constant="12" id="LaR-CS-NOu"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Yze-Yr-5U7" secondAttribute="trailing" constant="156" id="Tj3-ax-Jys"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eeo-wV-N0P" secondAttribute="bottom" constant="420" id="Tua-Q0-RCP"/>
-                            <constraint firstItem="eeo-wV-N0P" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Vx8-KO-Jjh"/>
-                            <constraint firstItem="eeo-wV-N0P" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="13" id="aPa-fh-6rf"/>
-                            <constraint firstItem="Yze-Yr-5U7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="156" id="t6G-oc-h83"/>
+                            <constraint firstItem="eeo-wV-N0P" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Ith-Hr-ZhH"/>
+                            <constraint firstItem="eeo-wV-N0P" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Mem-SM-0g9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
