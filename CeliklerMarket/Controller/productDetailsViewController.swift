@@ -40,13 +40,13 @@ class productDetailsViewController: UIViewController {
     @IBAction func minus(_ sender: Any) {
         if (qty.text?.contains("."))! {
             let u = "\(Double(qty.text!) ?? 0)"
-            if Double(u)! == 1 {
-                qty.text = "0.5"
-            } else if Double(u)! <= 1 {
-                qty.text = "0.5"
-            } else {
-                qty.text = "\( Double(round(10*(Double(u)! - 0.1))/10))"
-            }
+                       if Double(u)! == 0.0 {
+                           qty.text = "0.0"
+                       } else if Double(u)! == 0.5 {
+                           qty.text = "0.5"
+                       } else {
+                           qty.text = "\( Double(round(10*(Double(u)! - 0.1))/10))"
+                       }
         } else {
             if Int(qty.text!)! > 0 {
                 let u = "\(Int(qty.text!) ?? 0)"
@@ -57,8 +57,8 @@ class productDetailsViewController: UIViewController {
     @IBAction func plus(_ sender: Any) {
         if (qty.text?.contains("."))! {
             let u = "\(Double(qty.text!) ?? 0)"
-            if Double(u)! < 0.5 {
-                qty.text = "0.5"
+            if Double(u)! < 1.0 {
+                qty.text = "1.0"
             } else {
                 qty.text = "\(Double(round(10*(Double(u)! + 0.1))/10))"
             }
@@ -67,8 +67,11 @@ class productDetailsViewController: UIViewController {
             qty.text = "\(Int(u)! + 1)"
         }
     }
+    
     @IBAction func add(_ sender: Any) {
-        if qty.text != "0" || qty.text != "0.0"  {
+        let a = qty.text!
+        let sayi = Double(a)!
+        if sayi > 0  {
             let appDelegate = UIApplication.shared.delegate as? AppDelegate
             let context = appDelegate!.persistentContainer.viewContext
             if "\(unit)" != "0" {
@@ -106,6 +109,15 @@ class productDetailsViewController: UIViewController {
                             print("burada")
                         } catch {
                             print(error)
+                        }
+                    }
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+                    if let result = try? context.fetch(fetchRequest) {
+                        if let tabItems = tabBarController?.tabBar.items {
+                            // In this case we want to modify the badge number of the third tab:
+                            let tabItem = tabItems[1]
+                            let badege = String(result.count)
+                            tabItem.badgeValue = badege
                         }
                     }
                 } catch  {

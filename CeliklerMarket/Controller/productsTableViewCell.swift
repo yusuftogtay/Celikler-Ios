@@ -11,7 +11,6 @@ import SDWebImage
 
 protocol productCell {
     func onClickCell(index: Int , unit: String, indexPath: IndexPath)
-    func onClickImage(indexPath: IndexPath)
 }
 
 class productsTableViewCell: UITableViewCell {
@@ -26,16 +25,12 @@ class productsTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    @objc func imageTapped(_ sender: UITapGestureRecognizer) {
-        print("image tapped")
-    }
-    
-    
-    
     @IBAction func minus(_ sender: Any) {
         if (unit.text?.contains("."))! {
             let u = "\(Double(unit.text!) ?? 0)"
-            if Double(u)! == 0.5 {
+            if Double(u)! == 0.0 {
+                unit.text = "0.0"
+            } else if Double(u)! == 0.5 {
                 unit.text = "0.5"
             } else {
                 unit.text = "\( Double(round(10*(Double(u)! - 0.1))/10))"
@@ -63,12 +58,15 @@ class productsTableViewCell: UITableViewCell {
     }
     
     @IBAction func button(_ sender: Any) {
-        if unit.text != "0" || unit.text != "0.0" {
+        let a = unit.text!
+        let sayi = Double(a)!
+        if sayi > 0 {
             let p = price.text!.components(separatedBy: "₺")
             let priceInt = Double(p[0])
             total.text = "Toplam: \(Double(round(100*(Double(priceInt!) * Double(unit.text!)!))/100))₺"
             cellDelegate?.onClickCell(index: (index?.row)!, unit: unit.text!, indexPath: index!)
         }
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
