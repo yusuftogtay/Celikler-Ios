@@ -30,6 +30,8 @@
 		885D6EB5248187C600806DD0 /* SpecialOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D6EB4248187C600806DD0 /* SpecialOrderViewController.swift */; };
 		885D9A6B2498FFA5003CAD00 /* rootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D9A6A2498FFA5003CAD00 /* rootViewController.swift */; };
 		88648A8C248EB1C6006C7380 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88648A8B248EB1C6006C7380 /* ContactViewController.swift */; };
+		88673C4B249E5D5C00740584 /* exampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88673C4A249E5D5C00740584 /* exampleViewController.swift */; };
+		88673C4D249E688700740584 /* catCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88673C4C249E688700740584 /* catCollectionViewCell.swift */; };
 		8872ED742474203F000F0BA1 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */; };
 		88786DB6246F2A4800D8EB9D /* SubCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88786DB5246F2A4800D8EB9D /* SubCategoryViewController.swift */; };
 		887946FC246B496B003E522B /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887946FB246B496B003E522B /* CategoriesViewController.swift */; };
@@ -122,6 +124,8 @@
 		885D6EB4248187C600806DD0 /* SpecialOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialOrderViewController.swift; sourceTree = "<group>"; };
 		885D9A6A2498FFA5003CAD00 /* rootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rootViewController.swift; sourceTree = "<group>"; };
 		88648A8B248EB1C6006C7380 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		88673C4A249E5D5C00740584 /* exampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exampleViewController.swift; sourceTree = "<group>"; };
+		88673C4C249E688700740584 /* catCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catCollectionViewCell.swift; sourceTree = "<group>"; };
 		8872ED732474203F000F0BA1 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		88786DB5246F2A4800D8EB9D /* SubCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryViewController.swift; sourceTree = "<group>"; };
 		887946FA246ADF7A003E522B /* CeliklerMarket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CeliklerMarket.entitlements; sourceTree = "<group>"; };
@@ -289,6 +293,8 @@
 				888C56642490FDD20094A9C5 /* productDetailsViewController.swift */,
 				888C5666249116A30094A9C5 /* notificationPageViewController.swift */,
 				885D9A6A2498FFA5003CAD00 /* rootViewController.swift */,
+				88673C4A249E5D5C00740584 /* exampleViewController.swift */,
+				88673C4C249E688700740584 /* catCollectionViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -603,6 +609,7 @@
 				88DA356D248834480070CDF3 /* CategoryViewController.swift in Sources */,
 				88786DB6246F2A4800D8EB9D /* SubCategoryViewController.swift in Sources */,
 				889C7F84248AAE82004AF244 /* timeViewController.swift in Sources */,
+				88673C4B249E5D5C00740584 /* exampleViewController.swift in Sources */,
 				88648A8C248EB1C6006C7380 /* ContactViewController.swift in Sources */,
 				882BA10D248821D2001843E6 /* Models.swift in Sources */,
 				88555812248C2F7000B3A7D3 /* addressViewController.swift in Sources */,
@@ -610,6 +617,7 @@
 				88A34F99248A6FC5006D2CF0 /* CardsViewController.swift in Sources */,
 				8803873B245CB6640075F70A /* AppDelegate.swift in Sources */,
 				88A29E8C24844587006BF665 /* OrdersViewController.swift in Sources */,
+				88673C4D249E688700740584 /* catCollectionViewCell.swift in Sources */,
 				8803873D245CB6640075F70A /* SceneDelegate.swift in Sources */,
 				882BA10F248821F0001843E6 /* ApiService.swift in Sources */,
 				88A86AB12489635100D09355 /* Model.xcdatamodeld in Sources */,
@@ -813,12 +821,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PRL64D4YUA;
 				INFOPLIST_FILE = CeliklerMarket/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.5;
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -838,12 +846,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PRL64D4YUA;
 				INFOPLIST_FILE = CeliklerMarket/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.5;
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -943,13 +951,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PRL64D4YUA;
 				INFOPLIST_FILE = Ozgurnd/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.5;
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket.Ozgurnd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -966,13 +974,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PRL64D4YUA;
 				INFOPLIST_FILE = Ozgurnd/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.5;
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.OzguRND.CeliklerMarket.Ozgurnd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
