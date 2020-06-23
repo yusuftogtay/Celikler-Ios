@@ -34,7 +34,7 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
             socity.text = parsedAddressData[indexPath.row].socity_name
         }
         if let charge = tableCell.viewWithTag(13) as? UILabel    {
-            charge.text = parsedAddressData[indexPath.row].delivery_charge
+            charge.text = "\(parsedAddressData[indexPath.row].delivery_charge)₺"
         }
         return tableCell
     }
@@ -136,6 +136,10 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
                                "payment_method": odeme!,
                            ]
                             let url = URL(string: "https://amasyaceliklermarket.com/api/send_order_ios")
+                            if let tabItems = tabBarController?.tabBar.items {
+                                let tabItem = tabItems[1]
+                                tabItem.badgeValue = "0"
+                            }
                             ApiService.callPost(url: url!, params: params, finish: sendOrderResponse)
                         }
                     } catch {
@@ -159,8 +163,12 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
                                "payment_method": odeme!,
                            ]
                             let url = URL(string: "https://amasyaceliklermarket.com/api/send_order_ios")
-                            print(params)
+                            if let tabItems = tabBarController?.tabBar.items {
+                                let tabItem = tabItems[1]
+                                tabItem.badgeValue = "0"
+                            }
                             ApiService.callPost(url: url!, params: params, finish: sendOrderResponse)
+                            
                         }
                     } catch  {
                         print("error")
@@ -272,7 +280,6 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
                             print(error)
                         }
                     }
-                    
                     let action = UIAlertAction(title: "Tamam", style: .default, handler: { (action: UIAlertAction!) in
                         if let firstViewController = self.navigationController?.viewControllers.first {
                             self.navigationController?.popToViewController(firstViewController, animated: true)

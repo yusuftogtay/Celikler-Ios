@@ -27,4 +27,34 @@ class ContactViewController: UIViewController {
             }
         }
     }
+    @IBAction func ozguryazılım(_ sender: Any) {
+    }
+    
+    @IBAction func web(_ sender: Any) {
+        guard let url = URL(string: "http://amasyaozguryazilim.com/") else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    @IBAction func iletisim(_ sender: Any) {
+        if let phoneURL = URL(string: "tel://+905355663188") {
+            if application.canOpenURL(phoneURL) {
+                application.open(phoneURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    
+    @IBAction func wp(_ sender: Any) {
+        let urlWhats = "https://wa.me/+905550563305"
+        https://wa.me/+905550563305
+        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
+            if let whatsappURL = URL(string: urlString) {
+                if UIApplication.shared.canOpenURL(whatsappURL) {
+                    UIApplication.shared.openURL(whatsappURL)
+                } else {
+                    print("Install Whatsapp")
+                }
+            }
+        }
+    }
 }

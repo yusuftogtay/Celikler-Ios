@@ -17,8 +17,9 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        print("unit" + unit)
         let context = appDelegate.persistentContainer.viewContext
-        if "\(unit)" != "0" {
+        if "\(unit)" != "0" || "\(unit)" != "0.0" {
             let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Cards")
             fetchRequest.predicate = NSPredicate(format: "id = %@", cards1.cards1[index].product_id)
             do {
@@ -70,6 +71,43 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             } catch  {
                 print(error)
             }
+        }
+        if "\(unit)" == "0" || "\(unit)" == "0.0" {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+             let managedContext = appDelegate.persistentContainer.viewContext
+             
+             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+            fetchRequest.predicate = NSPredicate(format: "id = %@", cards1.cards1[indexPath.row].product_id)
+             do {
+                 let test = try managedContext.fetch(fetchRequest)
+                 let objectToDelete = test[0] as! NSManagedObject
+                 managedContext.delete(objectToDelete)
+                 do {
+                     try managedContext.save()
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+                    do {
+                        let result = try managedContext.fetch(fetchRequest)
+                            unitInt = "Ürün Sayısı: \(result.count)"
+                            total.text = "Toplam: 0₺"
+                            totalInt = 0
+                            for data in result as! [NSManagedObject] {
+                                let price = Double(data.value(forKey: "price") as! String)
+                                let qty = Double(data.value(forKey: "qty") as! String)
+                                totalInt += price! * qty!
+                            }
+                            total.text = "Toplam: \(Double(round(100*totalInt)/100))₺"
+                    } catch {
+                        print("Failed")
+                    }
+                 } catch {
+                     print(error)
+                 }
+             } catch {
+                 print(error)
+             }
+            self.unit.text = unitInt
+            cards1.cards1.remove(at: index)
+            cardTable.deleteRows(at: [indexPath], with: .left)
         }
     }
 
@@ -141,6 +179,11 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             do {
                 try managedContext.save()
+                if let tabItems = tabBarController?.tabBar.items {
+                    // In this case we want to modify the badge number of the third tab:
+                    let tabItem = tabItems[1]
+                    tabItem.badgeValue = "0"
+                }
             } catch {
                 print(error)
             }
@@ -246,6 +289,12 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                             unitInt = "Ürün Sayısı: \(result.count)"
                             total.text = "Toplam: 0₺"
                             totalInt = 0
+                        if let tabItems = tabBarController?.tabBar.items {
+                            // In this case we want to modify the badge number of the third tab:
+                            let tabItem = tabItems[1]
+                            let badege = String(result.count)
+                            tabItem.badgeValue = badege
+                        }
                             for data in result as! [NSManagedObject] {
                                 let price = Double(data.value(forKey: "price") as! String)
                                 let qty = Double(data.value(forKey: "qty") as! String)
@@ -261,6 +310,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
              } catch {
                  print(error)
              }
+            self.unit.text = unitInt
             cards1.cards1.remove(at: indexPath.row)
             cardTable.deleteRows(at: [indexPath], with: .left)
         }
@@ -274,13 +324,13 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableCell?.layer.borderWidth = 0.5
         let myColor = UIColor.lightGray.cgColor
         tableCell?.layer.borderColor = myColor
-        if let productName = tableCell?.viewWithTag(502) as? UILabel {
+        if let productName = tableCell?.viewWithTag(600) as? UILabel {
             productName.text = cards1.cards1[indexPath.row].name
         }
-        if let productName = tableCell?.viewWithTag(600) as? UILabel {
+        if let productName = tableCell?.viewWithTag(502) as? UILabel {
             productName.text = String(cards1.cards1[indexPath.row].price) + "₺"
         }
-        if let productName = tableCell?.viewWithTag(500) as? UILabel {
+        if let productName = tableCell?.viewWithTag(508) as? UILabel {
             productName.text = cards1.cards1[indexPath.row].qty
             productName.layer.cornerRadius = 8.0
         }

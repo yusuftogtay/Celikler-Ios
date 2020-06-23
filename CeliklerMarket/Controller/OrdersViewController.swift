@@ -19,6 +19,8 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
     var date: String = ""
     var time: String = ""
     var deliveryCharge = ""
+    let imageb = UIImage(named: "b")
+    let imaged = UIImage(named: "d")
     
     @IBAction func segmentControl(_ sender: Any) {
         switch swgment.selectedSegmentIndex {
@@ -59,9 +61,21 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
         if user != nil  {
             swgment.isHidden = false
             ordersCollectionView.isHidden = false
-            let user = UserDefaults.standard.value(forKey: "userID")
+            /*let user = UserDefaults.standard.value(forKey: "userID")
             let url = URL(string: "https://amasyaceliklermarket.com/api/my_orders")
-            ApiService.callPost(url: url!, params: ["user_id" : user!], finish: myOrdersResponse)
+            ApiService.callPost(url: url!, params: ["user_id" : user!], finish: myOrdersResponse)*/
+            switch swgment.selectedSegmentIndex {
+            case 0:
+                let user = UserDefaults.standard.value(forKey: "userID")
+                let url = URL(string: "https://amasyaceliklermarket.com/api/my_orders")
+                ApiService.callPost(url: url!, params: ["user_id" : user!], finish: myOrdersResponse)
+            case 1:
+                let user = UserDefaults.standard.value(forKey: "userID")
+                let url = URL(string: "https://amasyaceliklermarket.com/api/my_old_orders")
+                ApiService.callPost(url: url!, params: ["user_id" : user!], finish: myOrdersResponse)
+            default:
+                print("0")
+            }
         } else {
             swgment.isHidden = true
             ordersCollectionView.isHidden = true
@@ -87,10 +101,6 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.ordersCollectionView.register(nib, forCellWithReuseIdentifier: "CollectionViewCell")
         ordersCollectionView.delegate = self
         ordersCollectionView.dataSource = self
-        /*
-        let user = UserDefaults.standard.value(forKey: "userID")
-        let url = URL(string: "https://amasyaceliklermarket.com/api/my_orders")
-        ApiService.callPost(url: url!, params: ["user_id" : user!], finish: myOrdersResponse)*/
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -138,7 +148,9 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
             paymentMethod.text = parsedData[indexPath.row].payment_method
         }
         if let deliveryTime = cell.viewWithTag(73) as? UILabel    {
-            deliveryTime.text = parsedData[indexPath.row].total_amount + "₺"
+            let fiyat = Double(parsedData[indexPath.row].total_amount)!
+            let t = Double(fiyat)
+            deliveryTime.text =  String(format: "%.2f₺", t)
         }
         if let status = cell.viewWithTag(74) as? UILabel    {
             if parsedData[indexPath.row].status == "0"  {
@@ -162,35 +174,35 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
             if parsedData[indexPath.row].status == "1"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
             if parsedData[indexPath.row].status == "2"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
             if parsedData[indexPath.row].status == "4"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
             if parsedData[indexPath.row].status == "4"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
         }
@@ -199,35 +211,35 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imageb
                 }
             }
             if parsedData[indexPath.row].status == "1"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
             if parsedData[indexPath.row].status == "2"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
             if parsedData[indexPath.row].status == "4"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
             if parsedData[indexPath.row].status == "4"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
         }
@@ -236,35 +248,35 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imageb
                 }
             }
             if parsedData[indexPath.row].status == "1"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imageb
                 }
             }
             if parsedData[indexPath.row].status == "2"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
             if parsedData[indexPath.row].status == "4"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
             if parsedData[indexPath.row].status == "4"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
         }
@@ -273,35 +285,35 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imageb
                 }
             }
             if parsedData[indexPath.row].status == "1"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imageb
                 }
             }
             if parsedData[indexPath.row].status == "2"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imageb
                 }
             }
             if parsedData[indexPath.row].status == "4"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
             if parsedData[indexPath.row].status == "4"  {
                 if #available(iOS 13.0, *) {
                     deliveryTime.image = UIImage(systemName: "circle.fill")
                 } else {
-                    // Fallback on earlier versions
+                    deliveryTime.image = imaged
                 }
             }
         }

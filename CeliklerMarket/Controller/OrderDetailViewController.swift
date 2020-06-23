@@ -120,11 +120,13 @@ class OrderDetailViewController: UIViewController, UITableViewDataSource, UITabl
         for i in parsedData {
             let price = Double(i.price)!
             let qty = Double(i.qty)!
-            let charge = Double(deliveryCharge)!
-            total += Double(round(100*(Double((price * qty) + charge))/100))
+            total += Double(price * qty)
         }
         DispatchQueue.main.async {
-            self.totalLabel.text = "Toplam: \(total)"
+            let t = (Double(total) + Double(self.deliveryCharge)!)
+            //self.totalLabel.text = "Toplam: \(t.format(".2"))"
+            self.totalLabel.text = String(format: "Toplam: %.2f", t)
+            
         }
     }
     

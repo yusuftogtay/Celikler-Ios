@@ -50,16 +50,37 @@ class notificationPageViewController: UIViewController, UITableViewDelegate, UIT
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Notifications")
         do {
-            let result = try managedContext.fetch(fetchRequest)
+            var result = try managedContext.fetch(fetchRequest)
             not.removeAll()
+            result.reverse()
+            var i = 0
             for data in result as! [NSManagedObject] {
-                let title = data.value(forKey: "title") as! String
-                let image = data.value(forKey: "image") as! String
-                let body = data.value(forKey: "body") as! String
-                not.append(noti(title: title, body: body, image: image))
+                if i < 10 {
+                    let title = data.value(forKey: "title") as! String
+                    let image = data.value(forKey: "image") as! String
+                    let body = data.value(forKey: "body") as! String
+                    not.append(noti(title: title, body: body, image: image))
+                }
+                i += 1
             }
             DispatchQueue.main.async {
                 self.table.reloadData()
+            }
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+            if var result = try? managedContext.fetch(fetchRequest) {
+                result.reverse()
+                var i = 0
+                for object in result {
+                    i += 1
+                    if i > 10 {
+                        managedContext.delete(object as! NSManagedObject)
+                    }
+                }
+                do {
+                    try managedContext.save()
+                } catch {
+                    print(error)
+                }
             }
         } catch {
             print("Failed")
