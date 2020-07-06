@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             window?.rootViewController = tabbar
         }
     
-        if userInfo["title"] != nil {
+        if userInfo["image"] != nil {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             let context = appDelegate.persistentContainer.viewContext
             let newCard = NSEntityDescription.insertNewObject(forEntityName: "Notifications", into: context)
@@ -127,20 +127,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             content.body =  userInfo["message"] as! String
             content.sound = UNNotificationSound.default
             
-            /*let url = URL(string: image)
-            DispatchQueue.global().async { [weak self] in
-                if let data = try? Data(contentsOf: url!) {
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                           let myImage = UIImage(data: data)!
-                            
-                        }
-                    }
-                }
-            }*/
+           //let fileUrl = URL(string: image)
+            //let attachment = try! UNNotificationAttachment(identifier : "image", url: fileUrl!, options: nil)
             let identifier = "FirstUserNotification"
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
             let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+            //content.attachments = [ attachment ]
             UNUserNotificationCenter.current().add(request) { (error) in
                 if error != nil {
                     print("Something wrong")
@@ -276,5 +268,24 @@ extension UNNotificationAttachment {
     }
 }
 
-
-
+@available(iOSApplicationExtension 10.0, *)
+extension UNNotificationAttachment {
+    
+    static func saveImageToDisk(fileIdentifier: String, data: NSData, options: [NSObject : AnyObject]?) -> UNNotificationAttachment? {
+        let fileManager = FileManager.default
+        let folderName = ProcessInfo.processInfo.globallyUniqueString
+        let folderURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(folderName, isDirectory: true)
+        
+        do {
+            try fileManager.createDirectory(at: folderURL!, withIntermediateDirectories: true, attributes: nil)
+            let fileURL = folderURL?.appendingPathComponent(fileIdentifier)
+            try data.write(to: fileURL!, options: [])
+            let attachment = try UNNotificationAttachment(identifier: fileIdentifier, url: fileURL!, options: options)
+            return attachment
+        } catch let error {
+            print("error \(error)")
+        }
+        
+        return nil
+    }
+}

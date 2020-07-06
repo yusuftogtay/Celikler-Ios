@@ -41,6 +41,14 @@ class productsTableViewCell: UITableViewCell {
                 unit.text = "\(Int(u)! - 1)"
             }
         }
+        let a = unit.text!
+        let sayi = Double(a)!
+        if sayi > 0 {
+            let p = price.text!.components(separatedBy: "₺")
+            let priceInt = Double(p[0])
+            total.text = "Toplam: \(Double(round(100*(Double(priceInt!) * Double(unit.text!)!))/100))₺"
+            cellDelegate?.onClickCell(index: (index?.row)!, unit: unit.text!, indexPath: index!)
+        }
     }
     
     @IBAction func plus(_ sender: Any) {
@@ -54,6 +62,14 @@ class productsTableViewCell: UITableViewCell {
         } else {
             let u = "\(Int(unit.text!) ?? 0)"
             unit.text = "\(Int(u)! + 1)"
+        }
+        let a = unit.text!
+        let sayi = Double(a)!
+        if sayi > 0 {
+            let p = price.text!.components(separatedBy: "₺")
+            let priceInt = Double(p[0])
+            total.text = "Toplam: \(Double(round(100*(Double(priceInt!) * Double(unit.text!)!))/100))₺"
+            cellDelegate?.onClickCell(index: (index?.row)!, unit: unit.text!, indexPath: index!)
         }
     }
     

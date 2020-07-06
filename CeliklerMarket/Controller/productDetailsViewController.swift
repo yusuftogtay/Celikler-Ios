@@ -53,6 +53,7 @@ class productDetailsViewController: UIViewController {
                 qty.text = "\(Int(u)! - 1)"
             }
         }
+        ucube()
     }
     @IBAction func plus(_ sender: Any) {
         if (qty.text?.contains("."))! {
@@ -66,9 +67,14 @@ class productDetailsViewController: UIViewController {
             let u = "\(Int(qty.text!) ?? 0)"
             qty.text = "\(Int(u)! + 1)"
         }
+        ucube()
     }
     
     @IBAction func add(_ sender: Any) {
+        ucube()
+    }
+    
+    func ucube() {
         let a = qty.text!
         let sayi = Double(a)!
         if sayi > 0  {
@@ -129,10 +135,24 @@ class productDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let context = appDelegate!.persistentContainer.viewContext
         let imageUrl = URL(string: "https://amasyaceliklermarket.com" + image)
         imageLabel.sd_setImage(with: imageUrl, placeholderImage: placeHolderImage, options: SDWebImageOptions.highPriority, context: nil)
         nameLabel.text = name
         detail.text = details
         qty.text = qtyy
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Cards")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", productid)
+        do {
+            let result = try context.fetch(fetchRequest)
+            if result.count != 0 {
+                for data in result as! [NSManagedObject] {
+                    qty.text = data.value(forKey: "qty") as! String
+                }
+            }
+        } catch  {
+            print(error)
+        }
     }
 }

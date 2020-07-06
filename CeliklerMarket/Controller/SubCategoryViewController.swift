@@ -34,12 +34,14 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "cat", for: indexPath)
-        if let productName = cell2.viewWithTag(88) as? UILabel {
-            productName.text = items[indexPath.row]
-        }
-        if (indexPath.row == item){
-            cat.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionView.ScrollPosition.centeredHorizontally)
-            cell2.backgroundColor = UIColor.white
+        if items.count > 0 {
+            if let productName = cell2.viewWithTag(88) as? UILabel {
+                productName.text = items[indexPath.row]
+            }
+            if (indexPath.row == item){
+                cat.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionView.ScrollPosition.centeredHorizontally)
+                cell2.backgroundColor = UIColor.white
+            }
         }
         cell2.layer.cornerRadius = 6.0
         return cell2
@@ -137,13 +139,13 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print(subCategoryIndex)
         let indexPathForFirstRow = IndexPath(row: 0, section: 0)
         self.cat.selectItem(at: indexPathForFirstRow, animated: true, scrollPosition: .top)
         let url = URL(string: "https://amasyaceliklermarket.com/api/category_alt/" + String(subCategoryIndex))
         ApiService.callGet(url: url!, finish: subCategoryFunc)
-        let indexPath = IndexPath(item: item, section: 0)
+        let indexPath = try IndexPath(item: item, section: 0)
         self.cat.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionView.ScrollPosition.centeredHorizontally)
+
     }
     
     func subCategoryFunc(message:String, data:Data?) -> Void
@@ -223,9 +225,6 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         }
         self.cat.layer.cornerRadius = 6.0
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = .light
-        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

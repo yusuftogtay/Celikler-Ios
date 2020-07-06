@@ -172,6 +172,8 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         specialOrderButton.layer.cornerRadius = 6.0
         searchTable.isHidden = true
         sliderViewDidLoad()
+        categories()
+        search()
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.setTitle("Vazgeç", for: .normal)
         }
@@ -227,13 +229,12 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         searchBarText.removeAll()
         searchTable.reloadData()
         searchTable.isHidden = true
-        categories()
-        search()
     }
     
     func categories()   {
@@ -295,7 +296,7 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     @objc func changeImage() {
-        if counter < sliderImageArray.count {
+        	if counter < sliderImageArray.count {
             let index = IndexPath.init(item: counter, section: 0)
             self.sliderCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
             counter += 1
