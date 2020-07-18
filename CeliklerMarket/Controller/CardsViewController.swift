@@ -11,15 +11,20 @@ import CoreData
 import SDWebImage
 
 class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, productCell {
+    
     func onClickImage(indexPath: IndexPath) {
         print(indexPath.row)
     }
     
-    func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print("Çok ram yiyor")
+    }
+    
+    final func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        print("unit" + unit)
         let context = appDelegate.persistentContainer.viewContext
-        if "\(unit)" != "0" || "\(unit)" != "0.0" {
+        if unit != "0" {
             let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Cards")
             fetchRequest.predicate = NSPredicate(format: "id = %@", cards1.cards1[index].product_id)
             do {
@@ -66,48 +71,58 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         }
                         total.text = "Toplam: \(Double(round(100*totalInt)/100))₺"
                 } catch {
-                    print("Failed")
+                    #if DEBUG
+                        print(error)
+                    #endif
                 }
             } catch  {
-                print(error)
+                #if DEBUG
+                    print(error)
+                #endif
             }
-        }
-        if "\(unit)" == "0" || "\(unit)" == "0.0" {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-             let managedContext = appDelegate.persistentContainer.viewContext
-             
-             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
-            fetchRequest.predicate = NSPredicate(format: "id = %@", cards1.cards1[indexPath.row].product_id)
+        } else {
+            /*guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+            fetchRequest.predicate = NSPredicate(format: "id = %@", cards1.cards1[index].product_id)
              do {
                  let test = try managedContext.fetch(fetchRequest)
-                 let objectToDelete = test[0] as! NSManagedObject
-                 managedContext.delete(objectToDelete)
-                 do {
-                     try managedContext.save()
-                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
-                    do {
-                        let result = try managedContext.fetch(fetchRequest)
-                            unitInt = "Ürün Sayısı: \(result.count)"
-                            total.text = "Toplam: 0₺"
-                            totalInt = 0
-                            for data in result as! [NSManagedObject] {
-                                let price = Double(data.value(forKey: "price") as! String)
-                                let qty = Double(data.value(forKey: "qty") as! String)
-                                totalInt += price! * qty!
+
+                    let objectToDelete = test[0] as! NSManagedObject
+                     managedContext.delete(objectToDelete)
+                    self.unit.text = unitInt
+                     do {
+                         try managedContext.save()
+                        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+                        do {
+                            let result = try managedContext.fetch(fetchRequest)
+                                unitInt = "Ürün Sayısı: \(result.count)"
+                                total.text = "Toplam: 0₺"
+                                totalInt = 0
+                            if let tabItems = tabBarController?.tabBar.items {
+                                // In this case we want to modify the badge number of the third tab:
+                                let tabItem = tabItems[1]
+                                let badege = String(result.count)
+                                tabItem.badgeValue = badege
                             }
-                            total.text = "Toplam: \(Double(round(100*totalInt)/100))₺"
-                    } catch {
-                        print("Failed")
+                                for data in result as! [NSManagedObject] {
+                                    let price = Double(data.value(forKey: "price") as! String)
+                                    let qty = Double(data.value(forKey: "qty") as! String)
+                                    totalInt += price! * qty!
+                                }
+                                total.text = "Toplam: \(Double(round(100*totalInt)/100))₺"
+                        } catch {
+                            print("Failed")
+                        }
+                        }
+                    catch {
+                        print(error)
                     }
-                 } catch {
-                     print(error)
-                 }
              } catch {
                  print(error)
              }
-            self.unit.text = unitInt
             cards1.cards1.remove(at: index)
-            cardTable.deleteRows(at: [indexPath], with: .left)
+            cardTable.deleteRows(at: [indexPath], with: .left)*/
         }
     }
 
@@ -123,9 +138,8 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var unitInt: String = "0"
     var totalInt: Double = 0
     var cards: [card] = []
-    var minLimit = String()
-    var maxLimit = String()
-    
+    var minLimit = "50"
+    var maxLimit = "500"
     var cards1 = cardProduct(cards: [shoppingCards]())
     
     
@@ -180,12 +194,13 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             do {
                 try managedContext.save()
                 if let tabItems = tabBarController?.tabBar.items {
-                    // In this case we want to modify the badge number of the third tab:
                     let tabItem = tabItems[1]
                     tabItem.badgeValue = "0"
                 }
             } catch {
-                print(error)
+                #if DEBUG
+                    print(error)
+                #endif
             }
         }
         cards1.cards1.removeAll()
@@ -209,6 +224,8 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        let url = URL(string: "https://amasyaceliklermarket.com/api/get_limit_settings")
+        ApiService.callGet(url: url!, finish: limitResponse)
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
@@ -249,13 +266,13 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 payDone.isHidden = true
             }
         } catch {
-            print("Failed")
+            #if DEBUG
+                print(error)
+            #endif
         }
-        let url = URL(string: "https://amasyaceliklermarket.com/api/get_limit_settings")
-        ApiService.callGet(url: url!, finish: limitResponse)
     }
     
-    func limitResponse(message:String, data:Data?) -> Void {
+    private func limitResponse(message:String, data:Data?) -> Void {
         do {
             if let jsonData = data {
                 let parseData = try JSONDecoder().decode([limit].self, from: jsonData)
@@ -263,7 +280,9 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 maxLimit = parseData[1].value
             }
         } catch {
-            print("Parse Error: \(error)")
+            #if DEBUG
+                print(error)
+            #endif
         }
     }
     
@@ -274,7 +293,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if editingStyle == .delete  {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
              let managedContext = appDelegate.persistentContainer.viewContext
-             
              let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
             fetchRequest.predicate = NSPredicate(format: "id = %@", cards1.cards1[indexPath.row].product_id)
              do {
@@ -302,13 +320,19 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                             }
                             total.text = "Toplam: \(Double(round(100*totalInt)/100))₺"
                     } catch {
-                        print("Failed")
+                        #if DEBUG
+                            print(error)
+                        #endif
                     }
                  } catch {
-                     print(error)
+                     #if DEBUG
+                         print(error)
+                     #endif
                  }
              } catch {
-                 print(error)
+                 #if DEBUG
+                     print(error)
+                 #endif
              }
             self.unit.text = unitInt
             cards1.cards1.remove(at: indexPath.row)
