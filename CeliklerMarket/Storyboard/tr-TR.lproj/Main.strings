@@ -1,0 +1,423 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "17z-h3-GG3"; */
+"17z-h3-GG3.text" = "Label";
+
+/* Class = "UILabel"; text = "Toplam:"; ObjectID = "1Ut-r3-06k"; */
+"1Ut-r3-06k.text" = "Toplam:";
+
+/* Class = "UINavigationItem"; title = "Sipariş Detayı"; ObjectID = "1mh-RD-i3d"; */
+"1mh-RD-i3d.title" = "Sipariş Detayı";
+
+/* Class = "UILabel"; text = "Ürün Sayısı:"; ObjectID = "1z6-YG-PD7"; */
+"1z6-YG-PD7.text" = "Ürün Sayısı:";
+
+/* Class = "UITabBarItem"; title = "Siparişler"; ObjectID = "26j-Pm-6Bz"; */
+"26j-Pm-6Bz.title" = "Siparişler";
+
+/* Class = "UIButton"; normalTitle = "Ekle"; ObjectID = "2Fx-sp-QKG"; */
+"2Fx-sp-QKG.normalTitle" = "Ekle";
+
+/* Class = "UILabel"; text = "\tŞeyhcui Mah. Kemal Nehrezoğlu Cad. 48/A Amasya Merkez, Amasya"; ObjectID = "2W2-wa-gaG"; */
+"2W2-wa-gaG.text" = "\tŞeyhcui Mah. Kemal Nehrezoğlu Cad. 48/A Amasya Merkez, Amasya";
+
+/* Class = "UILabel"; text = "Alıcı Adresi"; ObjectID = "3Dj-ji-TsD"; */
+"3Dj-ji-TsD.text" = "Alıcı Adresi";
+
+/* Class = "UILabel"; text = "Gönderim Ücreti:"; ObjectID = "3PN-s9-lgy"; */
+"3PN-s9-lgy.text" = "Gönderim Ücreti:";
+
+/* Class = "UINavigationItem"; title = "Çelikler Market"; ObjectID = "3SX-Nq-duw"; */
+"3SX-Nq-duw.title" = "Çelikler Market";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3Ui-6d-gM1"; */
+"3Ui-6d-gM1.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Siparişler"; ObjectID = "4iE-6s-VQQ"; */
+"4iE-6s-VQQ.title" = "Siparişler";
+
+/* Class = "UINavigationItem"; title = "Anasayfa"; ObjectID = "4v0-eL-x7J"; */
+"4v0-eL-x7J.title" = "Anasayfa";
+
+/* Class = "UILabel"; text = "Alıcı Telefon Numarası"; ObjectID = "5OG-uK-FgJ"; */
+"5OG-uK-FgJ.text" = "Alıcı Telefon Numarası";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "5PR-Ng-1fN"; */
+"5PR-Ng-1fN.text" = "Label";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "5UT-Rd-XvW"; */
+"5UT-Rd-XvW.text" = "0";
+
+/* Class = "UILabel"; text = "Toplam:"; ObjectID = "654-Ll-BF3"; */
+"654-Ll-BF3.text" = "Toplam:";
+
+/* Class = "UILabel"; text = "Alıcı Adresi"; ObjectID = "6Ro-ux-d7K"; */
+"6Ro-ux-d7K.text" = "Alıcı Adresi";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7MS-2j-fDe"; */
+"7MS-2j-fDe.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Tarih Seç"; ObjectID = "7NZ-hS-RhL"; */
+"7NZ-hS-RhL.normalTitle" = "Tarih Seç";
+
+/* Class = "UIButton"; normalTitle = "Whatsapp Üzerinden Ulaşın"; ObjectID = "99m-Ol-uRi"; */
+"99m-Ol-uRi.normalTitle" = "Whatsapp Üzerinden Ulaşın";
+
+/* Class = "UINavigationItem"; title = "Sepeti Onayla"; ObjectID = "9Ir-se-w78"; */
+"9Ir-se-w78.title" = "Sepeti Onayla";
+
+/* Class = "UILabel"; text = "Fiyat:"; ObjectID = "9Wu-Uh-L3z"; */
+"9Wu-Uh-L3z.text" = "Fiyat:";
+
+/* Class = "UILabel"; text = "Bildirim içeriği"; ObjectID = "9Zh-bc-mYA"; */
+"9Zh-bc-mYA.text" = "Bildirim içeriği";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "9vG-Ep-g34"; */
+"9vG-Ep-g34.text" = "Label";
+
+/* Class = "UILabel"; text = "Mahalle:"; ObjectID = "9xk-en-Klj"; */
+"9xk-en-Klj.text" = "Mahalle:";
+
+/* Class = "UILabel"; text = "Teslimatta Nakit"; ObjectID = "Adz-Xl-tpK"; */
+"Adz-Xl-tpK.text" = "Teslimatta Nakit";
+
+/* Class = "UILabel"; text = "Fiyat:"; ObjectID = "BY7-zk-s8d"; */
+"BY7-zk-s8d.text" = "Fiyat:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "C56-jz-QLG"; */
+"C56-jz-QLG.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "CPq-Dx-YaD"; */
+"CPq-Dx-YaD.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "CXE-tV-WOb"; */
+"CXE-tV-WOb.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Bildirimler"; ObjectID = "CfL-He-8Yu"; */
+"CfL-He-8Yu.title" = "Bildirimler";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ci0-BS-lUW"; */
+"Ci0-BS-lUW.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "DYN-Js-O9q"; */
+"DYN-Js-O9q.text" = "Label";
+
+/* Class = "UILabel"; text = "Telefon No:"; ObjectID = "ESD-6J-28y"; */
+"ESD-6J-28y.text" = "Telefon No:";
+
+/* Class = "UILabel"; text = "Toplam:"; ObjectID = "Ew2-fU-whs"; */
+"Ew2-fU-whs.text" = "Toplam:";
+
+/* Class = "UILabel"; text = "Alıcı Adı"; ObjectID = "FJB-vX-Ejh"; */
+"FJB-vX-Ejh.text" = "Alıcı Adı";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Fl3-i3-bXv"; */
+"Fl3-i3-bXv.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Siparişler"; ObjectID = "GtV-L9-TJa"; */
+"GtV-L9-TJa.title" = "Siparişler";
+
+/* Class = "UILabel"; text = "Bildirim Başlığı"; ObjectID = "H3g-eN-8xz"; */
+"H3g-eN-8xz.text" = "Bildirim Başlığı";
+
+/* Class = "UIButton"; normalTitle = "Ekle"; ObjectID = "HCg-lu-Jqm"; */
+"HCg-lu-Jqm.normalTitle" = "Ekle";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "HPE-dT-IZf"; */
+"HPE-dT-IZf.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "ÖZEL SİPARİŞ OLUŞTUR"; ObjectID = "HYa-na-qsI"; */
+"HYa-na-qsI.normalTitle" = "ÖZEL SİPARİŞ OLUŞTUR";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Hf3-w8-lzg"; */
+"Hf3-w8-lzg.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "HmQ-nt-XD0"; */
+"HmQ-nt-XD0.text" = "Label";
+
+/* Class = "UILabel"; text = "Adet:"; ObjectID = "ILR-CT-TVu"; */
+"ILR-CT-TVu.text" = "Adet:";
+
+/* Class = "UINavigationItem"; title = "Hesap"; ObjectID = "IYu-Mr-Vvz"; */
+"IYu-Mr-Vvz.title" = "Hesap";
+
+/* Class = "UILabel"; text = "Teslimatta Kredi/Banka Kartı"; ObjectID = "IyH-4i-BVz"; */
+"IyH-4i-BVz.text" = "Teslimatta Kredi/Banka Kartı";
+
+/* Class = "UIButton"; normalTitle = "Mağazaya gönder"; ObjectID = "K6F-bv-vrj"; */
+"K6F-bv-vrj.normalTitle" = "Mağazaya gönder";
+
+/* Class = "UILabel"; text = "Dağıtımda"; ObjectID = "Ki1-TG-5Vq"; */
+"Ki1-TG-5Vq.text" = "Dağıtımda";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Kyz-MU-7d3"; */
+"Kyz-MU-7d3.text" = "Label";
+
+/* Class = "UILabel"; text = "Alıcı Adı Soyadı"; ObjectID = "M2d-TD-7RR"; */
+"M2d-TD-7RR.text" = "Alıcı Adı Soyadı";
+
+/* Class = "UILabel"; text = "Sepetin boş birşeyler al  "; ObjectID = "Nhs-9T-yKH"; */
+"Nhs-9T-yKH.text" = "Sepetin boş birşeyler al  ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "O32-He-Hle"; */
+"O32-He-Hle.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Ekle"; ObjectID = "OQy-2P-rm1"; */
+"OQy-2P-rm1.normalTitle" = "Ekle";
+
+/* Class = "UIButton"; normalTitle = "Teslimat Saati"; ObjectID = "OcJ-lD-EEV"; */
+"OcJ-lD-EEV.normalTitle" = "Teslimat Saati";
+
+/* Class = "UILabel"; text = "Onaylandı"; ObjectID = "PUr-dv-1aP"; */
+"PUr-dv-1aP.text" = "Onaylandı";
+
+/* Class = "UINavigationItem"; title = "Adreslerim"; ObjectID = "Pwq-Xa-rx8"; */
+"Pwq-Xa-rx8.title" = "Adreslerim";
+
+/* Class = "UIButton"; normalTitle = "ÖZEL SİPARİŞ OLUŞTUR"; ObjectID = "QP3-cV-31f"; */
+"QP3-cV-31f.normalTitle" = "ÖZEL SİPARİŞ OLUŞTUR";
+
+/* Class = "UILabel"; text = "Özel Sipariş"; ObjectID = "QSj-D5-utG"; */
+"QSj-D5-utG.text" = "Özel Sipariş";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Rkj-Il-aSV"; */
+"Rkj-Il-aSV.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Teslimat Adresi Ekle"; ObjectID = "RpH-tG-g5g"; */
+"RpH-tG-g5g.title" = "Teslimat Adresi Ekle";
+
+/* Class = "UILabel"; text = "Gönderim Ücreti:"; ObjectID = "SB7-k3-uKR"; */
+"SB7-k3-uKR.text" = "Gönderim Ücreti:";
+
+/* Class = "UITextField"; placeholder = "Telefon Numaranızı Giriniz"; ObjectID = "Sfb-pd-Evg"; */
+"Sfb-pd-Evg.placeholder" = "Telefon Numaranızı Giriniz";
+
+/* Class = "UINavigationItem"; title = "Ürünler"; ObjectID = "Slp-ls-QBJ"; */
+"Slp-ls-QBJ.title" = "Ürünler";
+
+/* Class = "UINavigationItem"; title = "Sepet"; ObjectID = "TWa-Kh-fJL"; */
+"TWa-Kh-fJL.title" = "Sepet";
+
+/* Class = "UILabel"; text = "Sipariş No:"; ObjectID = "Tod-ed-vd9"; */
+"Tod-ed-vd9.text" = "Sipariş No:";
+
+/* Class = "UIButton"; normalTitle = "Adres Ekle"; ObjectID = "UIZ-iz-RmZ"; */
+"UIZ-iz-RmZ.normalTitle" = "Adres Ekle";
+
+/* Class = "UITabBarItem"; title = "Bildirimler"; ObjectID = "UM6-tg-rkV"; */
+"UM6-tg-rkV.title" = "Bildirimler";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "V50-3f-nK3"; */
+"V50-3f-nK3.text" = "Label";
+
+/* Class = "UILabel"; text = "Alıcı Adı"; ObjectID = "VRs-hR-EUu"; */
+"VRs-hR-EUu.text" = "Alıcı Adı";
+
+/* Class = "UIButton"; normalTitle = "Hakkımızda"; ObjectID = "VUw-4g-vGX"; */
+"VUw-4g-vGX.normalTitle" = "Hakkımızda";
+
+/* Class = "UINavigationItem"; title = "Özel Sipariş Oluştur"; ObjectID = "ViV-CD-3gt"; */
+"ViV-CD-3gt.title" = "Özel Sipariş Oluştur";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Vkc-pB-hmy"; */
+"Vkc-pB-hmy.text" = "Label";
+
+/* Class = "UISegmentedControl"; X6n-8L-ZrH.segmentTitles[0] = "Devam Eden"; ObjectID = "X6n-8L-ZrH"; */
+"X6n-8L-ZrH.segmentTitles[0]" = "Devam Eden";
+
+/* Class = "UISegmentedControl"; X6n-8L-ZrH.segmentTitles[1] = "Tamamlananlar"; ObjectID = "X6n-8L-ZrH"; */
+"X6n-8L-ZrH.segmentTitles[1]" = "Tamamlananlar";
+
+/* Class = "UILabel"; text = "Toplam:"; ObjectID = "XG5-0Y-PG2"; */
+"XG5-0Y-PG2.text" = "Toplam:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "XWx-ZQ-SJk"; */
+"XWx-ZQ-SJk.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Anasayfa"; ObjectID = "YjJ-ia-rNi"; */
+"YjJ-ia-rNi.title" = "Anasayfa";
+
+/* Class = "UIButton"; normalTitle = "Giriş Yap"; ObjectID = "ZFO-2o-Udp"; */
+"ZFO-2o-Udp.normalTitle" = "Giriş Yap";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "ZcZ-Yl-qmr"; */
+"ZcZ-Yl-qmr.text" = "0";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "aPj-7b-8m5"; */
+"aPj-7b-8m5.text" = "Label";
+
+/* Class = "UILabel"; text = "Tarih: "; ObjectID = "aX4-wu-Zth"; */
+"aX4-wu-Zth.text" = "Tarih: ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "abc-4U-LVb"; */
+"abc-4U-LVb.text" = "Label";
+
+/* Class = "UILabel"; text = "Fiyat:"; ObjectID = "axA-kx-ZRr"; */
+"axA-kx-ZRr.text" = "Fiyat:";
+
+/* Class = "UILabel"; text = "Saat:"; ObjectID = "bDt-gg-6aj"; */
+"bDt-gg-6aj.text" = "Saat:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "byK-yv-ytg"; */
+"byK-yv-ytg.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "c08-x8-2Ou"; */
+"c08-x8-2Ou.text" = "Label";
+
+/* Class = "UISearchBar"; placeholder = "Ürün Ara"; ObjectID = "c7g-Jr-PDi"; */
+"c7g-Jr-PDi.placeholder" = "Ürün Ara";
+
+/* Class = "UITextView"; text = "Bir Şeyler Yazın"; ObjectID = "cse-Az-94l"; */
+"cse-Az-94l.text" = "Bir Şeyler Yazın";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "dAc-ED-4mu"; */
+"dAc-ED-4mu.text" = "0";
+
+/* Class = "UINavigationItem"; title = "Saat seç"; ObjectID = "dKD-Ef-wa4"; */
+"dKD-Ef-wa4.title" = "Saat seç";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ddK-go-8Xe"; */
+"ddK-go-8Xe.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Sepeti Onayla"; ObjectID = "dsC-9M-tqD"; */
+"dsC-9M-tqD.normalTitle" = "Sepeti Onayla";
+
+/* Class = "UITextField"; placeholder = "Güvenlik Kodunu Girin"; ObjectID = "eGN-5V-Icl"; */
+"eGN-5V-Icl.placeholder" = "Güvenlik Kodunu Girin";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "edt-6u-bNe"; */
+"edt-6u-bNe.text" = "Label";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "fME-FH-7vH"; */
+"fME-FH-7vH.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Onayla"; ObjectID = "fWk-ql-UH9"; */
+"fWk-ql-UH9.normalTitle" = "Onayla";
+
+/* Class = "UILabel"; text = "Çelikler Market Uygulamasına Hoş Geldiniz giriş yapabilir veya devam edebilirsiniz"; ObjectID = "g7z-1x-KAh"; */
+"g7z-1x-KAh.text" = "Çelikler Market Uygulamasına Hoş Geldiniz giriş yapabilir veya devam edebilirsiniz";
+
+/* Class = "UIButton"; normalTitle = "Adreslerim"; ObjectID = "gEm-8q-lVf"; */
+"gEm-8q-lVf.normalTitle" = "Adreslerim";
+
+/* Class = "UIButton"; normalTitle = "İletişim"; ObjectID = "gFP-Lc-pZs"; */
+"gFP-Lc-pZs.normalTitle" = "İletişim";
+
+/* Class = "UIButton"; normalTitle = "Devam Et"; ObjectID = "gfg-rg-Ycb"; */
+"gfg-rg-Ycb.normalTitle" = "Devam Et";
+
+/* Class = "UIButton"; normalTitle = "Devam Et"; ObjectID = "ggV-gN-kej"; */
+"ggV-gN-kej.normalTitle" = "Devam Et";
+
+/* Class = "UILabel"; text = "Telefon No:"; ObjectID = "h8Q-lu-quo"; */
+"h8Q-lu-quo.text" = "Telefon No:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hL6-zt-JiX"; */
+"hL6-zt-JiX.text" = "Label";
+
+/* Class = "UISearchBar"; placeholder = "Ürün Ara"; ObjectID = "heT-PI-duG"; */
+"heT-PI-duG.placeholder" = "Ürün Ara";
+
+/* Class = "UILabel"; text = "Kredi Kartı"; ObjectID = "hq4-Gx-RUc"; */
+"hq4-Gx-RUc.text" = "Kredi Kartı";
+
+/* Class = "UILabel"; text = "Sipariş Türü"; ObjectID = "ili-uD-iWP"; */
+"ili-uD-iWP.text" = "Sipariş Türü";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "jCe-df-BnE"; */
+"jCe-df-BnE.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "İletişim"; ObjectID = "jIL-12-v08"; */
+"jIL-12-v08.title" = "İletişim";
+
+/* Class = "UILabel"; text = "Ürün Sayısı: "; ObjectID = "jgM-Sx-PQQ"; */
+"jgM-Sx-PQQ.text" = "Ürün Sayısı: ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "jgt-U6-d76"; */
+"jgt-U6-d76.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Ürün Detayı"; ObjectID = "jyd-Sr-Nwh"; */
+"jyd-Sr-Nwh.title" = "Ürün Detayı";
+
+/* Class = "UIButton"; normalTitle = "Ekle"; ObjectID = "k3M-Pd-ekm"; */
+"k3M-Pd-ekm.normalTitle" = "Ekle";
+
+/* Class = "UILabel"; text = "Toplam:"; ObjectID = "kKS-TV-BC8"; */
+"kKS-TV-BC8.text" = "Toplam:";
+
+/* Class = "UILabel"; text = "ÇELIKLER MARKET UYGULAMASINA GIRIŞ YAPMAK IÇIN CEP TELEFONU NUMARANIZI GIRINIZ"; ObjectID = "kMn-Lg-kfD"; */
+"kMn-Lg-kfD.text" = "ÇELIKLER MARKET UYGULAMASINA GIRIŞ YAPMAK IÇIN CEP TELEFONU NUMARANIZI GIRINIZ";
+
+/* Class = "UIButton"; normalTitle = "Sepeti Temizle"; ObjectID = "kXj-k4-YXx"; */
+"kXj-k4-YXx.normalTitle" = "Sepeti Temizle";
+
+/* Class = "UILabel"; text = "Onay Bekliyor"; ObjectID = "l4p-Qm-Tfw"; */
+"l4p-Qm-Tfw.text" = "Onay Bekliyor";
+
+/* Class = "UITabBarItem"; title = "Sepet"; ObjectID = "mLP-83-Zil"; */
+"mLP-83-Zil.title" = "Sepet";
+
+/* Class = "UILabel"; text = "Tamamlandı"; ObjectID = "nn1-GU-vav"; */
+"nn1-GU-vav.text" = "Tamamlandı";
+
+/* Class = "UILabel"; text = "Mahalle:"; ObjectID = "pFK-xA-VBr"; */
+"pFK-xA-VBr.text" = "Mahalle:";
+
+/* Class = "UILabel"; text = "Fiyat:"; ObjectID = "qKa-l6-iER"; */
+"qKa-l6-iER.text" = "Fiyat:";
+
+/* Class = "UIButton"; normalTitle = "Sipariş İptal Et"; ObjectID = "qb6-Aa-ax8"; */
+"qb6-Aa-ax8.normalTitle" = "Sipariş İptal Et";
+
+/* Class = "UILabel"; text = "Kategoriler"; ObjectID = "qvU-GT-YmQ"; */
+"qvU-GT-YmQ.text" = "Kategoriler";
+
+/* Class = "UIButton"; normalTitle = "Aramak için tıklayın"; ObjectID = "r1M-dx-oLK"; */
+"r1M-dx-oLK.normalTitle" = "Aramak için tıklayın";
+
+/* Class = "UIButton"; normalTitle = "Oturumu Kapat"; ObjectID = "rJI-hd-Ss4"; */
+"rJI-hd-Ss4.normalTitle" = "Oturumu Kapat";
+
+/* Class = "UILabel"; text = "0555 056 33 05"; ObjectID = "s1X-43-plm"; */
+"s1X-43-plm.text" = "0555 056 33 05";
+
+/* Class = "UIButton"; normalTitle = "Hesap Aç veya Giriş Yap"; ObjectID = "tKh-mW-OTI"; */
+"tKh-mW-OTI.normalTitle" = "Hesap Aç veya Giriş Yap";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "u5V-i2-bn1"; */
+"u5V-i2-bn1.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Saat Seç"; ObjectID = "uG3-SI-kKg"; */
+"uG3-SI-kKg.normalTitle" = "Saat Seç";
+
+/* Class = "UITabBarItem"; title = "Hesap"; ObjectID = "vIE-oS-e9R"; */
+"vIE-oS-e9R.title" = "Hesap";
+
+/* Class = "UITabBarItem"; title = "Sepet"; ObjectID = "wYy-Xc-OYs"; */
+"wYy-Xc-OYs.title" = "Sepet";
+
+/* Class = "UILabel"; text = "Teslimat Adresi Ekle"; ObjectID = "xYm-zo-bbV"; */
+"xYm-zo-bbV.text" = "Teslimat Adresi Ekle";
+
+/* Class = "UILabel"; text = "Bu kısımda özel istek olan siparişlerinizi aşağıdaki metin alanına yazarak mağazaya bildirebilirsiniz."; ObjectID = "xnG-bY-jC3"; */
+"xnG-bY-jC3.text" = "Bu kısımda özel istek olan siparişlerinizi aşağıdaki metin alanına yazarak mağazaya bildirebilirsiniz.";
+
+/* Class = "UITabBarItem"; title = "Anasayfa"; ObjectID = "yA4-tY-gDR"; */
+"yA4-tY-gDR.title" = "Anasayfa";
+
+/* Class = "UIButton"; normalTitle = "Adres Ekle"; ObjectID = "yNp-Bk-lV2"; */
+"yNp-Bk-lV2.normalTitle" = "Adres Ekle";
+
+/* Class = "UIButton"; normalTitle = "Kullanıcı Sözleşmesi"; ObjectID = "yhA-do-c4M"; */
+"yhA-do-c4M.normalTitle" = "Kullanıcı Sözleşmesi";
+
+/* Class = "UINavigationItem"; title = "Gün seç"; ObjectID = "zVi-kN-azr"; */
+"zVi-kN-azr.title" = "Gün seç";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "znP-gZ-BwY"; */
+"znP-gZ-BwY.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Web Sitesi"; ObjectID = "zvW-Xx-mZe"; */
+"zvW-Xx-mZe.normalTitle" = "Web Sitesi";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zzE-jw-d7Y"; */
+"zzE-jw-d7Y.text" = "Label";
