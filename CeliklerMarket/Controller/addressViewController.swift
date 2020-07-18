@@ -45,9 +45,13 @@ class addressViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     @IBOutlet weak var addressTable: UITableView!
     
-    func finishPostAddress (message:String, data:Data?) -> Void
+    private func finishPostAddress (message:String, data:Data?) -> Void
     {
         do
         {
@@ -67,11 +71,13 @@ class addressViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         catch
         {
-            print("Parse Error: \(error)")
+            #if DEBUG
+                print(error)
+            #endif
         }
     }
     
-    func finishDeleteAddress (message:String, data:Data?) -> Void
+    private func finishDeleteAddress (message:String, data:Data?) -> Void
     {
         do
         {
@@ -93,7 +99,9 @@ class addressViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         catch
         {
-            print("Parse Error: \(error)")
+            #if DEBUG
+                print(error)
+            #endif
         }
     }
     

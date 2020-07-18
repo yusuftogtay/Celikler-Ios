@@ -21,12 +21,17 @@ class ContactViewController: UIViewController {
     }
     
     @IBAction func callButton(_ sender: Any) {
-        if let phoneURL = URL(string: "tel://+905550563305") {
+        if let phoneURL = URL(string: "tel://+905313376882") {
             if application.canOpenURL(phoneURL) {
                 application.open(phoneURL, options: [:], completionHandler: nil)
             }
         }
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     @IBAction func ozguryazılım(_ sender: Any) {
     }
     
@@ -45,7 +50,7 @@ class ContactViewController: UIViewController {
     
     
     @IBAction func wp(_ sender: Any) {
-        let urlWhats = "https://wa.me/+905550563305"
+        let urlWhats = "https://wa.me/+905313376882"
         https://wa.me/+905550563305
         if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
             if let whatsappURL = URL(string: urlString) {

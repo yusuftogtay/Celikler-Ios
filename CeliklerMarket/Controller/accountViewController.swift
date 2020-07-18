@@ -42,6 +42,10 @@ class accountViewController: UIViewController {
     @IBAction func informations(_ sender: Any) {
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     
     @IBOutlet weak var login: UIButton!
     
@@ -60,7 +64,9 @@ class accountViewController: UIViewController {
             UserDefaults.standard.synchronize()
             delegate.romoveUser()
         } catch {
-            print("Error")
+            #if DEBUG
+                print(error)
+            #endif
         }
         
     }

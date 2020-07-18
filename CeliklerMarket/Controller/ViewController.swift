@@ -54,37 +54,38 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(gestureRecognizer)
     }
     
-    func alertPhoneNumber(status: String)   {
-        if status == "isEmpty" {
-            let alert = UIAlertController(title: "Hata!", message: "Telefon Numaranızı Girmediniz.", preferredStyle: .alert)
+    final func alertPhoneNumber(status: String)   {
+        DispatchQueue.main.async {
+            if status == "isEmpty" {
+                let alert = UIAlertController(title: "Hata!", message: "Telefon Numaranızı Girmediniz.", preferredStyle: .alert)
 
-            let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
-            alert.addAction(action)
-            
-            self.present(alert, animated: true, completion: nil)
-        }   else if status == "isOtpEmpty" {
-            let alert = UIAlertController(title: "Hata!", message: "Lütfen Güvenlik Kodunu Girin.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+                alert.addAction(action)
+                
+                self.present(alert, animated: true, completion: nil)
+            }   else if status == "isOtpEmpty" {
+                let alert = UIAlertController(title: "Hata!", message: "Lütfen Güvenlik Kodunu Girin.", preferredStyle: .alert)
 
-            let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
-            alert.addAction(action)
-            
-            self.present(alert, animated: true, completion: nil)
-        } else if status == "false" {
-            let alert = UIAlertController(title: "Hata!", message: "Lütfen kullanıcı sözleşmesini onaylayın. Detaylı bilgilendirme için Kullanıcı Sözleşmesi Yazısına dokunun", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+                alert.addAction(action)
+                
+                self.present(alert, animated: true, completion: nil)
+            } else if status == "false" {
+                let alert = UIAlertController(title: "Hata!", message: "Lütfen kullanıcı sözleşmesini onaylayın. Detaylı bilgilendirme için Kullanıcı Sözleşmesi Yazısına dokunun", preferredStyle: .alert)
 
-            let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
-            alert.addAction(action)
-            
-            self.present(alert, animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: "Hata!", message: "Telefon Numaranızı Eksik veya yanlış girdiniz.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+                alert.addAction(action)
+                
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Hata!", message: "Telefon Numaranızı Eksik veya yanlış girdiniz.", preferredStyle: .alert)
 
-            let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
-            alert.addAction(action)
-            
-            self.present(alert, animated: true, completion: nil)
+                let action = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+                alert.addAction(action)
+                
+                self.present(alert, animated: true, completion: nil)
+            }
         }
-        
     }
     
     @IBAction func phoneAuthClicked(_ sender: Any) {
@@ -167,22 +168,22 @@ class ViewController: UIViewController {
         
     }
     
-    @objc func hideKeyboard()   {
+    @objc final func hideKeyboard()   {
         view.endEditing(true)
     }
-    @IBAction func privacyPolicyUrl(_ sender: Any) {
+    @IBAction final func privacyPolicyUrl(_ sender: Any) {
         guard let url = URL(string: "https://amasyaceliklermarket.com/policies/privacy_tr") else { return }
         UIApplication.shared.open(url)
     }
     
-    @objc func keyboardWillShow(sender: NSNotification) {
+    @objc final func keyboardWillShow(sender: NSNotification) {
 
         if let keyboardRect = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.frame.origin.y = -keyboardRect.height
         }
     }
     
-    @objc func keyboardWillHide(sender: NSNotification) {
+    @objc final func keyboardWillHide(sender: NSNotification) {
          self.view.frame.origin.y = 0 // Move view to original position
     }
 }

@@ -33,7 +33,8 @@ class productsTableViewCell: UITableViewCell {
             } else if Double(u)! == 0.5 {
                 unit.text = "0.5"
             } else {
-                unit.text = "\( Double(round(10*(Double(u)! - 0.1))/10))"
+                //unit.text = "\( Double(round(10*(Double(u)! - 0.1))/10))"
+                unit.text = "\(Double(u)! - 0.5)"
             }
         } else {
             if Int(unit.text!)! > 0 {
@@ -43,12 +44,13 @@ class productsTableViewCell: UITableViewCell {
         }
         let a = unit.text!
         let sayi = Double(a)!
-        if sayi > 0 {
+        /*if sayi > 0 {
             let p = price.text!.components(separatedBy: "₺")
             let priceInt = Double(p[0])
             total.text = "Toplam: \(Double(round(100*(Double(priceInt!) * Double(unit.text!)!))/100))₺"
-            cellDelegate?.onClickCell(index: (index?.row)!, unit: unit.text!, indexPath: index!)
         }
+        //cellDelegate?.onClickCell(index: (index?.row)!, unit: unit.text!, indexPath: index!)*/
+        
     }
     
     @IBAction func plus(_ sender: Any) {
@@ -58,6 +60,7 @@ class productsTableViewCell: UITableViewCell {
                 unit.text = "1.0"
             } else {
                 unit.text = "\(Double(round(10*(Double(u)! + 0.1))/10))"
+                unit.text = "\(Double(u)! + 0.5)"
             }
         } else {
             let u = "\(Int(unit.text!) ?? 0)"
@@ -65,12 +68,12 @@ class productsTableViewCell: UITableViewCell {
         }
         let a = unit.text!
         let sayi = Double(a)!
-        if sayi > 0 {
+        /*if sayi > 0 {
             let p = price.text!.components(separatedBy: "₺")
             let priceInt = Double(p[0])
             total.text = "Toplam: \(Double(round(100*(Double(priceInt!) * Double(unit.text!)!))/100))₺"
-            cellDelegate?.onClickCell(index: (index?.row)!, unit: unit.text!, indexPath: index!)
-        }
+            //cellDelegate?.onClickCell(index: (index?.row)!, unit: unit.text!, indexPath: index!)
+        }*/
     }
     
     @IBAction func button(_ sender: Any) {
@@ -80,9 +83,10 @@ class productsTableViewCell: UITableViewCell {
             let p = price.text!.components(separatedBy: "₺")
             let priceInt = Double(p[0])
             total.text = "Toplam: \(Double(round(100*(Double(priceInt!) * Double(unit.text!)!))/100))₺"
-            cellDelegate?.onClickCell(index: (index?.row)!, unit: unit.text!, indexPath: index!)
+        } else {
+            total.text = "Toplam: 0₺"
         }
-        
+        cellDelegate?.onClickCell(index: (index?.row)!, unit: unit.text!, indexPath: index!)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

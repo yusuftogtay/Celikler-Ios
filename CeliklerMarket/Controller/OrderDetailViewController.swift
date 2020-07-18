@@ -64,7 +64,7 @@ class OrderDetailViewController: UIViewController, UITableViewDataSource, UITabl
         self.present(alert, animated: true, completion: nil)
     }
     
-    func myOrdersCancelResponse(message:String, data:Data?) -> Void
+    private func myOrdersCancelResponse(message:String, data:Data?) -> Void
     {
         do
         {
@@ -89,11 +89,13 @@ class OrderDetailViewController: UIViewController, UITableViewDataSource, UITabl
         }
         catch
         {
-            print("Parse Error: \(error)")
+            #if DEBUG
+                print(error)
+            #endif
         }
     }
     
-    func myOrdersDetailResponse(message:String, data:Data?) -> Void
+    private func myOrdersDetailResponse(message:String, data:Data?) -> Void
     {
         do
         {
@@ -111,11 +113,13 @@ class OrderDetailViewController: UIViewController, UITableViewDataSource, UITabl
         }
         catch
         {
-            print("Parse Error: \(error)")
+            #if DEBUG
+                print(error)
+            #endif
         }
     }
     
-    func total() {
+    private func total() {
         var total: Double = 0
         for i in parsedData {
             let price = Double(i.price)!
@@ -128,6 +132,10 @@ class OrderDetailViewController: UIViewController, UITableViewDataSource, UITabl
             self.totalLabel.text = String(format: "Toplam: %.2f", t)
             
         }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

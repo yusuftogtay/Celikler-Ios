@@ -11,6 +11,15 @@ import CoreData
 import SDWebImage
 
 class categoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, productCell{
+    func onDelete(index: Int, indexPath: IndexPath) {
+        print("")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        print("geldi")
+        searchBarText.removeAll()
+    }
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var sliderCollection: UICollectionView!
@@ -20,7 +29,7 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var categoriesCollection: UICollectionView!
     @IBOutlet weak var searchTable: UITableView!
     
-    func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
+    final func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         var id = ""
@@ -60,7 +69,9 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                             try context.save()
                             
                         } catch {
+                            #if DEBUG
                             print(error)
+                            #endif
                         }
                     } else {
                         let newCard = NSEntityDescription.insertNewObject(forEntityName: "Cards", into: context)
@@ -74,7 +85,9 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         do {
                             try context.save()
                         } catch {
+                            #if DEBUG
                             print(error)
+                            #endif
                         }
                         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
                         if let result = try? context.fetch(fetchRequest) {
@@ -87,7 +100,9 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         }
                     }
                 } catch  {
+                    #if DEBUG
                     print(error)
+                    #endif
                 }
             }
         } else {
@@ -110,7 +125,9 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                             try context.save()
                             
                         } catch {
+                            #if DEBUG
                             print(error)
+                            #endif
                         }
                     } else {
                         let newCard = NSEntityDescription.insertNewObject(forEntityName: "Cards", into: context)
@@ -124,7 +141,9 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         do {
                             try context.save()
                         } catch {
+                            #if DEBUG
                             print(error)
+                            #endif
                         }
                     }
                     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
@@ -137,7 +156,9 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         }
                     }
                 } catch  {
+                    #if DEBUG
                     print(error)
+                    #endif
                 }
             }
         }
@@ -159,6 +180,7 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        print("Çok ram yiyor")
     }
     
     override func viewDidLoad() {
@@ -199,7 +221,7 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         view.endEditing(true)
     }
     
-    func sliderViewDidLoad()    {
+    private func sliderViewDidLoad()    {
         sliderImageArray.removeAll()
         if let url = URL(string: "https://amasyaceliklermarket.com/api/slider") {
            URLSession.shared.dataTask(with: url) { data, response, error in
@@ -220,7 +242,9 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         }.resume()
                     }
                   } catch let error {
-                     print(error)
+                    #if DEBUG
+                        print(error)
+                    #endif
                   }
                }
            }.resume()
@@ -237,7 +261,7 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         searchTable.isHidden = true
     }
     
-    func categories()   {
+    private func categories()   {
         categoriesImage.removeAll()
         categoriesLabel.removeAll()
         categoriesID.removeAll()
@@ -253,7 +277,9 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                             let url = URL(string: (baseurl + r.image))
                             URLSession.shared.dataTask(with: url!) { data, response, error in
                                 if error != nil {
-                                    print(error!)
+                                    #if DEBUG
+                                    print(error as Any)
+                                    #endif
                                 }
                                 DispatchQueue.main.async{
                                     self.categoriesImage.append(UIImage(data: data!)!)
@@ -265,14 +291,16 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         }
                     }
                    } catch let error {
-                      print(error)
+                      #if DEBUG
+                          print(error)
+                      #endif
                    }
                 }
             }.resume()
         }
     }
     
-    func search() {
+    private func search() {
         if let url = URL(string: "https://amasyaceliklermarket.com/api/product_all") {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data {
@@ -288,14 +316,16 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                         self.searchTable.reloadData()
                     }
                    } catch let error {
-                      print(error)
+                      #if DEBUG
+                          print(error)
+                      #endif
                    }
                 }
             }.resume()
         }
     }
     
-    @objc func changeImage() {
+    @objc private func changeImage() {
         	if counter < sliderImageArray.count {
             let index = IndexPath.init(item: counter, section: 0)
             self.sliderCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
@@ -308,10 +338,12 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
-    func downloadSliderImage(with url: URL) {
+    private func downloadSliderImage(with url: URL) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if error != nil {
-                print(error!)
+                #if DEBUG
+                    print(error)
+                #endif
             }
             DispatchQueue.main.async{
                 self.sliderImageArray.append(UIImage(data: data!)!)
@@ -392,7 +424,11 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         if searching {
             return searchBarText.count
         } else {
-            return searchProductData.count
+            if searchProductData.count > 100 {
+                return 100
+            } else {
+                return searchProductData.count
+            }
         }
     }
     
@@ -433,11 +469,15 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                             }
                         }
                     } catch {
-                        print("Failed")
+                        #if DEBUG
+                            print(error)
+                        #endif
                     }
                     performSegue(withIdentifier: "geSearchDetail", sender: nil)
                 } else {
-                    print("deneme")
+                    #if DEBUG
+                        print("deneme")
+                    #endif
                 }
             }
         } else {
@@ -479,7 +519,9 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                     }
                 }
             } catch {
-                print("Failed")
+                #if DEBUG
+                    print("failed")
+                #endif
             }
             performSegue(withIdentifier: "geSearchDetail", sender: nil)
         }
@@ -618,20 +660,6 @@ extension categoriesViewController: UICollectionViewDelegateFlowLayout {
         let size = sliderCollection.frame.size
         return CGSize(width: size.width, height: size.height)
     }
-    
-    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if categoriesCollection == collectionView    {
-            return 0.0
-        }
-        return 0.0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if categoriesCollection == collectionView    {
-            return 0.0
-        }
-        return 0.0
-    }*/
 }
 
 

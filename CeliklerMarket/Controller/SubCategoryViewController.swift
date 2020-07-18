@@ -10,26 +10,19 @@ import UIKit
 import SDWebImage
 import CoreData
 
-class subCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, productCell, UICollectionViewDataSource, UICollectionViewDelegate, catCell{
+class subCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, productCell, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var item = 0
-    
-    func catClick(index: IndexPath) {
-        let url = URL(string: "https://amasyaceliklermarket.com/api/product/" + String(subCategory[index.row].id))
-        ApiService.callGet(url: url!, finish: getProduct)
-        item = index.row
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         items.count
     }
-    var _selectedIndexPath : IndexPath? = nil
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        let url = URL(string: "https://amasyaceliklermarket.com/api/product/" + String(subCategory[indexPath.row].id))
-        ApiService.callGet(url: url!, finish: getProduct)
         subCategoryIndex = indexPath.row
         item = indexPath.row
+        let url = URL(string: "https://amasyaceliklermarket.com/api/product/" + String(subCategory[indexPath.row].id))
+        ApiService.callGet(url: url!, finish: getProduct)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -47,30 +40,10 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         return cell2
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = cat.frame.size
-        return CGSize(width: (size.width / 4), height: (size.height / 1.9))
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0.5, bottom: 0, right: 0.5)
-    }
-    
-    func onClickImage(indexPath: IndexPath) {
-        print("image \(indexPath.row)")
-    }
-    
-    func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
+    final func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
+        print("\(unit)")
         if unit != "0.0" || unit != "0"  {
             let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Cards")
             fetchRequest.predicate = NSPredicate(format: "id = %@", productList[index].product_id)
@@ -87,10 +60,10 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
                     objectUpdate.setValue(productList[index].product_name, forKeyPath: "name")
                     do {
                         try context.save()
-                        print("Güncelledi")
-                        
                     } catch {
+                        #if DEBUG
                         print(error)
+                        #endif
                     }
                 } else {
                     let newCard = NSEntityDescription.insertNewObject(forEntityName: "Cards", into: context)
@@ -103,9 +76,10 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
                     newCard.setValue(productList[index].product_name, forKeyPath: "name")
                     do {
                         try context.save()
-                        print("burada")
                     } catch {
+                        #if DEBUG
                         print(error)
+                        #endif
                     }
                 }
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
@@ -118,14 +92,49 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                 }
             } catch  {
-                print(error)
+                
             }
         }
+        if unit == "0" || unit == "0.0" {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+            fetchRequest.predicate = NSPredicate(format: "id = %@", productList[index].product_id)
+             do {
+                let test = try managedContext.fetch(fetchRequest)
+                if test.count > 0{
+                    let objectToDelete = test[0] as! NSManagedObject
+                                   managedContext.delete(objectToDelete)
+                                   do {
+                                       try managedContext.save()
+                                       let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+                                       do {
+                                           let result = try managedContext.fetch(fetchRequest)
+                                           if let tabItems = tabBarController?.tabBar.items {
+                                               let tabItem = tabItems[1]
+                                               let badege = String(result.count)
+                                               tabItem.badgeValue = badege
+                                           }
+                                       } catch {
+                                           print("Failed")
+                                       }
+                                   }
+                                   catch {
+                                       print(error)
+                                   }
+                }
+             } catch {
+                 print(error)
+             }
+        }
+
     }
     
     @IBOutlet weak var cat: UICollectionView!
     
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+    }
     
     var subCategory: [subCategoryStruct] = []
     var productList: [product] = []
@@ -139,16 +148,18 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        let indexPathForFirstRow = IndexPath(row: 0, section: 0)
-        self.cat.selectItem(at: indexPathForFirstRow, animated: true, scrollPosition: .top)
         let url = URL(string: "https://amasyaceliklermarket.com/api/category_alt/" + String(subCategoryIndex))
         ApiService.callGet(url: url!, finish: subCategoryFunc)
-        let indexPath = try IndexPath(item: item, section: 0)
-        self.cat.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionView.ScrollPosition.centeredHorizontally)
-
     }
     
-    func subCategoryFunc(message:String, data:Data?) -> Void
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        #if DEBUG
+            print("çokram")
+        #endif
+    }
+    
+    private func subCategoryFunc(message:String, data:Data?) -> Void
     {
         do
         {
@@ -161,16 +172,22 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
                         items.append(i.title)
                     }
                 }
-                DispatchQueue.main.async {
-                    self.cat.reloadData()
-                }
                 let url = URL(string: "https://amasyaceliklermarket.com/api/product/" + String(subCategory[0].id))
                 ApiService.callGet(url: url!, finish: getProduct)
+                reflesh()
             }
         }
         catch
         {
-            print("Parse Error: \(error)")
+            #if DEBUG
+            print(error)
+            #endif
+        }
+    }
+    
+    private func reflesh() {
+        DispatchQueue.main.async {
+            self.cat.reloadData()
         }
     }
     
@@ -197,22 +214,30 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func getProduct(message:String, data:Data?) -> Void
+    private func getProduct(message:String, data:Data?) -> Void
     {
         do {
                 if let jsonData = data
                 {
                     productList.removeAll()
                     productList = try JSONDecoder().decode([product].self, from: jsonData)
-                    DispatchQueue.main.async {
-                        self.subCategoryTable.isHidden = false
-                        self.subCategoryTable.reloadData()
-                    }
+                    reflseh2()
                 }
         } catch {
-            DispatchQueue.main.async {
-                self.subCategoryTable.isHidden = true
-            }
+            hidden()
+        }
+    }
+    
+    private func reflseh2() {
+        DispatchQueue.main.async {
+            self.subCategoryTable.isHidden = false
+            self.subCategoryTable.reloadData()
+        }
+    }
+    
+    private func hidden() {
+        DispatchQueue.main.async {
+            self.subCategoryTable.isHidden = true
         }
     }
     
@@ -220,8 +245,6 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
-        } else {
-            // Fallback on earlier versions
         }
         self.cat.layer.cornerRadius = 6.0
         super.viewDidLoad()
@@ -269,12 +292,16 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
                 }
             }
         } catch {
-            print("Failed")
+            #if DEBUG
+                print("falied")
+            #endif
         }
         performSegue(withIdentifier: "goDetail", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate!.persistentContainer.viewContext
         let tableCell = subCategoryTable.dequeueReusableCell(withIdentifier: "sub", for: indexPath) as? productsTableViewCell
         tableCell?.cellDelegate = self
         tableCell?.index = indexPath
@@ -282,12 +309,23 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         tableCell?.layer.borderWidth = 0.5
         let myColor = UIColor.lightGray.cgColor
         tableCell!.layer.borderColor = myColor
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let managedContext = appDelegate!.persistentContainer.viewContext
+        if let productName = tableCell?.viewWithTag(502) as? UILabel {
+            productName.text = String(productList[indexPath.row].price) + "₺"
+        }
+        if let productName = tableCell?.viewWithTag(508) as? UILabel {
+            if productList[indexPath.row].unit == "kg" {
+                productName.text = "0.0"
+            } else {
+                productName.text = "0"
+            }
+        }
+        if let productName = tableCell?.viewWithTag(503) as? UILabel {
+            productName.text = "Toplam: 0₺"
+        }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
         do {
             let result = try managedContext.fetch(fetchRequest)
-            if result.count != 0 {
+            if result.count > 0 {
                 for data in result as! [NSManagedObject] {
                     if data.value(forKey: "id") as! String == productList[indexPath.row].product_id {
                         if let productName = tableCell?.viewWithTag(502) as? UILabel {
@@ -301,36 +339,13 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
                             let qty = Double((data.value(forKey: "qty") as! String))
                             productName.text = "Toplam: \(Double(round(100*(price! * qty!))/100))₺"
                         }
-                    } else {
-                        if let productName = tableCell?.viewWithTag(502) as? UILabel {
-                            productName.text = String(productList[indexPath.row].price) + "₺"
-                        }
-                        if let productName = tableCell?.viewWithTag(508) as? UILabel {
-                            if productList[indexPath.row].unit == "kg" {
-                                productName.text = "0.0"
-                            } else {
-                                productName.text = "0"
-                            }
-                        }
-                        if let productName = tableCell?.viewWithTag(503) as? UILabel {
-                            productName.text = "Toplam:"
-                        }
-                    }
-                }
-            } else {
-                if let productName = tableCell?.viewWithTag(502) as? UILabel {
-                    productName.text = String(productList[indexPath.row].price) + "₺"
-                }
-                if let productName = tableCell?.viewWithTag(508) as? UILabel {
-                    if productList[indexPath.row].unit == "kg" {
-                        productName.text = "0.0"
-                    } else {
-                        productName.text = "0"
                     }
                 }
             }
         } catch {
-            print("Failed")
+            #if DEBUG
+                print("error")
+            #endif
         }
         if let productName = tableCell?.viewWithTag(600) as? UILabel {
             productName.text = productList[indexPath.row].product_name
@@ -338,8 +353,7 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         let imageUrl = URL(string: "https://amasyaceliklermarket.com" + String(productList[indexPath.row].product_image))
         if let productImage = tableCell?.viewWithTag(501) as? UIImageView {
             productImage.isUserInteractionEnabled = true
-            productImage.indexPath(index: indexPath.row)
-            productImage.sd_setImage(with: imageUrl, placeholderImage: placeHolderImage, options: SDWebImageOptions.progressiveLoad, context: nil)
+            productImage.sd_setImage(with: imageUrl, placeholderImage: placeHolderImage, options: SDWebImageOptions.lowPriority, context: nil)
         }
         if let productName = tableCell?.viewWithTag(503) as? UILabel {
             productName.layer.cornerRadius = 15.0
@@ -353,16 +367,6 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         if let productName = tableCell?.viewWithTag(507) as? UIButton {
             productName.layer.cornerRadius = 6.0
         }
-        return (tableCell)!
-    }
-}
-
-struct denem {
-    static var id: Int = 0
-}
-
-extension UIImageView {
-    func indexPath(index: Int)  {
-        denem.id = index
+        return tableCell!
     }
 }

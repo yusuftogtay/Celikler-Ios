@@ -9,12 +9,17 @@
 import UIKit
 
 class timeViewController: UIViewController {
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print("Çok ram yiyor")
+    }
 
     
     @IBOutlet weak var timePicker: UIDatePicker!
     var day: String = ""
     var time: String = ""
-    var timee = Date()
+    var timee =  Date()
     override func viewDidLoad() {
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
@@ -24,7 +29,7 @@ class timeViewController: UIViewController {
         super.viewDidLoad()
         let url = URL(string: "https://amasyaceliklermarket.com/api/get_time_slot/")
         ApiService.callPost(url: url!, params: ["date": day], finish: finishPostTime)
-        timee = timePicker.date
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         let timeString = formatter.string(from: timee)
@@ -38,7 +43,6 @@ class timeViewController: UIViewController {
     }
     
     @IBAction func timebutton(_ sender: Any) {
-        timee = timePicker.date
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         let timeString = formatter.string(from: timee)
@@ -62,14 +66,10 @@ class timeViewController: UIViewController {
         time = timeString
     }
     
-    func finishPostTime (message:String, data:Data?) -> Void
+    private func finishPostTime (message:String, data:Data?) -> Void
     {
         do
         {
-            if let JSONString = String(data: data!, encoding: String.Encoding.utf8)
-            {
-                print(JSONString)
-            }
             if let jsonData = data
             {
                 let parsedData = try JSONDecoder().decode(dateResponse.self, from: jsonData)
@@ -90,6 +90,7 @@ class timeViewController: UIViewController {
                         let firstTime = (firstDateData[0] + ":" + firstDateData[1])
                         dateFormatter.dateFormat = "HH:mm"
                         let firstTimePicker = dateFormatter.date(from:firstTime)!
+                        time = firstTime
                         DispatchQueue.main.async {
                             self.timePicker.minimumDate = firstTimePicker
                             self.timePicker.maximumDate = lastTimePicker
@@ -98,24 +99,25 @@ class timeViewController: UIViewController {
                 } else {
                     DispatchQueue.main.async {
                         self.timePicker.isHidden = true
-                    }
-                    let alert = UIAlertController(title: "Bilgilendirme!", message: "Bugüne ait gönderim süresi dolmuştur.", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "Bilgilendirme!", message: "Bugüne ait gönderim süresi dolmuştur.", preferredStyle: .alert)
 
-                    let action = UIAlertAction(title: "Tamam", style: .default, handler: {(action: UIAlertAction!) in
-                        if let firstViewController = self.navigationController?.viewControllers.first {
-                            self.navigationController?.popToViewController(firstViewController, animated: true)
-                        }
-                    })
-                    alert.addAction(action)
-                    
-                    self.present(alert, animated: true, completion: nil)
-                    
+                        let action = UIAlertAction(title: "Tamam", style: .default, handler: {(action: UIAlertAction!) in
+                            if let firstViewController = self.navigationController?.viewControllers.first {
+                                self.navigationController?.popToViewController(firstViewController, animated: true)
+                            }
+                        })
+                        alert.addAction(action)
+                        
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 }
             }
         }
         catch
         {
-            print("Parse Error: \(error)")
+            #if DEBUG
+                print(error)
+            #endif
         }
     }
 }

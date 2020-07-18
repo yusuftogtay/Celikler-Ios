@@ -22,11 +22,9 @@ class rootViewController: UIViewController {
     }
     
     @IBAction func signIn(_ sender: Any) {
-        
     }
     
     @IBAction func devam(_ sender: Any) {
-                
     }
     
 }

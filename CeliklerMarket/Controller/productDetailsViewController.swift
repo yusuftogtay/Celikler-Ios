@@ -45,7 +45,8 @@ class productDetailsViewController: UIViewController {
                        } else if Double(u)! == 0.5 {
                            qty.text = "0.5"
                        } else {
-                           qty.text = "\( Double(round(10*(Double(u)! - 0.1))/10))"
+                           //qty.text = "\( Double(round(10*(Double(u)! - 0.5))/10))"
+                         qty.text = "\(Double(u)! - 0.5)"
                        }
         } else {
             if Int(qty.text!)! > 0 {
@@ -53,28 +54,33 @@ class productDetailsViewController: UIViewController {
                 qty.text = "\(Int(u)! - 1)"
             }
         }
-        ucube()
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
     @IBAction func plus(_ sender: Any) {
         if (qty.text?.contains("."))! {
             let u = "\(Double(qty.text!) ?? 0)"
             if Double(u)! < 1.0 {
                 qty.text = "1.0"
             } else {
-                qty.text = "\(Double(round(10*(Double(u)! + 0.1))/10))"
+                qty.text = "\(Double(u)! + 0.5)"
+                 //qty.text = "\(Double(round(10*(Double(u)! + 0.5))/10))"
             }
         } else {
             let u = "\(Int(qty.text!) ?? 0)"
             qty.text = "\(Int(u)! + 1)"
         }
-        ucube()
     }
     
     @IBAction func add(_ sender: Any) {
         ucube()
     }
     
-    func ucube() {
+    private func ucube() {
         let a = qty.text!
         let sayi = Double(a)!
         if sayi > 0  {
@@ -96,10 +102,10 @@ class productDetailsViewController: UIViewController {
                         objectUpdate.setValue(name, forKeyPath: "name")
                         do {
                             try context.save()
-                            print("Güncelledi")
-                            
                         } catch {
-                            print(error)
+                            #if DEBUG
+                                print(error)
+                            #endif
                         }
                     } else {
                         let newCard = NSEntityDescription.insertNewObject(forEntityName: "Cards", into: context)
@@ -112,9 +118,10 @@ class productDetailsViewController: UIViewController {
                         newCard.setValue(name, forKeyPath: "name")
                         do {
                             try context.save()
-                            print("burada")
                         } catch {
-                            print(error)
+                            #if DEBUG
+                                print(error)
+                            #endif
                         }
                     }
                     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
@@ -127,7 +134,9 @@ class productDetailsViewController: UIViewController {
                         }
                     }
                 } catch  {
-                    print(error)
+                    #if DEBUG
+                        print(error)
+                    #endif
                 }
             }
         }
@@ -152,7 +161,9 @@ class productDetailsViewController: UIViewController {
                 }
             }
         } catch  {
-            print(error)
+            #if DEBUG
+                print(error)
+            #endif
         }
     }
 }

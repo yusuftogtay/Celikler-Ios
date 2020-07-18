@@ -22,6 +22,11 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
     let imageb = UIImage(named: "b")
     let imaged = UIImage(named: "d")
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print("Çok ram yiyor")
+    }
+    
     @IBAction func segmentControl(_ sender: Any) {
         switch swgment.selectedSegmentIndex {
         case 0:
@@ -61,9 +66,6 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
         if user != nil  {
             swgment.isHidden = false
             ordersCollectionView.isHidden = false
-            /*let user = UserDefaults.standard.value(forKey: "userID")
-            let url = URL(string: "https://amasyaceliklermarket.com/api/my_orders")
-            ApiService.callPost(url: url!, params: ["user_id" : user!], finish: myOrdersResponse)*/
             switch swgment.selectedSegmentIndex {
             case 0:
                 let user = UserDefaults.standard.value(forKey: "userID")
@@ -78,7 +80,6 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
             }
         } else {
             swgment.isHidden = true
-            ordersCollectionView.isHidden = true
             ordersCollectionView.isHidden = true
         }
         
@@ -122,7 +123,9 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         catch
         {
-            print("Parse Error: \(error)")
+            #if DEBUG
+                print(error)
+            #endif
         }
     }
     

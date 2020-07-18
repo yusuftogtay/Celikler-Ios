@@ -52,3 +52,4 @@ class catCollectionViewCell: UICollectionViewCell {
         )
     }
 }
+

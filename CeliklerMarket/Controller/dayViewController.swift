@@ -14,6 +14,10 @@ protocol dayViewControllerDelegate
 }
 
 class dayViewController: UIViewController {
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 
     var datee = Date()
     var timee = Date()

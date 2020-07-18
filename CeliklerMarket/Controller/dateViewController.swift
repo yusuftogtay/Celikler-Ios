@@ -21,6 +21,10 @@ class dateViewController: UIViewController {
     var dateString: String = ""
     var delegate: dateViewControllerDelegate?
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     override func viewDidLoad() {
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light

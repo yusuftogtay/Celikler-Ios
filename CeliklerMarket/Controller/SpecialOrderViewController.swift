@@ -14,6 +14,11 @@ class specialOrderViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var specialOrderTextField: UITextView!
     var note: String = ""
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print("Çok ram yiyor")
+    }
+    
     override func viewDidLoad() {
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
@@ -52,7 +57,6 @@ class specialOrderViewController: UIViewController, UITextViewDelegate {
                 self.present(alert, animated: true, completion: nil)
             } else {
                 note = specialOrderTextField.text
-                print(note)
                 UserDefaults.standard.set(note, forKey: "not")
                 performSegue(withIdentifier: "goSpecialPay", sender: nil)
             }

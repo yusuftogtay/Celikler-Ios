@@ -35,6 +35,11 @@ class deliveryAddressViewController: UIViewController, UITableViewDelegate, UITa
         addressModel()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print("Çok ram yiyor")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         nameLabel.text = receiver_name
@@ -58,7 +63,7 @@ class deliveryAddressViewController: UIViewController, UITableViewDelegate, UITa
         return false
     }
     
-    func addressModel()
+    private func addressModel()
     {
        if let url = URL(string: "https://amasyaceliklermarket.com/api/get_society") {
             URLSession.shared.dataTask(with: url) { data, response, error in
@@ -73,7 +78,9 @@ class deliveryAddressViewController: UIViewController, UITableViewDelegate, UITa
                         }
                     }
                    } catch let error {
-                      print(error)
+                      #if DEBUG
+                          print(error)
+                      #endif
                    }
                 }
             }.resume()
@@ -99,7 +106,6 @@ class deliveryAddressViewController: UIViewController, UITableViewDelegate, UITa
                     "receiver_name": nameLabel.text!,
                     "receiver_mobile": phoneLabel.text!,
                 ]
-                print(params as [String: Any])
                 let url = URL(string: "https://amasyaceliklermarket.com/api/edit_address")
                 ApiService.callPost(url: url!, params: params, finish: addressEditResponse)
             } else {
@@ -112,20 +118,16 @@ class deliveryAddressViewController: UIViewController, UITableViewDelegate, UITa
                     "receiver_name": nameLabel.text!,
                     "receiver_mobile": phoneLabel.text!,
                 ]
-                print(params as [String: Any])
                 let url = URL(string: "https://amasyaceliklermarket.com/api/ekle_adres")
                 ApiService.callPost(url: url!, params: params, finish: addressResponse)
             }
         }
     }
     
-    func addressResponse(message:String, data:Data?) -> Void
+    private func addressResponse(message:String, data:Data?) -> Void
     {
         do
         {
-            if let JSONString = String(data: data!, encoding: String.Encoding.utf8) {
-               print(JSONString)
-            }
             if let jsonData = data
             {
                 let parsedData = try JSONDecoder().decode(getAddress.self, from: jsonData)
@@ -146,17 +148,16 @@ class deliveryAddressViewController: UIViewController, UITableViewDelegate, UITa
         }
         catch
         {
-            print("Parse Error: \(error)")
+            #if DEBUG
+                print(error)
+            #endif
         }
     }
     
-    func addressEditResponse(message:String, data:Data?) -> Void
+    private func addressEditResponse(message:String, data:Data?) -> Void
     {
         do
         {
-            if let JSONString = String(data: data!, encoding: String.Encoding.utf8) {
-               print(JSONString)
-            }
             if let jsonData = data
             {
                 let parsedData = try JSONDecoder().decode(editAddress.self, from: jsonData)
@@ -177,7 +178,9 @@ class deliveryAddressViewController: UIViewController, UITableViewDelegate, UITa
         }
         catch
         {
-            print("Parse Error: \(error)")
+            #if DEBUG
+                print(error)
+            #endif
         }
     }
     
@@ -205,6 +208,5 @@ class deliveryAddressViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         soCityIdset = socityId[indexPath.row]!
-        print(soCityIdset)
     }
 }

@@ -20,6 +20,10 @@ class notificationPageViewController: UIViewController, UITableViewDelegate, UIT
         return not.count
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell = table.dequeueReusableCell(withIdentifier: "noti", for: indexPath)
         if let productName = tableCell.viewWithTag(502) as? UILabel {
@@ -79,11 +83,15 @@ class notificationPageViewController: UIViewController, UITableViewDelegate, UIT
                 do {
                     try managedContext.save()
                 } catch {
-                    print(error)
+                    #if DEBUG
+                        print(error)
+                    #endif
                 }
             }
         } catch {
-            print("Failed")
+            #if DEBUG
+                print(error)
+            #endif
         }
     }
 }
