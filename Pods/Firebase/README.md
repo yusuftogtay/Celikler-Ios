@@ -98,7 +98,7 @@ Instructions for installing binary frameworks via
 To develop Firebase software in this repository, ensure that you have at least
 the following software:
 
-  * Xcode 10.3 (or later)
+  * Xcode 10.1 (or later)
   * CocoaPods 1.7.2 (or later)
   * [CocoaPods generate](https://github.com/square/cocoapods-generate)
 
@@ -128,10 +128,6 @@ Firestore has a self contained Xcode project. See
 ### Adding a New Firebase Pod
 
 See [AddNewPod.md](AddNewPod.md).
-
-### Managing Headers and Imports
-
-See [HeadersImports.md](HeadersImports.md).
 
 ### Code Formatting
 
@@ -195,16 +191,8 @@ building and running the FirebaseAuth pod along with various samples and tests.
 
 ### Firebase Database
 
-The Firebase Database Integration tests can be run against a locally running Database Emulator
-or against a production instance.
-
-To run against a local emulator instance, invoke `./scripts/run_database_emulator.sh start` before
-running the integration test.
-
-To run against a production instance, provide a valid GoogleServices-Info.plist and copy it to
-`Example/Database/App/GoogleService-Info.plist`. Your Security Rule must be set to
-[public](https://firebase.google.com/docs/database/security/quickstart) while your tests are
-running.
+To run the Database Integration tests, make your database authentication rules
+[public](https://firebase.google.com/docs/database/security/quickstart).
 
 ### Firebase Storage
 

@@ -24,10 +24,11 @@
 #import "FBLPromises.h"
 #endif
 
+#import <FirebaseCore/FIRAppInternal.h>
+#import <FirebaseCore/FIRHeartbeatInfo.h>
 #import "FIRInstallationsErrorUtil.h"
 #import "FIRInstallationsItem+RegisterInstallationAPI.h"
 #import "FIRInstallationsLogger.h"
-#import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
 
 NSString *const kFIRInstallationsAPIBaseURL = @"https://firebaseinstallations.googleapis.com";
 NSString *const kFIRInstallationsAPIKey = @"X-Goog-Api-Key";

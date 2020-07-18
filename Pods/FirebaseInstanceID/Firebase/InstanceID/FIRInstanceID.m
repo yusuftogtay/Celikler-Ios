@@ -18,6 +18,11 @@
 
 #import <FirebaseInstallations/FIRInstallations.h>
 
+#import <FirebaseCore/FIRAppInternal.h>
+#import <FirebaseCore/FIRComponent.h>
+#import <FirebaseCore/FIRComponentContainer.h>
+#import <FirebaseCore/FIRLibrary.h>
+#import <FirebaseCore/FIROptions.h>
 #import <GoogleUtilities/GULAppEnvironmentUtil.h>
 #import <GoogleUtilities/GULUserDefaults.h>
 #import "FIRInstanceID+Private.h"
@@ -32,7 +37,6 @@
 #import "FIRInstanceIDTokenManager.h"
 #import "FIRInstanceIDUtilities.h"
 #import "FIRInstanceIDVersionUtilities.h"
-#import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
 #import "NSError+FIRInstanceID.h"
 
 // Public constants
