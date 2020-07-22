@@ -154,6 +154,7 @@ class ViewController: UIViewController {
                                     }
                                     task.resume()
                                 } catch { print(error) }
+                                self.hideKeyboard()
                                 delegate.rememberUser()
                             }
                         })
