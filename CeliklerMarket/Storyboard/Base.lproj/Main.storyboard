@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="chc-ni-QMw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="chc-ni-QMw">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -23,7 +23,7 @@
                                     <constraint firstAttribute="height" constant="133" id="bXS-GK-sc3"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0555 056 33 05" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1X-43-plm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0531 337 68 82" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1X-43-plm">
                                 <rect key="frame" x="87" y="237" width="240" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="Stv-fZ-FRr"/>
@@ -677,7 +677,6 @@
                                                             <state key="normal" title="Ekle"/>
                                                             <connections>
                                                                 <action selector="button:" destination="yog-Ju-t9s" eventType="touchUpInside" id="htU-Hc-Wio"/>
-                                                                <action selector="button:" destination="j24-mv-AoM" eventType="touchUpInside" id="w2C-4r-z3a"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -728,6 +727,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="addd" destination="2Fx-sp-QKG" id="9BX-K0-mJJ"/>
                                             <outlet property="price" destination="edt-6u-bNe" id="4WI-A0-FWM"/>
                                             <outlet property="total" destination="654-Ll-BF3" id="p1E-MN-ibC"/>
                                             <outlet property="unit" destination="fME-FH-7vH" id="mb7-sD-TBw"/>
@@ -1277,14 +1277,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="socityCell" id="aI3-QZ-CRY">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="42.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="28" width="374" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aI3-QZ-CRY" id="AHv-4X-VxA">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="42.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V50-3f-nK3">
-                                                    <rect key="frame" x="20" y="11.000000000000002" width="334" height="20.666666666666671"/>
+                                                    <rect key="frame" x="20" y="11.000000000000002" width="334" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2432,10 +2432,10 @@
             </objects>
             <point key="canvasLocation" x="17" y="138"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tabbar View Controller-->
         <scene sceneID="oGT-SM-yhS">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dXN-9y-VhB" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dXN-9y-VhB" customClass="tabbarViewController" customModule="CeliklerMarket" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="JuD-35-Zeu"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lcx-Fe-GZw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -3036,9 +3036,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LXh-iw-ba9"/>
+        <segue reference="EEQ-G8-qCc"/>
         <segue reference="OCT-lu-oDA"/>
-        <segue reference="N8B-n7-cLt"/>
+        <segue reference="yTN-wm-irw"/>
         <segue reference="fxc-Gk-EmH"/>
     </inferredMetricsTieBreakers>
     <resources>
