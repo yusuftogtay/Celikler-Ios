@@ -134,6 +134,9 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
+        print("geldi")
+        subCategory.removeAll()
+        productList.removeAll()
     }
     
     var subCategory: [subCategoryStruct] = []
@@ -143,19 +146,48 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     let id = UserDefaults.standard.value(forKey: "userID") as? String
     var items: [String] = []
     let placeHolderImage = UIImage(named: "V1")
+    var dbProductID: [String] = []
+    var dbProductPrice: [String] = []
+    var dbProductQty: [String] = []
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     @IBOutlet weak var subCategoryTable: UITableView!
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        do {
+            dbProductID.removeAll()
+            dbProductQty.removeAll()
+            dbProductPrice.removeAll()
+            let managedContext = appDelegate!.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+            let result = try managedContext.fetch(fetchRequest)
+            if result.count > 0 {
+                for data in result as! [NSManagedObject] {
+                    dbProductID.append(data.value(forKey: "id") as! String)
+                    dbProductQty.append(data.value(forKey: "qty") as! String)
+                    dbProductPrice.append(data.value(forKey: "price") as! String)
+                }
+            }
+        } catch {
+            #if DEBUG
+                print("error")
+            #endif
+        }
         let url = URL(string: "https://amasyaceliklermarket.com/api/category_alt/" + String(subCategoryIndex))
         ApiService.callGet(url: url!, finish: subCategoryFunc)
+        reflseh2()
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         #if DEBUG
-            print("çokram")
+            print("--")
         #endif
     }
     
@@ -217,12 +249,30 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     private func getProduct(message:String, data:Data?) -> Void
     {
         do {
-                if let jsonData = data
-                {
-                    productList.removeAll()
+            if let jsonData = data
+            {
+                let managedContext = appDelegate!.persistentContainer.viewContext
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+                do {
+                    dbProductID.removeAll()
+                    dbProductQty.removeAll()
+                    dbProductPrice.removeAll()
+                    let result = try managedContext.fetch(fetchRequest)
                     productList = try JSONDecoder().decode([product].self, from: jsonData)
-                    reflseh2()
+                    if result.count > 0 {
+                        for data in result as! [NSManagedObject] {
+                            dbProductID.append(data.value(forKey: "id") as! String)
+                            dbProductQty.append(data.value(forKey: "qty") as! String)
+                            dbProductPrice.append(data.value(forKey: "price") as! String)
+                        }
+                    }
+                } catch {
+                    #if DEBUG
+                        print("error")
+                    #endif
                 }
+                reflseh2()
+            }
         } catch {
             hidden()
         }
@@ -300,8 +350,6 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let managedContext = appDelegate!.persistentContainer.viewContext
         let tableCell = subCategoryTable.dequeueReusableCell(withIdentifier: "sub", for: indexPath) as? productsTableViewCell
         tableCell?.cellDelegate = self
         tableCell?.index = indexPath
@@ -312,40 +360,24 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         if let productName = tableCell?.viewWithTag(502) as? UILabel {
             productName.text = String(productList[indexPath.row].price) + "₺"
         }
+        /*if let productName = tableCell?.viewWithTag(508) as? UILabel {
+            productName.text = "0"
+        }*/
+        print("innnn \(productList[indexPath.row].product_id)")
         if let productName = tableCell?.viewWithTag(508) as? UILabel {
-            if productList[indexPath.row].unit == "kg" {
-                productName.text = "0.0"
+            var a = "0"
+            if (dbProductID.firstIndex(of: productList[indexPath.row].product_id) != nil) {
+                productName.text = "\(dbProductQty[(dbProductID.firstIndex(of: productList[indexPath.row].product_id) ?? 0)])"
+                //print("innnn \(indexPath.row)")
+                a = productName.text ?? "0"
+                if let produc = tableCell?.viewWithTag(503) as? UILabel {
+                    let price = Double(productList[indexPath.row].price)
+                    let qty = Double(a)
+                    produc.text = "Toplam: \(Double(round(100*(price! * qty!))/100))₺"
+                }
             } else {
                 productName.text = "0"
             }
-        }
-        if let productName = tableCell?.viewWithTag(503) as? UILabel {
-            productName.text = "Toplam: 0₺"
-        }
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
-        do {
-            let result = try managedContext.fetch(fetchRequest)
-            if result.count > 0 {
-                for data in result as! [NSManagedObject] {
-                    if data.value(forKey: "id") as! String == productList[indexPath.row].product_id {
-                        if let productName = tableCell?.viewWithTag(502) as? UILabel {
-                            productName.text = "\(data.value(forKey: "price") as! String)₺"
-                        }
-                        if let productName = tableCell?.viewWithTag(508) as? UILabel {
-                            productName.text = "\(data.value(forKey: "qty") as! String)"
-                        }
-                        if let productName = tableCell?.viewWithTag(503) as? UILabel {
-                            let price = Double((data.value(forKey: "price") as! String))
-                            let qty = Double((data.value(forKey: "qty") as! String))
-                            productName.text = "Toplam: \(Double(round(100*(price! * qty!))/100))₺"
-                        }
-                    }
-                }
-            }
-        } catch {
-            #if DEBUG
-                print("error")
-            #endif
         }
         if let productName = tableCell?.viewWithTag(600) as? UILabel {
             productName.text = productList[indexPath.row].product_name
