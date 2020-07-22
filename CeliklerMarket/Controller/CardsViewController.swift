@@ -81,7 +81,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 #endif
             }
         } else {
-            /*guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             let managedContext = appDelegate.persistentContainer.viewContext
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
             fetchRequest.predicate = NSPredicate(format: "id = %@", cards1.cards1[index].product_id)
@@ -121,8 +121,11 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
              } catch {
                  print(error)
              }
-            cards1.cards1.remove(at: index)
-            cardTable.deleteRows(at: [indexPath], with: .left)*/
+            cards1.cards1.remove(at: indexPath.row)
+            DispatchQueue.main.async {
+                self.cardTable.deleteRows(at: [indexPath], with: .left)
+                self.cardTable.reloadData()
+            }
         }
     }
 
