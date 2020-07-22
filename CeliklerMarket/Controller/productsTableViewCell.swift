@@ -19,6 +19,7 @@ class productsTableViewCell: UITableViewCell {
     var index: IndexPath?
     var tapGestureRecognizer = UITapGestureRecognizer()
     
+    @IBOutlet weak var addd: UIButton!
     
     @IBOutlet weak var unit: UILabel!
     override func awakeFromNib() {
@@ -42,8 +43,8 @@ class productsTableViewCell: UITableViewCell {
                 unit.text = "\(Int(u)! - 1)"
             }
         }
-        let a = unit.text!
-        let sayi = Double(a)!
+        /*let a = unit.text!
+        let sayi = Double(a)!*/
         /*if sayi > 0 {
             let p = price.text!.components(separatedBy: "₺")
             let priceInt = Double(p[0])
@@ -66,8 +67,8 @@ class productsTableViewCell: UITableViewCell {
             let u = "\(Int(unit.text!) ?? 0)"
             unit.text = "\(Int(u)! + 1)"
         }
-        let a = unit.text!
-        let sayi = Double(a)!
+        /*let a = unit.text!
+        let sayi = Double(a)!*/
         /*if sayi > 0 {
             let p = price.text!.components(separatedBy: "₺")
             let priceInt = Double(p[0])
@@ -87,6 +88,7 @@ class productsTableViewCell: UITableViewCell {
             total.text = "Toplam: 0₺"
         }
         cellDelegate?.onClickCell(index: (index?.row)!, unit: unit.text!, indexPath: index!)
+        //addd.titleLabel?.text = "Güncellendi"
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
