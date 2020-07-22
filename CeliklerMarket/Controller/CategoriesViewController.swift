@@ -353,6 +353,7 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBAction func cellTapped(deneme: Int)   {
         subCategoryID = Int(categoriesID[deneme]!)!
+        dismiss(animated: true, completion: nil)
         performSegue(withIdentifier: "go", sender: nil)
     }
     
