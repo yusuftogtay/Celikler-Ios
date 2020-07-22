@@ -31,16 +31,42 @@ struct cancelOrders: Codable {
     let message: String
 }
 
+struct productDB: Codable {
+    let id: String
+    let price: String
+    let qty: String
+}
+
 struct subCategoryStruct: Codable {
-    let id, title, slug, parent: String
-    let level, description, image, image2: String
-    let image2_status, status: String
+    var id, title, slug, parent: String
+    var level, description, image, image2: String
+    var image2_status, status: String
 }
 
 struct product: Codable {
-    let product_id, product_name, product_description, product_image: String
-    let category_id, in_stock, price, unit_value: String
-    let unit, rewards, tax: String
+    var product_id, product_name, product_description, product_image: String
+    var category_id, in_stock, price, unit_value: String
+    var unit, rewards, tax: String
+    var qty: String?
+    
+    init(product_id: String, product_name: String, product_description: String, product_image: String, category_id: String, in_stock: String, price: String, unit_value: String, unit: String, rewards: String, tax: String, qty: String? = nil) {
+        self.product_id = product_id
+        self.product_name = product_name
+        self.product_description = product_description
+        self.product_image = product_image
+        self.category_id = category_id
+        self.in_stock = in_stock
+        self.price = price
+        self.unit_value = unit_value
+        self.unit = unit
+        self.rewards = rewards
+        self.tax = tax
+        self.qty = qty
+    }
+    
+    mutating func changeQty(qtyChange: String) {
+        qty = qtyChange
+    }
 }
 
 struct socity: Codable {
