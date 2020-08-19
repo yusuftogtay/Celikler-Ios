@@ -99,7 +99,7 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
-    @IBAction func onayla(_ sender: Any) {
+    @IBAction func  onayla(_ sender: Any) {
         done.isEnabled = false
         let selectedIndexPath = addressTable.indexPathForSelectedRow
         if timeString != "" {
@@ -117,74 +117,29 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 let lastttime = "\(time[0]):\(lastTime)"
                 let postTime = "\(timeString) - \(lastttime)"
-                if note == ""   {
-                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-                    let managedContext = appDelegate.persistentContainer.viewContext
-                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
-                    do {
-                        let result = try managedContext.fetch(fetchRequest)
-                        for i in result as! [NSManagedObject] {
-                            let s = send(product_id: i.value(forKey: "id") as! String,
-                                         qty: i.value(forKey: "qty") as! String,
-                                         unit_value: i.value(forKey: "unit_value") as! String,
-                                         unit: i.value(forKey: "unit") as! String,
-                                         price: i.value(forKey: "price") as! String)
-                            self.sendData.append(s)
-                        }
-                        
-                    } catch {
-                        #if DEBUG
-                            print(error)
-                        #endif
-                    }
+                DispatchQueue.main.async {
                     do  {
-                        let data = try JSONEncoder().encode(sendData)
-                        let user = UserDefaults.standard.value(forKey: "userID")
+                        self.indicator.startAnimating()
+                        self.indicator.isHidden = false
+                        let data = try JSONEncoder().encode(self.sendData)
                         if let JSONString = String(data: data, encoding: String.Encoding.utf8) {
                            let params: [String: Any] = [
-                               "user_id": user!,
-                               "date": dayString,
-                               "time": postTime,
-                               "data": JSONString,
-                               "location": location,
-                               "payment_method": odeme!,
+                            "user_id": self.user,
+                            "date": self.dayString,
+                            "time": postTime,
+                            "data": JSONString,
+                            "location": location,
+                            "payment_method": self.odeme!,
                            ]
                             let url = URL(string: "https://amasyaceliklermarket.com/api/send_order_ios")
-                            if let tabItems = tabBarController?.tabBar.items {
+                            if let tabItems = self.tabBarController?.tabBar.items {
                                 let tabItem = tabItems[1]
                                 tabItem.badgeValue = "0"
                             }
-                            ApiService.callPost(url: url!, params: params, finish: sendOrderResponse)
+                            print(JSONString)
+                            ApiService.callPost(url: url!, params: params, finish: self.sendOrderResponse)
                         }
                     } catch {
-                        #if DEBUG
-                            print(error)
-                        #endif
-                    }
-                } else {
-                    var data: [sendSpecial] = []
-                    data.append(sendSpecial(product_id: "125", qty: "1", unit_value: "1", unit: "ml", price: "1", note: note))
-                    do {
-                        let data = try JSONEncoder().encode(data)
-                        let user = UserDefaults.standard.value(forKey: "userID")
-                        if let JSONString = String(data: data, encoding: String.Encoding.utf8) {
-                           let params: [String: Any] = [
-                               "user_id": user!,
-                               "date": dayString,
-                               "time": postTime,
-                               "data": JSONString,
-                               "location": location,
-                               "payment_method": odeme!,
-                           ]
-                            let url = URL(string: "https://amasyaceliklermarket.com/api/send_order_ios")
-                            if let tabItems = tabBarController?.tabBar.items {
-                                let tabItem = tabItems[1]
-                                tabItem.badgeValue = "0"
-                            }
-                            ApiService.callPost(url: url!, params: params, finish: sendOrderResponse)
-                            
-                        }
-                    } catch  {
                         #if DEBUG
                             print(error)
                         #endif
@@ -207,6 +162,7 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBAction func unWindToBack(_ sender: UIStoryboardSegue) {}
     
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var done: UIButton!
     
     override func viewDidLoad() {
@@ -214,6 +170,10 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
             overrideUserInterfaceStyle = .light
         }
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            indicator.style = .large
+        }
+        indicator.isHidden = true
         addButton.layer.cornerRadius = 6.0
         day.layer.cornerRadius = 6.0
         done.layer.cornerRadius = 6.0
@@ -223,6 +183,7 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         let url = URL(string: "https://amasyaceliklermarket.com/api/get_address")
         let user = UserDefaults.standard.value(forKey: "userID")
         ApiService.callPost(url: url!, params: ["user_id": user!], finish: finishPostAddress)
+        
     }
     
     @IBOutlet weak var kendi: UILabel!
@@ -232,7 +193,7 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func daySend(_ sender: Any) {
         performSegue(withIdentifier: "goDay", sender: nil)
-        day.titleLabel?.text = "Teslimat Zamanı:" + "\(dayString)"
+        //day.titleLabel?.text = "Teslimat Zamanı:" + "\(dayString)"
     }
     
     @IBAction func timeSend(_ sender: Any) {
@@ -249,14 +210,43 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    var user: String = ""
+    
     override func viewWillAppear(_ animated: Bool) {
+        load()
         super.viewWillAppear(true)
-        day.titleLabel!.text = "Gönderim Günü: \(dayString)"
-        time.titleLabel!.text = "Gönderim Saati: \(timeString)"
         let url = URL(string: "https://amasyaceliklermarket.com/api/get_address")
-        let user = UserDefaults.standard.value(forKey: "userID")
-        ApiService.callPost(url: url!, params: ["user_id": user!], finish: finishPostAddress)
+        user = UserDefaults.standard.value(forKey: "userID") as! String
+        ApiService.callPost(url: url!, params: ["user_id": user], finish: finishPostAddress)
         day.titleLabel?.text = "Teslimat Zamanı:" + "\(dayString)"
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        sendData.removeAll()
+    }
+    
+    func load(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+        DispatchQueue.main.async {
+            do {
+                let result = try managedContext.fetch(fetchRequest)
+                for i in result as! [NSManagedObject] {
+                    let s = send(product_id: i.value(forKey: "id") as! String,
+                                 qty: i.value(forKey: "qty") as! String,
+                                 unit_value: i.value(forKey: "unit_value") as! String,
+                                 unit: i.value(forKey: "unit") as! String,
+                                 price: i.value(forKey: "price") as! String)
+                    self.sendData.append(s)
+                }
+            } catch {
+                #if DEBUG
+                    print(error)
+                #endif
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -274,22 +264,7 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
             {
                 let parsedData = try JSONDecoder().decode(sendOrder.self, from: jsonData)
                 if parsedData.response == true {
-                    let managedContext = appDelegate!.persistentContainer.viewContext
-                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
-                    if let result = try? managedContext.fetch(fetchRequest) {
-                        for object in result {
-                            managedContext.delete(object as! NSManagedObject)
-                        }
-                        do{
-                            try managedContext.save()
-                        }
-                        catch
-                        {
-                            #if DEBUG
-                            print(error)
-                            #endif
-                        }
-                    }
+                    deleteTables()
                 }
                 alerrt(message: parsedData.data)
             }
@@ -302,8 +277,31 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    private func deleteTables() {
+        DispatchQueue.main.async {
+            let managedContext = self.appDelegate!.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+            if let result = try? managedContext.fetch(fetchRequest) {
+                for object in result {
+                    managedContext.delete(object as! NSManagedObject)
+                }
+                do{
+                    try managedContext.save()
+                }
+                catch
+                {
+                    #if DEBUG
+                    print(error)
+                    #endif
+                }
+            }
+        }
+    }
+    
     private func alerrt(message: String, title: String = "") {
         DispatchQueue.main.async {
+            self.indicator.stopAnimating()
+            self.indicator.isHidden = true
             let alert = UIAlertController(title: "Siparişniz Başarıyla Alınmıştır", message: message, preferredStyle: .alert)
             let action = UIAlertAction(title: "Tamam", style: .default, handler: { (action: UIAlertAction!) in
                 if let firstViewController = self.navigationController?.viewControllers.first {
@@ -339,3 +337,35 @@ class paymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
 }
+
+/*if note == ""   {
+    
+} else {
+    var data: [sendSpecial] = []
+    data.append(sendSpecial(product_id: "125", qty: "1", unit_value: "1", unit: "ml", price: "1", note: note))
+    do {
+        let data = try JSONEncoder().encode(data)
+        let user = UserDefaults.standard.value(forKey: "userID")
+        if let JSONString = String(data: data, encoding: String.Encoding.utf8) {
+           let params: [String: Any] = [
+               "user_id": user!,
+               "date": dayString,
+               "time": postTime,
+               "data": JSONString,
+               "location": location,
+               "payment_method": odeme!,
+           ]
+            let url = URL(string: "https://amasyaceliklermarket.com/api/send_order_ios")
+            if let tabItems = tabBarController?.tabBar.items {
+                let tabItem = tabItems[1]
+                tabItem.badgeValue = "0"
+            }
+            ApiService.callPost(url: url!, params: params, finish: sendOrderResponse)
+            
+        }
+    } catch  {
+        #if DEBUG
+            print(error)
+        #endif
+    }
+}*/
