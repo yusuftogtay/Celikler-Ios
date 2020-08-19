@@ -46,22 +46,25 @@ class OrderDetailViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     @IBAction func cancelOrder(_ sender: Any) {
-        let alert = UIAlertController(title: "Onay", message: "Siparişinizi iptal etmek istiyor musunuz", preferredStyle: .alert)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Onay", message: "Siparişinizi iptal etmek istiyor musunuz", preferredStyle: .alert)
 
-        let okAction = UIAlertAction(title: "Evet", style: UIAlertAction.Style.default) {
-            UIAlertAction in
-            let url = URL(string: "https://amasyaceliklermarket.com/api/cancel_order")
-            let user = UserDefaults.standard.value(forKey: "userID")
-            ApiService.callPost(url: url!, params: ["sale_id" : self.sale_id, "user_id" : user!], finish: self.myOrdersCancelResponse)
-        }
-        let cancelAction = UIAlertAction(title: "Hayır", style: UIAlertAction.Style.cancel) {
-            UIAlertAction in
+            let okAction = UIAlertAction(title: "Evet", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                let url = URL(string: "https://amasyaceliklermarket.com/api/cancel_order")
+                let user = UserDefaults.standard.value(forKey: "userID")
+                ApiService.callPost(url: url!, params: ["sale_id" : self.sale_id, "user_id" : user!], finish: self.myOrdersCancelResponse)
+            }
+            let cancelAction = UIAlertAction(title: "Hayır", style: UIAlertAction.Style.cancel) {
+                UIAlertAction in
+                
+            }
+            alert.addAction(okAction)
+               alert.addAction(cancelAction)
             
+            self.present(alert, animated: true, completion: nil)
         }
-        alert.addAction(okAction)
-           alert.addAction(cancelAction)
         
-        self.present(alert, animated: true, completion: nil)
     }
     
     private func myOrdersCancelResponse(message:String, data:Data?) -> Void
