@@ -31,9 +31,9 @@ class productsTableViewCell: UITableViewCell {
             let u = "\(Double(unit.text!) ?? 0)"
             if Double(u)! == 0.0 {
                 unit.text = "0.0"
-            } else if Double(u)! == 0.5 {
+            } /*else if Double(u)! == 0.5 {
                 unit.text = "0.5"
-            } else {
+            }*/ else {
                 //unit.text = "\( Double(round(10*(Double(u)! - 0.1))/10))"
                 unit.text = "\(Double(u)! - 0.5)"
             }
