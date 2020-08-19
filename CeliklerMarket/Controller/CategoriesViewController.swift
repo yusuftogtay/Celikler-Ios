@@ -195,7 +195,6 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         searchTable.isHidden = true
         sliderViewDidLoad()
         categories()
-        search()
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.setTitle("Vazgeç", for: .normal)
         }
@@ -605,6 +604,7 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchTable.isHidden = false
         searchBarText.removeAll()
+        search()
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
@@ -630,6 +630,7 @@ class categoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchTable.isHidden = true
         searching = false
+        searchProductData.removeAll()
         self.searchBar.endEditing(true)
     }
     struct searchProduct: Codable {
