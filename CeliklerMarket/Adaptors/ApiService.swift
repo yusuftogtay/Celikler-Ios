@@ -39,7 +39,6 @@ class ApiService   {
                 result.message = "Success"
                 result.data = data
             }
-
             finish(result)
         }
         task.resume()
