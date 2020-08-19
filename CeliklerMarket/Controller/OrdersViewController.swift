@@ -50,6 +50,7 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
         time = parsedData[deneme].delivery_time_from + " - " + parsedData[deneme].delivery_time_to
         performSegue(withIdentifier: "goDetail", sender: nil)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goDetail" {
             let destination = segue.destination as! OrderDetailViewController
@@ -60,6 +61,12 @@ class ordersViewController: UIViewController, UICollectionViewDelegate, UICollec
             destination.deliveryCharge = deliveryCharge
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        parsedData.removeAll()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         let user : String? =  UserDefaults.standard.string(forKey: "username")
