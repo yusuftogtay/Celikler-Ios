@@ -43,7 +43,7 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     final func onClickCell(index: Int, unit: String, indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
-        print("\(unit)")
+        print(productList[index].product_id + "yayy")
         if unit != "0.0" || unit != "0"  {
             let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Cards")
             fetchRequest.predicate = NSPredicate(format: "id = %@", productList[index].product_id)
@@ -104,24 +104,24 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
                 let test = try managedContext.fetch(fetchRequest)
                 if test.count > 0{
                     let objectToDelete = test[0] as! NSManagedObject
-                                   managedContext.delete(objectToDelete)
-                                   do {
-                                       try managedContext.save()
-                                       let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
-                                       do {
-                                           let result = try managedContext.fetch(fetchRequest)
-                                           if let tabItems = tabBarController?.tabBar.items {
-                                               let tabItem = tabItems[1]
-                                               let badege = String(result.count)
-                                               tabItem.badgeValue = badege
-                                           }
-                                       } catch {
-                                           print("Failed")
-                                       }
-                                   }
-                                   catch {
-                                       print(error)
-                                   }
+                    managedContext.delete(objectToDelete)
+                    do {
+                        try managedContext.save()
+                        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
+                        do {
+                            let result = try managedContext.fetch(fetchRequest)
+                            if let tabItems = tabBarController?.tabBar.items {
+                                let tabItem = tabItems[1]
+                                let badege = String(result.count)
+                                tabItem.badgeValue = badege
+                            }
+                        } catch {
+                            print("Failed")
+                        }
+                    }
+                    catch {
+                        print(error)
+                    }
                 }
              } catch {
                  print(error)
@@ -134,9 +134,6 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        print("geldi")
-        subCategory.removeAll()
-        productList.removeAll()
     }
     
     var subCategory: [subCategoryStruct] = []
@@ -291,7 +288,6 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    
     override func viewDidLoad() {
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
@@ -360,10 +356,6 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         if let productName = tableCell?.viewWithTag(502) as? UILabel {
             productName.text = String(productList[indexPath.row].price) + "₺"
         }
-        /*if let productName = tableCell?.viewWithTag(508) as? UILabel {
-            productName.text = "0"
-        }*/
-        print("innnn \(productList[indexPath.row].product_id)")
         if let productName = tableCell?.viewWithTag(508) as? UILabel {
             var a = "0"
             if (dbProductID.firstIndex(of: productList[indexPath.row].product_id) != nil) {
@@ -376,7 +368,14 @@ class subCategoryViewController: UIViewController, UITableViewDelegate, UITableV
                     produc.text = "Toplam: \(Double(round(100*(price! * qty!))/100))₺"
                 }
             } else {
-                productName.text = "0"
+                if productList[indexPath.row].unit == "kg" {
+                    productName.text = "0.0"
+                } else {
+                    productName.text = "0"
+                }
+                if let produc = tableCell?.viewWithTag(503) as? UILabel {
+                    produc.text = "Toplam:"
+                }
             }
         }
         if let productName = tableCell?.viewWithTag(600) as? UILabel {
