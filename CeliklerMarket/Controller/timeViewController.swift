@@ -74,7 +74,6 @@ class timeViewController: UIViewController {
             {
                 let parsedData = try JSONDecoder().decode(dateResponse.self, from: jsonData)
                 if parsedData.times.count > 0 {
-                    print(parsedData)
                     let firstData = parsedData.times.first
                     let lastData = parsedData.times.last
                     let lastSplit = lastData!.components(separatedBy: " -")
