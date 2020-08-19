@@ -1033,6 +1033,10 @@
                                     <action selector="onayla:" destination="aJB-dk-VpJ" eventType="touchUpInside" id="D0f-X7-94T"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jsG-61-vKK">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -1064,6 +1068,7 @@
                         <outlet property="addressTable" destination="G4n-eI-Uve" id="lhJ-EF-g3c"/>
                         <outlet property="day" destination="p3j-fR-T9u" id="b5k-wT-XvZ"/>
                         <outlet property="done" destination="fWk-ql-UH9" id="0Tc-kC-feO"/>
+                        <outlet property="indicator" destination="jsG-61-vKK" id="282-kj-Gbm"/>
                         <outlet property="kart" destination="kuN-eu-wYy" id="13V-m2-aDK"/>
                         <outlet property="kendi" destination="hq4-Gx-RUc" id="ZeY-bZ-h6j"/>
                         <outlet property="kendim" destination="sYt-wN-w3T" id="iCD-rZ-Ceu"/>
@@ -1277,14 +1282,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="socityCell" id="aI3-QZ-CRY">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="28" width="374" height="42.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aI3-QZ-CRY" id="AHv-4X-VxA">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="42.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V50-3f-nK3">
-                                                    <rect key="frame" x="20" y="11.000000000000002" width="334" height="21.666666666666671"/>
+                                                    <rect key="frame" x="20" y="11.000000000000002" width="334" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2550,13 +2555,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mfz-Dt-kNn">
                                                             <rect key="frame" x="330.33333333333331" y="6.3333333333333428" width="62.666666666666686" height="33.666666666666664"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tamamlandı" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn1-GU-vav">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tamamlandı" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn1-GU-vav">
                                                                     <rect key="frame" x="0.0" y="0.0" width="62.666666666666664" height="13.333333333333334"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="93" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="iXW-j1-xwW">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="93" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="iXW-j1-xwW">
                                                                     <rect key="frame" x="0.0" y="14.333333333333314" width="62.666666666666664" height="19"/>
                                                                     <color key="tintColor" red="0.064118430020000006" green="0.57395702599999998" blue="0.2511867881" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </imageView>
